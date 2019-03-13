@@ -15,11 +15,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SignupPage {
 
+  Acc_profile: string = 'user';
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
+  }
+
+  
+  onSegmentChange(event){
+  //   this.form.reset();
+  //   if(event === 'All')
+  //    this.form.controls['type'].setValue('companies');
+  //  else
+  //  this.form.controls['type'].setValue('freelancers');
+
   }
 
 }
