@@ -1,0 +1,106 @@
+<ion-content style="background-color: black">
+  <div
+    class="options-container-overlay purchase-popup-overlay payment-method-overlay open"
+  >
+    <section
+      class="headers"
+      header-type="back"
+      header-style="style3"
+      header-icon-style="user"
+    >
+      <header>
+        <div class="main-grids safe-area">
+          <div class="inner">
+            <button class="minimize" (click)="modalService.dismiss()"></button>
+            <h2>Payment Method</h2>
+          </div>
+        </div>
+      </header>
+    </section>
+
+    <section class="payment-method-header">
+      <div class="main-grids safe-area">
+        <div class="inner">
+          <div class="title-author">
+            <img
+              alt="author"
+              src="{{ purchase.pictureUrl }}"
+              width="100%"
+              height="auto"
+            />
+
+            <h2 class="title">{{ purchase.name }}</h2>
+            <cite class="author">{{ purchase.artistName }}</cite>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="song-price">
+            <b class="final-price">$ {{ purchase.price }}</b>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-titles" section-type="payments">
+      <div class="main-grids safe-area">
+        <div class="inner">
+          <h2>Your Cards</h2>
+          <button (click)="manageCards()" class="options">Manage Cards</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards-swiper-container">
+      <div
+        class="swiper-container swiper-padding-left cards-swiper no-fastclick swiper-container-horizontal"
+      >
+        <div
+          class="swiper-wrapper"
+          style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);"
+        >
+          <div (click)="selectCard(card)"
+            *ngFor="let card of cardsService.cards"
+            class="unique-card swiper-slide select-card swiper-slide-active"
+            style="width: 305px; margin-right: 18px;"
+          >
+            <div class="slide">
+              <div class="img-inner-wrapper">
+                <img src="{{ card.pictureUrl }}" width="100%" height="auto" />
+
+                <h2>{{ card.type }}</h2>
+
+                <div class="number-card-wrapper">
+                  <span>**** **** **** </span
+                  ><b class="last-numbers-card">{{ card.lastDigits }}</b>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="swiper-slide"
+            style="width: 305px; margin-right: 18px;"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-grids safe-area">
+      <div class="inner">
+        <button class="paypal">
+          <svg width="20" height="24" viewBox="0 0 20 24">
+            <g fill="none" fill-rule="evenodd">
+              <path d="M-17-15h53v53h-53z"></path>
+              <path
+                fill="#FFF"
+                fill-rule="nonzero"
+                d="M19.882 8.652c.157.75.14 1.66-.053 2.732-.763 3.964-3.241 5.946-7.434 5.946h-.58a.848.848 0 0 0-.578.221.978.978 0 0 0-.316.57l-.053.254-.723 4.634-.027.2a.964.964 0 0 1-.322.57.872.872 0 0 1-.585.221H5.908a.522.522 0 0 1-.434-.2.61.61 0 0 1-.119-.483c.08-.5.195-1.25.349-2.25a581.437 581.437 0 0 1 .704-4.493l.355-2.244c.044-.33.233-.495.566-.495h1.724c1.166.018 2.201-.076 3.105-.281 1.535-.349 2.794-.992 3.776-1.929.895-.848 1.575-1.946 2.04-3.295.21-.625.364-1.218.46-1.78.009-.054.02-.088.033-.101a.045.045 0 0 1 .046-.014c.018.005.044.02.08.047.692.527 1.122 1.25 1.289 2.17zm-2.264-3.777c0 .955-.201 2.009-.605 3.16-.702 2.081-2.026 3.487-3.974 4.22-.99.357-2.096.544-3.315.562 0 .009-.395.013-1.185.013l-1.184-.013c-.877 0-1.394.429-1.552 1.286-.018.071-.39 2.437-1.119 7.098-.009.09-.061.134-.158.134H.645a.608.608 0 0 1-.48-.221.628.628 0 0 1-.152-.516L3.066.898c.044-.26.164-.474.362-.644A1.01 1.01 0 0 1 4.105 0h7.869c.298 0 .726.058 1.283.174a8.685 8.685 0 0 1 1.467.429c.938.366 1.655.915 2.151 1.647.496.732.743 1.607.743 2.625z"
+              ></path>
+            </g></svg
+          ><span>Continue on Paypal</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>

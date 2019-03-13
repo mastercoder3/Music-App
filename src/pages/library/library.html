@@ -1,0 +1,93 @@
+<ion-content>
+  <div
+    id="profile-1"
+    data-page="profile"
+    class="page nope profile profile-1 special-scroll page-on-center"
+  >
+    <div class="album-cover-blur">
+      <img
+        src="../../assets/images/library/profile picture.jpg"
+        class="album cover"
+        width="100%"
+        height="100%"
+      />
+    </div>
+    
+    <section
+      class="headers"
+      header-type="back"
+      header-style="style3"
+      header-icon-style="user"
+    >
+      <header>
+        <div class="main-grids safe-area">
+          <div class="inner">
+            <a class="link back" style="opacity: 0"><button class="back-icon"></button></a>
+
+            <div class="album-cover">
+              <img
+                src="../../assets/images/library/profile picture.jpg"
+                class="album cover"
+                width="100%"
+                height="100%"
+              />
+            </div>
+
+            <div class="title-author"><h2 class="title">John Doe</h2></div>
+          </div>
+        </div>
+      </header>
+    </section>
+
+    <div class="scrollable-content" style="opacity: 1">
+      <div class="special-scroll-tab active bottom-padding">
+        <section class="profile-avatar-user">
+          <div class="main-grids safe-area">
+            <div class="inner">
+              <img
+                src="../../assets/images/library/profile picture.jpg"
+                width="100%"
+                height="auto"
+              />
+
+              <div class="user-country">
+                <cite class="user">John Doe</cite>
+                <p class="country">Australia</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="profile-follow-info">
+          <div class="main-grids safe-area">
+            <div class="inner">
+              <div class="followers">
+                <p class="number">{{ followersCount }}</p>
+                <p>Followers</p>
+              </div>
+
+              <div class="following">
+                <p class="number">{{ followingCount }}</p>
+                <p>Following</p>
+              </div>
+
+              <button class="following">follow</button>
+            </div>
+          </div>
+        </section>
+
+        <best-playlists [isLibrary]="true"></best-playlists>
+
+        <library-favorites></library-favorites>
+
+        <recently-played></recently-played>
+
+        <favorite-artists></favorite-artists>
+
+        <mini-video-player></mini-video-player>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer> <player-footer></player-footer> </ion-footer>

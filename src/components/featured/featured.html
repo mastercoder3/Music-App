@@ -1,0 +1,223 @@
+<section class="mixed-swiper-container mixed-swipe">
+  <div
+    class="swiper-container swiper-padding-left mixed-swiper playlist-song no-fastclick"
+  >
+    <div class="swiper-wrapper">
+      <div
+        class="swiper-slide music-player-song"
+        (click)="musicPlayerPageService.openMusicPlayer([featuredSongs[0]], 0)"
+        slide-style="style1"
+      >
+        <div class="slide">
+          <div class="img-inner-wrapper">
+            <img
+              src="assets/images/featured/ariana grande featured.jpg"
+              width="100%"
+              height="auto"
+            />
+
+            <h2 style="color: white">{{ featuredSongs[0].name }}</h2>
+
+            <cite class="author">
+              <a>{{ featuredSongs[0].artistName }}</a>
+            </cite>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="swiper-slide"
+        (click)="videoDetailsPageService.openVideo(featuredVideo)"
+        slide-style="style2"
+        typevideo="video/mp4"
+      >
+        <div class="slide">
+          <div class="img-inner-wrapper">
+            <img
+              src="assets/images/featured/this is america featured.jpg"
+              width="100%"
+              height="auto"
+            />
+
+            <cite class="author">
+              <a>{{ featuredVideo.name }}</a>
+            </cite>
+
+            <h2>{{ featuredVideo.artistName }}</h2>
+
+            <div class="slide-label-wrapper">
+              <div class="slide-label">New Video</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="swiper-slide music-player-song"
+        (click)="musicPlayerPageService.openMusicPlayer([featuredSongs[1]], 0)"
+        slide-style="style3"
+      >
+        <div class="slide">
+          <div class="img-inner-wrapper">
+            <cite class="author">
+              <a>{{ featuredSongs[1].artistName }}</a>
+            </cite>
+
+            <a>
+              <img
+                src="assets/images/featured/travis scott featured.jpg"
+                width="100%"
+                height="auto"
+              />
+              <h2>{{ featuredSongs[1].name }}</h2>
+            </a>
+
+            <div class="slide-label-wrapper">
+              <div class="slide-label">
+                <div class="blur"></div>
+                <p>New Single</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="swiper-slide music-player-song"
+        (click)="musicPlayerPageService.openMusicPlayer([featuredSongs[2]], 0)"
+        slide-style="style4"
+      >
+        <div class="slide">
+          <div class="img-inner-wrapper">
+            <img
+              src="assets/images/featured/drake featured.jpg"
+              width="100%"
+              height="auto"
+            />
+
+            <a>
+              <div class="author-avatar">
+                <img
+                  src="assets/images/songs/mia.jpg"
+                  width="100%"
+                  height="auto"
+                />
+              </div>
+
+              <cite class="author">{{ featuredSongs[2].artistName }}</cite>
+            </a>
+
+            <h2>{{ featuredSongs[2].name }}</h2>
+
+            <div class="slide-label-wrapper">
+              <div class="slide-label">
+                <div class="blur"></div>
+                <p>New Single</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="swiper-slide music-player-song"
+        (click)="musicPlayerPageService.openMusicPlayer([featuredSongs[3]], 0)"
+        slide-style="style5"
+      >
+        <div class="slide">
+          <div class="img-inner-wrapper">
+            <img
+              src="assets/images/featured/john mayer featured.jpg"
+              width="100%"
+              height="auto"
+            />
+
+            <h2>{{ featuredSongs[3].name }}</h2>
+
+            <a>
+              <div class="author-avatar">
+                <img
+                  alt="Author"
+                  src="assets/images/artists/john mayer.jpg"
+                  width="100%"
+                  height="auto"
+                />
+              </div>
+
+              <cite class="author">{{ featuredSongs[3].artistName }}</cite>
+            </a>
+
+            <div class="slide-label-wrapper">
+              <div class="slide-label">
+                <div class="blur"></div>
+                <p>New Single</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="swiper-slide album-details-page"
+        (click)="goToAlbum(featuredAlbum)"
+        slide-style="style3"
+      >
+        <div class="slide">
+          <div class="img-inner-wrapper">
+            <cite class="author">
+              <a>{{ featuredAlbum.artistName }}</a>
+            </cite>
+
+            <a>
+              <img
+                src="assets/images/featured/drake scorpion featured.jpg"
+                width="100%"
+                height="auto"
+              />
+              <h2>{{ featuredAlbum.name }}</h2>
+            </a>
+
+            <div class="slide-label-wrapper">
+              <div class="slide-label">
+                <div class="blur"></div>
+                <p>New Album</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="swiper-slide music-player-song"
+        (click)="musicPlayerPageService.openMusicPlayer([featuredSongs[4]])"
+        slide-style="style3"
+      >
+        <div class="slide">
+          <div class="img-inner-wrapper">
+            <cite class="author">
+              <a>{{ featuredSongs[4].artistName }}</a>
+            </cite>
+
+            <a>
+              <img
+                src="assets/images/featured/shallow featured.jpg"
+                width="100%"
+                height="auto"
+              />
+              <h2>{{ featuredSongs[4].name }}</h2>
+            </a>
+
+            <div class="slide-label-wrapper">
+              <div class="slide-label">
+                <div class="blur"></div>
+                <p>New Single</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide"></div>
+    </div>
+  </div>
+</section>

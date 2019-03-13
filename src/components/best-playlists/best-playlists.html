@@ -1,0 +1,78 @@
+<section
+  *ngIf="!isLibrary"
+  class="section-titles"
+  section-type="standard"
+  see-all-style="style1"
+  section-icon-style="playlists"
+  section-title-style="left"
+>
+  <header>
+    <div class="main-grids safe-area">
+      <div class="inner">
+        <div class="icon"></div>
+
+        <h2>The Best Playlists</h2>
+
+        <div class="see-all">
+          <p><a>See All</a></p>
+        </div>
+      </div>
+    </div>
+  </header>
+</section>
+
+<section
+  *ngIf="isLibrary"
+  class="section-titles"
+  section-type="standard"
+  see-all-style="style2"
+  section-icon-style="playlists_white"
+  section-title-style="left"
+>
+  <header>
+    <div class="main-grids safe-area">
+      <div class="inner">
+        <div class="icon"></div>
+
+        <h2 >Own Playlists</h2>
+        <div class="see-all">
+          <p><a>Play All</a></p>
+        </div>
+      </div>
+    </div>
+  </header>
+</section>
+
+<section class="best-playlists-swiper-container checkPlaylist">
+  <div
+    class="swiper-container swiper-padding-left square-swiper playlist-swiper best-playlists-swiper-container no-fastclick"
+  >
+    <div class="swiper-wrapper">
+      <div
+        *ngFor="let playlist of bestPlaylists"
+        class="swiper-slide the-playlist"
+        album-cover="79sz6"
+      >
+        <div class="slide slide-1">
+          <a class="playlist-button" (click)="goToPlaylist(playlist)">
+            <div class="img-play">
+              <img src="{{ playlist.pictureUrl }}" width="100%" height="auto" />
+
+              <div class="blur"></div>
+
+              <div class="playlist-song-number">
+                {{ playlist.songsCount }} Songs
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <h2>{{ playlist.name }}</h2>
+
+        <p class="playlist-followers">{{ playlist.followersCount }}</p>
+      </div>
+
+      <div class="swiper-slide"></div>
+    </div>
+  </div>
+</section>

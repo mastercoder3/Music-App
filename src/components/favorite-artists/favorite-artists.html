@@ -1,0 +1,36 @@
+<section class="section-titles" section-type="standard" see-all-style="style1" section-icon-style="favourites_artists" section-title-style="left">
+    <header>
+      <div class="main-grids safe-area">
+        <div class="inner">
+          <div class="icon"></div>
+          <h2>Favourite Artists</h2>
+          <div class="see-all">
+            <p>
+              <a>See All</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+  </section>
+  
+  <section class="favourite-artists-container checkPlaylist">
+    <div class="swiper-container swiper-padding-left favourite-artist-swiper no-fastclick">
+      <div class="swiper-wrapper" swiper-style="style1">
+        <div *ngFor="let artist of favoriteArtists" class="swiper-slide artist-details-page" (click)="goToArtist(artist)">
+          <div *ngIf="artist.likedCount > 0" class="circle-number">
+            <div class="inner">{{ artist.likedCount }}</div>
+          </div>
+
+          <a>
+            <div class="slide favourite-artist-1">
+              <img src="{{ artist.pictureUrl }}" width="100%" height="auto">
+              <cite class="author">{{ artist.name }}</cite>
+            </div>
+          </a>
+        </div>
+        
+        <div class="swiper-slide"></div>
+      </div>
+    </div>
+  </section>

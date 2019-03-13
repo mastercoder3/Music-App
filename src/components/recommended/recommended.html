@@ -1,0 +1,105 @@
+<section
+  class="section-titles"
+  section-type="standard"
+  see-all-style="style1"
+  section-icon-style="favourites"
+  section-title-style="left"
+>
+  <header>
+    <div class="main-grids safe-area">
+      <div class="inner">
+        <div class="icon"></div>
+        <h2>For You</h2>
+        <div class="see-all">
+          <p><a>See All</a></p>
+        </div>
+      </div>
+    </div>
+  </header>
+</section>
+
+<section class="section-tabs" section-type="tabs">
+  <div class="main-grids safe-area">
+    <div class="buttons-row">
+      <a href="#tab1" class="button active tab-link">Songs</a>
+      <a href="#tab2" class="button tab-link">Playlists</a>
+    </div>
+  </div>
+</section>
+
+<div class="tabs-animated-wrapp">
+  <div class="tabs">
+    <div id="tab1" class="tab active">
+      <section class="multi-row-swiper-container checkPlaylist">
+        <div
+          class="swiper-container swiper-padding-left square-swiper multi-row-swiper playlist-song no-fastclick"
+        >
+          <div class="swiper-wrapper">
+            <div
+              *ngFor="let song of recommendedSongs; let i = index"
+              class="swiper-slide music-player-song"
+              (click)="
+                musicPlayerPageService.openMusicPlayer(recommendedSongs, i)
+              "
+            >
+              <div class="slide">
+                <div class="img-play">
+                  <img src="{{ song.pictureUrl }}" width="100%" height="auto" />
+                </div>
+              </div>
+
+              <h2>{{ song.name }}</h2>
+
+              <cite class="author" avatar="22sz2" album-cover="22sz5">
+                <a>{{ song.artistName }}</a>
+              </cite>
+            </div>
+
+            <div class="swiper-slide"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="tab2" class="tab">
+      <section class="multi-row-swiper-container checkPlaylist">
+        <div
+          class="swiper-container swiper-padding-left square-swiper multi-row-swiper no-fastclick"
+        >
+          <div class="swiper-wrapper">
+            <div
+              *ngFor="let playlist of recommendedPlaylists"
+              class="swiper-slide the-playlist"
+              album-cover="90sz6"
+            >
+              <div class="slide slide-3">
+                <a class="playlist-button" (click)="goToPlaylist(playlist)">
+                  <div class="img-play">
+                    <img
+                      src="{{ playlist.pictureUrl }}"
+                      width="100%"
+                      height="auto"
+                    />
+                    <div class="blur"></div>
+                    <div class="playlist-song-number">
+                      {{ playlist.songsCount }} Songs
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <h2>{{ playlist.name }}</h2>
+              <!--
+                <cite class="author" avatar="90sz2" album-cover="90sz5">
+                  <a>Artist name</a>
+                </cite>
+              -->
+            </div>
+
+            <div class="swiper-slide"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

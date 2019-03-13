@@ -1,0 +1,53 @@
+<section
+  class="section-titles"
+  section-type="standard"
+  see-all-style="style1"
+  section-icon-style="albums_2"
+  section-title-style="left"
+>
+  <header>
+    <div class="main-grids safe-area">
+      <div class="inner">
+        <div class="icon"></div>
+        
+        <h2>Popular Albums</h2>
+
+        <div class="see-all">
+          <p><a>See All</a></p>
+        </div>
+      </div>
+    </div>
+  </header>
+</section>
+
+<section class="buy-albums-swiper-container">
+  <div
+    class="swiper-container swiper-padding-left square-swiper playlist-swiper buy-albums-swiper-container no-fastclick"
+  >
+    <div class="swiper-wrapper" swiper-style="style1">
+      <div *ngFor="let album of popularAlbums" class="swiper-slide">
+        <div class="slide album-details-page" (click)="goToAlbum(album)">
+          <a>
+            <div class="img-play">
+              <img src="{{ album.pictureUrl }}" width="100%" height="auto" />
+              <div class="blur"></div>
+
+              <div *ngIf="album.isPurchased" class="price-label">BOUGHT</div>
+              <div *ngIf="!album.isPurchased" class="price-label">
+                Buy ${{ album.price }}
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <h2>{{ album.name }}</h2>
+
+        <cite class="author">
+          <a>{{ album.artistName }}</a>
+        </cite>
+      </div>
+
+      <div class="swiper-slide"></div>
+    </div>
+  </div>
+</section>

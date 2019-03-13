@@ -1,0 +1,47 @@
+<section
+  class="section-titles"
+  section-type="standard"
+  see-all-style="style1"
+  section-icon-style="note_1"
+  section-title-style="left"
+>
+  <header>
+    <div class="main-grids safe-area">
+      <div class="inner">
+        <div class="icon"></div>
+        <h2>Most Played</h2>
+        <div class="see-all">
+          <p><a>See All</a></p>
+        </div>
+      </div>
+    </div>
+  </header>
+</section>
+
+<section class="most-played-swiper-container checkPlaylist">
+  <div
+    class="swiper-container swiper-padding-left square-swiper playlist-swiper most-played-swiper playlist-song no-fastclick"
+  >
+    <div class="swiper-wrapper" swiper-label="hide">
+      <div
+        *ngFor="let song of mostPlayedSongs; let i = index"
+        class="swiper-slide music-player-song"
+        (click)="musicPlayerPageService.openMusicPlayer(mostPlayedSongs, i)"
+      >
+        <div class="slide">
+          <div class="img-play">
+            <img src="{{ song.pictureUrl }}" width="100%" height="auto" />
+          </div>
+        </div>
+
+        <h2>{{ song.name }}</h2>
+
+        <cite class="author">
+          <a>{{ song.artistName }}</a>
+        </cite>
+      </div>
+
+      <div class="swiper-slide"></div>
+    </div>
+  </div>
+</section>

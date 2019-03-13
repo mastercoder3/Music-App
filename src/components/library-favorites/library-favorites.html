@@ -1,0 +1,154 @@
+<section
+  class="section-titles"
+  section-type="standard"
+  see-all-style="no_see-all"
+  section-icon-style="favourites_white"
+  section-title-style="left"
+>
+  <header>
+    <div class="main-grids safe-area">
+      <div class="inner">
+        <div class="icon"></div>
+
+        <h2>Favourites</h2>
+
+        <div class="buttons-row">
+          <a href="#tab13" class="button active tab-link">Albums</a>
+          <a href="#tab14" class="button tab-link">Songs</a>
+        </div>
+      </div>
+    </div>
+  </header>
+</section>
+
+<div class="tabs-animated-wrap">
+  <div class="tabs">
+    <div id="tab13" class="tab active">
+      <div
+        class="swiper-container swiper-padding-left user-playlist-mini-thumb no-fastclick swiper-container-horizontal"
+      >
+        <div class="swiper-wrapper">
+          <div class="first-slide">
+            <div class="gradient"></div>
+            <div class="swiper-slide">
+              <div class="slide">
+                <div class="img-play">
+                  <p>Play All</p>
+                  <button class="user-profile"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            *ngFor="let albumPair of albumPairs"
+            class="other-slide swiper-slide swiper-slide-active"
+            style="width: 164px; margin-right: 15px;"
+          >
+            <div class="swiper-slide album-details-page" (click)="goToAlbum(albumPair.album1)">
+              <div class="slide">
+                <a>
+                  <div class="author-avatar">
+                    <img
+                      src="{{ albumPair.album1.pictureUrl }}"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+
+                  <div class="title-author">
+                    <h2>{{ albumPair.album1.name }}</h2>
+                    <cite class="author">{{
+                      albumPair.album1.artistName
+                    }}</cite>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <div class="swiper-slide album-details-page" *ngIf="albumPair.album2" (click)="goToAlbum(albumPair.album2)">
+              <div class="slide">
+                <a>
+                  <div class="author-avatar">
+                    <img
+                      src="{{ albumPair.album2.pictureUrl }}"
+                      width="100%"
+                      height="100%"
+                    />
+                  </div>
+
+                  <div class="title-author">
+                    <h2>{{ albumPair.album2.name }}</h2>
+                    <cite class="author">{{
+                      albumPair.album2.artistName
+                    }}</cite>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab14" class="tab">
+      <div
+        class="swiper-container swiper-padding-left user-playlist-mini-thumb playlist-song no-fastclick swiper-container-horizontal"
+      >
+        <div class="swiper-wrapper">
+          <div class="first-slide">
+            <div class="gradient"></div>
+            <div class="swiper-slide">
+              <div class="slide">
+                <div class="img-play">
+                  <p>Play All</p>
+                  <button class="user-profile"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            *ngFor="let songPair of songPairs"
+            class="other-slide swiper-slide swiper-slide-active"
+            style="width: 164px; margin-right: 15px;"
+          >
+            <div class="swiper-slide">
+              <div class="slide">
+                <div class="author-avatar">
+                  <img
+                    src="{{ songPair.song1.pictureUrl }}"
+                    width="100%"
+                    height="100%"
+                  />
+                </div>
+
+                <div class="title-author">
+                  <h2>{{ songPair.song1.name }}</h2>
+                  <cite class="author">{{ songPair.song1.artistName }}</cite>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="slide">
+                <div class="author-avatar">
+                  <img
+                    src="{{ songPair.song2.pictureUrl }}"
+                    width="100%"
+                    height="100%"
+                  />
+                </div>
+
+                <div class="title-author">
+                  <h2>{{ songPair.song2.name }}</h2>
+                  <cite class="author">{{ songPair.song2.artistName }}</cite>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
