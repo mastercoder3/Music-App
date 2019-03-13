@@ -67,6 +67,7 @@ import { NgXCreditCardsModule } from 'ngx-credit-cards';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -101,6 +102,7 @@ const firebase = {
     VideoDetailsPage,
     SearchPage,
     LoginPage,
+    SignupPage,
 
     // Components
     FeaturedComponent,
@@ -151,6 +153,7 @@ const firebase = {
     VideoDetailsPage,
     SearchPage,
     LoginPage,
+    SignupPage,
   ],
   providers: [
     StatusBar,

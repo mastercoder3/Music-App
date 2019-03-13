@@ -2,3 +2,25 @@
     color: white !important;
     text-align: center !important;
 }
+
+.loginWithFacebook {
+    margin-right: 10px;
+    }
+    .fbIcon{
+      margin-right: 10px;
+      color: blue;
+    }
+    .fbButton{
+      background-color: #faf9fc !important;
+      border-color: #465892 !important;
+      position: relative;
+      left: 15%;
+    }
+    .fbButton:hover{
+      background-color: white !important;
+      border-color: white !important;
+   
+    }
+    .loginWithFacebook{
+        color: black !important;
+      }
