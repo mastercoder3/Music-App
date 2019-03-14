@@ -8,6 +8,10 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Camera } from '@ionic-native/camera';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+
 
 // Ionic Audio
 import {
@@ -68,6 +72,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { AuthProvider } from '../providers/auth/auth';
+import { HelperProvider } from '../providers/helper/helper';
+import { ApiProvider } from '../providers/api/api';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -123,6 +130,8 @@ const firebase = {
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(MyApp),
     NgXCreditCardsModule,
     AngularFireModule.initializeApp(firebase), // imports firebase/app needed for everything
@@ -164,9 +173,14 @@ const firebase = {
     ModalService,
     VideoService,
     AudioService,
+    Camera,
+    AndroidPermissions,
     ScreenOrientation,
     MusicControls,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AuthProvider,
+    HelperProvider,
+    ApiProvider
   ]
 })
 export class AppModule {}
