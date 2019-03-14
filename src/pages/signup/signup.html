@@ -2,7 +2,7 @@
   <div style="background-color: #120810; height: 45px !important;">
     <ion-title style="background-color: #120810;">
       <h3 style="color:white; float: left; position: relative; left: 10px;">
-        <ion-icon name="arrow-back"></ion-icon>&nbsp; &nbsp; &nbsp; Sign Up
+        <ion-icon name="arrow-back" (tap)="back()"></ion-icon>&nbsp; &nbsp; &nbsp; Sign Up
       </h3>
     </ion-title>
   </div>
@@ -180,8 +180,8 @@
               <ion-icon name="home" style="margin-top:12px;color:white;"></ion-icon>
             </ion-col>
             <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
-              <ion-select placeholder="Country" style="max-width: 6000px !important; min-width: 95%;">
-                <ion-option>item.name</ion-option>
+              <ion-select placeholder="Country" style="max-width: 6000px !important; min-width: 95%; color: white;" formControlName="country">
+                <ion-option *ngFor="let item of countries" [value]="item.name">{{item.name}}</ion-option>
               </ion-select>
 
             </ion-col>
@@ -315,7 +315,7 @@
           <br>
           <ion-row no-padding>
             <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-              <button ion-button block class="continue-btn" type="button" (click)="submit(form1)"
+              <button ion-button block class="continue-btn" type="button" (click)="submit(form1)" [disabled]="form1.pristine || form1.invalid"
                 style="border-color: white; color: white;">
                 Continue
               </button>

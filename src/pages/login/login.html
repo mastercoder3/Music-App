@@ -10,13 +10,13 @@
       </ion-col>
     </ion-row>
     <br><br><br>
-    <form>
+    <form [formGroup]="form">
       <ion-row padding style="position:relative; bottom: 30px;">
         <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
           <ion-icon name="mail" style="color:white;"></ion-icon>
         </ion-col>
         <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-          <ion-input type="email" placeholder="Email address"
+          <ion-input type="email" placeholder="Email address" formControlName="email"
             style="border-bottom: 1px white solid; position: relative; bottom: 13px; background-color: #120810 !important;color:white;">
           </ion-input>
         </ion-col>
@@ -27,7 +27,7 @@
           <ion-icon name="key" style="color:white;font-size: 20px;"></ion-icon>
         </ion-col>
         <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-          <ion-input type="password" placeholder="Password"
+          <ion-input type="password" placeholder="Password" formControlName="password"
             style="border-bottom: 1px white solid; position: relative; bottom: 13px;background-color: #120810 !important; color:white;">
           </ion-input>
         </ion-col>
@@ -36,7 +36,7 @@
 
         <ion-col text-center no-padding col-6 col-sm-6 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
 
-          <button ion-button block (click)="signinCustomer(form1)"
+          <button ion-button block (click)="signinCustomer(form)" [disabled]="form.pristine || form.invalid"
             style="background-color: white; position: relative; left: 50% ; border: 0px solid white;">
             <!-- <ion-icon class="signUpIcon" name="md-person-add"></ion-icon> -->
             <p class="signUp" style="color:black; font-family:Arial; font-size: 15px;">Login</p>
@@ -63,7 +63,7 @@
 
       <ion-col text-center no-padding col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>
         <p style="position:relative; bottom: 30px; color: white; text-align: center">Don't have an account? <a style="color:rgb(221, 224, 192)"
-            (click)="signup()">Signup</a></p>
+            (tap)="signup()">Signup</a></p>
       </ion-col>
     </ion-row>
   </div>

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActionSheetController } from 'ionic-angular';
 import { ToastController, LoadingController } from 'ionic-angular';
+import { Http, RequestOptions, Headers } from '@angular/http';
+import { map } from 'rxjs/operators';
+
 /*
   Generated class for the HelperProvider provider.
 
@@ -11,7 +14,7 @@ import { ToastController, LoadingController } from 'ionic-angular';
 export class HelperProvider {
 
   constructor(private actionSheetCtrl: ActionSheetController,
-    private toastCtrl: ToastController, private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http
     ) {
 
   }
@@ -67,6 +70,19 @@ export class HelperProvider {
 
   closeLoading() {
     this.loading.dismiss();
+  }
+
+  getCountries() {
+    let myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    let options = new RequestOptions({ headers: myHeaders });
+    return this.http.get('./assets/data/country.json', options)
+      .pipe(map((this.extractData)))
+  }
+
+  extractData(res) {
+    let body = res.json();
+    return body;
   }
 
 }

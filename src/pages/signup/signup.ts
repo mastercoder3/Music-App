@@ -36,6 +36,7 @@ export class SignupPage {
   task: AngularFireUploadTask;
   image;
   uploadImageId;
+  countries;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private camera: Camera, 
     private androidPermissions: AndroidPermissions, private helper: HelperProvider,    private fireStorage: AngularFireStorage,
@@ -64,6 +65,13 @@ export class SignupPage {
       insta: [''],
       youtube: ['']
     });
+
+    //get countries
+
+    this.helper.getCountries()
+      .subscribe(res =>{
+        this.countries = res;
+      })
 
 
     //Camera Permissions
@@ -151,6 +159,7 @@ export class SignupPage {
           gender: form.value.gender,
           imageURL: '',
           imageId: '',
+          country: form.value.country,
           facebook: form.value.fb,
           instagram: form.value.insta,
           youtube: form.value.youtube,
@@ -218,6 +227,10 @@ export class SignupPage {
     else{
       this.professions.push(val);
     }
+  }
+
+  back(){
+    this.navCtrl.pop();
   }
    
 

@@ -13,7 +13,7 @@ import { SignupPage } from '../pages/signup/signup';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = SignupPage;
+  rootPage: any;
 
   constructor(
     platform: Platform,
@@ -26,5 +26,13 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
+    this.rootPage = LoginPage;
+    if(localStorage.getItem('uid')){
+      this.rootPage = TabsPage;
+    }
+    else{
+      this.rootPage = LoginPage;
+    }
   }
 }

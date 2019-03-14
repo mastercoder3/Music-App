@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SignupPage } from '../signup/signup';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
+import { HelperProvider } from '../../providers/helper/helper';
+import { ApiProvider } from '../../providers/api/api';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the LoginPage page.
@@ -15,11 +21,49 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  form: FormGroup;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,
+    private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider) {
+    this.form = this.fb.group({
+      email: ['', Validators.compose([
+        Validators.required, Validators.email
+      ])],
+      password: ['', Validators.required]
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+    
+  }
+
+  signup(){
+    this.navCtrl.push(SignupPage);
+  }
+
+  user;
+
+  signinCustomer(form){
+    this.helper.presentLoadingDefault();
+    this.auth.login(form.value.email, form.value.password)
+      .then( res =>{
+        if(res)
+            this.api.getUserById(res.user.uid)
+              .subscribe(resp =>{
+                  this.user = resp;
+                  if(this.user){
+                    this.helper.closeLoading();
+                    localStorage.setItem('uid', res.user.uid);
+                    localStorage.setItem('type', this.user.type);
+                    this.navCtrl.setRoot(TabsPage);
+                  }
+                  else
+                    this.helper.closeLoading();
+              })
+      }, err =>{
+        this.helper.closeLoading();
+        this.helper.presentToast(err.message);
+      })
   }
 
 }

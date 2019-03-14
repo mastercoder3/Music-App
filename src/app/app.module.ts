@@ -11,6 +11,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { HttpModule } from '@angular/http';
 
 
 // Ionic Audio
@@ -131,6 +132,7 @@ const firebase = {
   imports: [
     BrowserModule,
     FormsModule,
+    HttpModule,
     ReactiveFormsModule,
     IonicModule.forRoot(MyApp),
     NgXCreditCardsModule,

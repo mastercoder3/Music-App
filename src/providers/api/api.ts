@@ -18,4 +18,8 @@ export class ApiProvider {
     return this.afs.doc('users/'+id).set(data);
   }
 
+  getUserById(id){
+    return this.afs.doc('users/'+id).valueChanges();
+  }
+
 }
