@@ -76,6 +76,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { AuthProvider } from '../providers/auth/auth';
 import { HelperProvider } from '../providers/helper/helper';
 import { ApiProvider } from '../providers/api/api';
+import { MusicPlayerProvider } from '../providers/music-player/music-player';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -182,7 +183,8 @@ const firebase = {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthProvider,
     HelperProvider,
-    ApiProvider
+    ApiProvider,
+    MusicPlayerProvider
   ]
 })
 export class AppModule {}

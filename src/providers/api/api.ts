@@ -14,12 +14,23 @@ export class ApiProvider {
   constructor(private afs: AngularFirestore) {    
   }
 
+  //::::::::::::::::::::::::::::::::::::::::::::::::: USER ::::::::::::::::::::::::::::::::::::::::::::::::::::::
   createUser(id,data){
     return this.afs.doc('users/'+id).set(data);
   }
 
   getUserById(id){
     return this.afs.doc('users/'+id).valueChanges();
+  }
+
+  updateUser(id,data){
+    return this.afs.doc('users/'+id).update(data);
+  }
+
+  //:::::::::::::::::::::::::::::::::::::::::::::::::: Feautured Songs ::::::::::::::::::::::::::::::::::::::::::
+
+  getFeaturedSongs(){
+    return this.afs.collection('featured').snapshotChanges();
   }
 
 }

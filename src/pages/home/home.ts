@@ -9,6 +9,7 @@ import { SearchPage } from '../search/search';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
   constructor(
     private videoService: VideoService,
     private modalCtrl: ModalController

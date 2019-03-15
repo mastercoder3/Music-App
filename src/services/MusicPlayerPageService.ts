@@ -10,8 +10,8 @@ import { Song } from '../data/Song';
 
 @Injectable()
 export class MusicPlayerPageService {
-  allSongs: Song[] = [];
-  upNextSongs: Song[] = [];
+  allSongs = [];
+  upNextSongs = [];
 
   constructor(
     private modalCtrl: ModalController,
@@ -19,7 +19,7 @@ export class MusicPlayerPageService {
     private audioService: AudioService
   ) {}
 
-  openMusicPlayer(songs: Song[], trackIndex: number) {
+  openMusicPlayer(songs, trackIndex: number) {
     this.videoService.hideMiniPlayer();
     this.hideFooterPlayer();
 
@@ -53,7 +53,7 @@ export class MusicPlayerPageService {
     modal.present();
   }
 
-  simplePlaySong(song: Song) {
+  simplePlaySong(song) {
     var tracks = this.getTracksFromSongs(this.allSongs);
 
     var trackIndex = this.allSongs.findIndex(function(otherSong) {
@@ -72,15 +72,15 @@ export class MusicPlayerPageService {
     this.upNextSongs.splice(0, this.audioService.trackIndex + 1);
   }
 
-  getTracksFromSongs(songs: Song[]) {
+  getTracksFromSongs(songs) {
     var tracks = [];
 
     songs.forEach(song => {
       var track = {
-        src: song.songUrl,
-        artist: song.artistName,
-        title: song.name,
-        art: song.pictureUrl,
+        src: song.songURL,
+        artist: song.oartist,
+        title: song.title,
+        art: song.imageURL,
         preload: 'metadata', // tell the plugin to preload metadata such as duration for this track, set to 'none' to turn off
         isLiked: song.isLiked
       };
@@ -89,7 +89,7 @@ export class MusicPlayerPageService {
     });
 
     return tracks;
-  }
+  } 
 
   showFooterPlayer() {
     var footerPlayerElements = document.getElementsByClassName(
