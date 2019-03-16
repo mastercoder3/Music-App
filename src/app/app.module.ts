@@ -13,6 +13,7 @@ import { Camera } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { HttpModule } from '@angular/http';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { Facebook } from '@ionic-native/facebook';
 
 
 // Ionic Audio
@@ -178,6 +179,7 @@ const firebase = {
     VideoService,
     AudioService,
     Camera,
+    Facebook,
     NativeAudio,
     AndroidPermissions,
     ScreenOrientation,

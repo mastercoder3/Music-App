@@ -32,7 +32,7 @@ export class MusicPlayerPageService {
 
     this.setUpNextSongs();
 
-    const modal = this.modalCtrl.create(MusicPlayerPage);
+    const modal = this.modalCtrl.create(MusicPlayerPage, {songs: songs, index: trackIndex});
 
     modal.onDidDismiss(() => {
       this.showFooterPlayer();

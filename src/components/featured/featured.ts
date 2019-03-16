@@ -55,7 +55,6 @@ export class FeaturedComponent implements OnInit{
       })))
       .subscribe(res =>{
         this.songs = res;
-        console.log(res)
       })
   }
 

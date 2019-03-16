@@ -1,5 +1,5 @@
 import { Component, Inject, forwardRef } from '@angular/core';
-import { IonicPage, ModalController } from 'ionic-angular';
+import { IonicPage, ModalController, NavParams } from 'ionic-angular';
 
 import { ModalService } from '../../services/ModalService';
 import { AudioService } from '../../services/AudioService';
@@ -17,17 +17,24 @@ import { Song } from '../../data/Song';
 })
 export class MusicPlayerPage {
 
+  songs;
+  index;
+
   constructor(
     private modalCtrl: ModalController,
     public modalService: ModalService,
     public audioService: AudioService,
+    private params: NavParams,
     @Inject(forwardRef(() => MusicPlayerPageService))
     public musicPlayerPageService: MusicPlayerPageService
-  ) {}
+  ) {
+    this.songs = this.params.get('songs');
+    this.index = this.params.get('index');
+  }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MusicPlayerPage');
-    
+    console.log('ionViewDidLoad MusicPlayerPage');  
+
   }
 
   share() {
@@ -59,11 +66,16 @@ export class MusicPlayerPage {
     if(event.value > val){
       let seeker = (event.value * this.audioService.playingTrack().duration ) / 100;
       this.audioService.seekTo(seeker);
-      // this.audioService.play();
     }
     else if (event.value < val){
       let seeker = (event.value * this.audioService.playingTrack().duration ) / 100;
       this.audioService.seekTo(seeker);
+    }
+
+    if(event.value === 100){
+      setTimeout( ()=>{
+        this.next();
+      }, 500);
     }
       
   }

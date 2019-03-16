@@ -6,6 +6,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { HelperProvider } from '../../providers/helper/helper';
 import { ApiProvider } from '../../providers/api/api';
 import { TabsPage } from '../tabs/tabs';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,7 +25,7 @@ export class LoginPage {
   form: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,
-    private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider) {
+    private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider,private facebook: Facebook) {
     this.form = this.fb.group({
       email: ['', Validators.compose([
         Validators.required, Validators.email
@@ -64,6 +65,16 @@ export class LoginPage {
         this.helper.closeLoading();
         this.helper.presentToast(err.message);
       })
+  }
+
+  loginByFacebook(){
+    this.facebook.login(['public_profile', 'user_friends', 'email'])
+    .then((res: FacebookLoginResponse) => {
+      console.log(res)
+      alert(JSON.stringify(res))
+    },err =>{
+      alert(err)
+    })
   }
 
 }
