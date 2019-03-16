@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 /*
   Generated class for the MusicPlayerProvider provider.
@@ -10,8 +10,19 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MusicPlayerProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello MusicPlayerProvider Provider');
+  songs = [];
+  index;
+
+  constructor(public audio: NativeAudio) {
   }
+
+  playSong(songs, index){
+    console.log(songs[index]);
+    this.audio.preloadComplex(songs[index].title, songs[index].songURL,1 ,1, 0);
+    this.audio.play(songs[index].title);
+  }
+
+
+
 
 }

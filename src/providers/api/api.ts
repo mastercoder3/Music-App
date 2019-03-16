@@ -33,4 +33,8 @@ export class ApiProvider {
     return this.afs.collection('featured').snapshotChanges();
   }
 
+  getMostPlayedSongs(){
+    return this.afs.collection('songs', ref => ref.orderBy('views', 'desc').limit(10)).snapshotChanges();
+  }
+
 }

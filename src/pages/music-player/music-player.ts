@@ -16,6 +16,7 @@ import { Song } from '../../data/Song';
   templateUrl: 'music-player.html'
 })
 export class MusicPlayerPage {
+
   constructor(
     private modalCtrl: ModalController,
     public modalService: ModalService,
@@ -26,6 +27,7 @@ export class MusicPlayerPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MusicPlayerPage');
+    
   }
 
   share() {
@@ -50,5 +52,19 @@ export class MusicPlayerPage {
 
   changeSong(song: Song) {
     this.musicPlayerPageService.simplePlaySong(song);
+  }
+
+  changeSeeker(event){
+    let val = this.audioService.progressPercentage();
+    if(event.value > val){
+      let seeker = (event.value * this.audioService.playingTrack().duration ) / 100;
+      this.audioService.seekTo(seeker);
+      // this.audioService.play();
+    }
+    else if (event.value < val){
+      let seeker = (event.value * this.audioService.playingTrack().duration ) / 100;
+      this.audioService.seekTo(seeker);
+    }
+      
   }
 }

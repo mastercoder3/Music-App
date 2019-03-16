@@ -86,4 +86,5 @@
     <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-android-permissions" spec="1.0.0" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
+    <plugin name="cordova-plugin-nativeaudio" spec="3.0.9" />
 </widget>

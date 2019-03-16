@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { HttpModule } from '@angular/http';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 
 // Ionic Audio
@@ -177,12 +178,14 @@ const firebase = {
     VideoService,
     AudioService,
     Camera,
+    NativeAudio,
     AndroidPermissions,
     ScreenOrientation,
     MusicControls,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthProvider,
     HelperProvider,
+    MusicPlayerProvider,
     ApiProvider,
     MusicPlayerProvider
   ]

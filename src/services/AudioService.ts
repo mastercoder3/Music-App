@@ -127,8 +127,9 @@ export class AudioService {
     this.isShuffle = !this.isShuffle;
   }
 
-  seekTo() {
-    let seek = this.audioProvider.tracks[0].progress + 5;
+  seekTo(val) {
+    // let seek = this.audioProvider.tracks[0].progress + 5;
+    let seek = val;
     this.audioProvider.seekTo(seek);
   }
 
@@ -256,7 +257,7 @@ export class AudioService {
           break;
 
         case 'music-controls-skip-forward':
-          this.seekTo();
+          // this.seekTo();
           break;
 
         case 'music-controls-skip-backward':

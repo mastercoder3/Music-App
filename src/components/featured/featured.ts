@@ -62,4 +62,5 @@ export class FeaturedComponent implements OnInit{
   goToAlbum(album: Album) {
     this.navCtrl.push(AlbumPage, { album: album });
   }
+
 }
