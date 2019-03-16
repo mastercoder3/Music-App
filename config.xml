@@ -86,11 +86,11 @@
     <plugin name="cordova-plugin-android-permissions" spec="1.0.0" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <plugin name="cordova-plugin-nativeaudio" spec="3.0.9" />
-    <engine name="android" spec="^7.0.0" />
     <plugin name="cordova-plugin-facebook4" spec="4.2.1">
         <variable name="APP_ID" value="325827218072561" />
         <variable name="APP_NAME" value="Music App" />
         <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
     </plugin>
+    <engine name="android" spec="^7.0.0" />
 </widget>

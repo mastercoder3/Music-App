@@ -28,11 +28,11 @@ export class MyApp {
     });
 
     this.rootPage = LoginPage;
-    // if(localStorage.getItem('uid')){
-    //   this.rootPage = TabsPage;
-    // }
-    // else{
-    //   this.rootPage = LoginPage;
-    // }
+    if(localStorage.getItem('uid')){
+      this.rootPage = TabsPage;
+    }
+    else{
+      this.rootPage = LoginPage;
+    }
   }
 }

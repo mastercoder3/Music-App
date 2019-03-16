@@ -7,6 +7,7 @@ import { HelperProvider } from '../../providers/helper/helper';
 import { ApiProvider } from '../../providers/api/api';
 import { TabsPage } from '../tabs/tabs';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import firebase from 'firebase';
 
 /**
  * Generated class for the LoginPage page.
@@ -35,7 +36,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    
+   
   }
 
   signup(){
@@ -70,8 +71,17 @@ export class LoginPage {
   loginByFacebook(){
     this.facebook.login(['public_profile', 'user_friends', 'email'])
     .then((res: FacebookLoginResponse) => {
-      console.log(res)
-      alert(JSON.stringify(res))
+      alert(res);
+      const facebookCredential = firebase.auth.FacebookAuthProvider
+          .credential(res.authResponse.accessToken);
+
+        firebase.auth().signInWithCredential(facebookCredential)
+          .then( success => { 
+            console.log("Firebase success: " + JSON.stringify(success)); 
+            alert(JSON.stringify(success));
+          }, err =>{
+            alert(err);
+          });
     },err =>{
       alert(err)
     })
