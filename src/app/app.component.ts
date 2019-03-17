@@ -28,12 +28,12 @@ export class MyApp {
       splashScreen.hide();
     });
 
-    this.rootPage = TabsPage;
-    // if(localStorage.getItem('uid')){
-    //   this.rootPage = TabsPage;
-    // }
-    // else{
-    //   this.rootPage = LoginPage;
-    // }
+    this.rootPage = LoginPage;
+    if(localStorage.getItem('uid')){
+      this.rootPage = TabsPage;
+    }
+    else{
+      this.rootPage = LoginPage;
+    }
   }
 }

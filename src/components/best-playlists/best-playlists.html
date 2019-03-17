@@ -1,4 +1,4 @@
-<section
+<!-- <section
   *ngIf="!isLibrary"
   class="section-titles"
   section-type="standard"
@@ -19,10 +19,10 @@
       </div>
     </div>
   </header>
-</section>
+</section> -->
 
 <section
-  *ngIf="isLibrary"
+  *ngIf="isLibrary && playlist"
   class="section-titles"
   section-type="standard"
   see-all-style="style2"
@@ -36,14 +36,45 @@
 
         <h2 >Own Playlists</h2>
         <div class="see-all">
-          <p><a>Play All</a></p>
+          <p><a (click)="musicPlayerPageService.openMusicPlayer(playlist, 0)">Play All</a></p>
         </div>
       </div>
     </div>
   </header>
 </section>
 
-<section class="best-playlists-swiper-container checkPlaylist">
+<ion-grid *ngIf="playlist">
+    <ion-row>
+      <ion-col col-12>
+          <ion-slides>
+  
+              <ion-slide style="max-width: 295px;"  *ngFor="let item of playlist; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
+                  (click)="musicPlayerPageService.openMusicPlayer(item, i)">
+                  <div class="slide">
+                      <div class="img-inner-wrapper">
+                        <img
+                          src="{{item?.imageURL}}"
+                          width="100%"
+                          height="auto"
+                          style="border-radius: 9px;"
+                        />
+            
+                        <h2 style="color: white">{{ item?.title}}</h2>
+            
+                        <cite class="author">
+                          <a style="color: rgb(189, 189, 189) !important; text-decoration: none; font-style: normal;">{{ item?.oartist }}</a>
+                        </cite>
+                      </div>
+                    </div>
+              </ion-slide>
+            
+            
+            </ion-slides>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<!-- <section class="best-playlists-swiper-container checkPlaylist">
   <div
     class="swiper-container swiper-padding-left square-swiper playlist-swiper best-playlists-swiper-container no-fastclick"
   >
@@ -75,4 +106,4 @@
       <div class="swiper-slide"></div>
     </div>
   </div>
-</section>
+</section> -->

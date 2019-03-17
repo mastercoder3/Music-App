@@ -1,5 +1,5 @@
 import { Component, Inject, forwardRef } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 import { VideoService } from '../../services/VideoService';
 import { AudioService } from '../../services/AudioService';
@@ -13,6 +13,7 @@ import { HelperProvider } from '../../providers/helper/helper';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators'
 import { Observable } from 'rxjs';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -33,6 +34,7 @@ export class LibraryPage {
   constructor(
     private videoService: VideoService,
     private audioService: AudioService,
+    private navCtrl: NavController,
     @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
     private api: ApiProvider, private camera: Camera, private helper: HelperProvider,  private fireStorage: AngularFireStorage,
   ) {}
@@ -52,6 +54,7 @@ export class LibraryPage {
   logout(){
     localStorage.removeItem('uid');
     localStorage.clear();
+    this.navCtrl.setRoot(LoginPage);
   }
 
   ionViewDidEnter() {
