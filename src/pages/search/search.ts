@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, forwardRef, Inject } from '@angular/core';
 import { IonicPage } from 'ionic-angular';
 
 import { ModalService } from '../../services/ModalService';
@@ -10,6 +10,9 @@ import { SongsInitializer } from '../../data/Initializers/SongsInitializer';
 import { AlbumsInitializer } from '../../data/Initializers/AlbumsInitializer';
 import { ArtistsInitializer } from '../../data/Initializers/ArtistsInitializer';
 import { PlaylistsInitializer } from '../../data/Initializers/PlaylistsInitializer';
+import { ApiProvider } from '../../providers/api/api';
+import { map } from 'rxjs/operators';
+import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
 
 @IonicPage()
 @Component({
@@ -19,10 +22,21 @@ import { PlaylistsInitializer } from '../../data/Initializers/PlaylistsInitializ
 export class SearchPage {
   recentSearches: RecentSearch[] = [];
 
-  constructor(public modalService: ModalService) {}
+  users: Array<any>;
+  songs: Array<any>;
+  resultSongs: Array<any>;
+  resultUser: Array<any>;
+  showSong= false;
+  showUser= false;
+
+  constructor(public modalService: ModalService, private api: ApiProvider,
+    @Inject(forwardRef(() => MusicPlayerPageService))
+    public musicPlayerPageService: MusicPlayerPageService) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
+
+    this.getData();
 
     var songs = Shuffler.shuffle(SongsInitializer.songs.slice()).splice(0, 3);
     songs.forEach(song => {
@@ -65,5 +79,54 @@ export class SearchPage {
     if (index >= 0) {
       this.recentSearches.splice(index, 1);
     }
+  }
+
+  getData(){
+    this.api.getAllUsersData()
+      .pipe(map(actions => actions.map(a =>{
+        const data =a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
+        .subscribe(res =>{
+          this.users =res;
+          console.log(res)
+        });
+    
+    this.api.getAllSongs()
+        .pipe(map(actions => actions.map(a=>{
+          const data = a.payload.doc.data();
+          const did = a.payload.doc.id;
+          return {did, ...data};
+        })))
+          .subscribe( res => {
+            this.songs = res;
+            console.log(res)
+          });    
+  }
+
+  searchText(val: string){
+    if(val.length >3){
+          this.resultSongs = this.songs.filter(data => data.title.toLowerCase().indexOf(val.toLowerCase()) !== -1 );
+          this.resultUser = this.users.filter(data => data.username.toLowerCase().indexOf(val.toLowerCase() && (data.isVerified === true || data.type ==='user')) !== -1);
+          if(this.resultSongs.length !== 0 ){
+            this.showSong = true;
+          }
+          else{
+            this.showSong = false;
+          }
+
+          if(this.resultUser.length !== 0 ){
+            this.showUser = true;
+          }
+          else{
+            this.showUser = false;
+          }
+    }
+    else{
+      this.showSong = false;
+      this.showUser = false;
+    }
+
   }
 }

@@ -31,6 +31,10 @@ export class ApiProvider {
     return this.afs.collection('users').valueChanges();
   }
 
+  getAllUsersData(){
+    return this.afs.collection('users').snapshotChanges();
+  }
+
   getUserByEmail(email){
     return this.afs.collection('users', ref => ref.where('email','==', email)).valueChanges();
   }
@@ -43,6 +47,10 @@ export class ApiProvider {
 
   getMostPlayedSongs(){
     return this.afs.collection('songs', ref => ref.orderBy('views', 'desc').limit(10)).snapshotChanges();
+  }
+
+  getAllSongs(){
+    return this.afs.collection('songs').snapshotChanges();
   }
 
 }

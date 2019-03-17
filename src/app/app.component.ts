@@ -28,7 +28,7 @@ export class MyApp {
       splashScreen.hide();
     });
 
-    this.rootPage = LoginPage;
+    this.rootPage = TabsPage;
     // if(localStorage.getItem('uid')){
     //   this.rootPage = TabsPage;
     // }

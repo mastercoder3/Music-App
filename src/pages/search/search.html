@@ -24,7 +24,7 @@
                   class="searchbar searchbar-init"
                 >
                   <div class="input-container">
-                    <input type="search" placeholder="Search…" />
+                    <input type="search" placeholder="Search Song or User.." (input)="searchText($event.target.value)"  />
 
                     <div class="search-icon">
                       <svg width="21" height="21" viewBox="0 0 20 20">
@@ -97,148 +97,43 @@
             </div>
           </div>
         </section>
-
-        <div class="essential-search searchbar-result">
-          <div class="content-block searchbar-not-found">
-            <div class="content-block-inner">Nothing found</div>
-          </div>
-
-          <div class="list-block list-block-search searchbar-found">
-            <ul>
-              <li><div class="item-title"></div></li>
-            </ul>
-          </div>
+       <br>
+        <div style="width: 100% !important; height: 100% !important;">
+            <ion-grid *ngIf="showSong">
+              <h5 style="color: white;">Songs:</h5>
+                <ion-row style="width: 100%; height: 50px !important;" *ngFor="let item of resultSongs; let i = index" 
+                [ngStyle]="{'margin-top': i>0 ? '15px' : '0px'}"
+                (click)="musicPlayerPageService.openMusicPlayer([item], 0)">
+                  <ion-col col-3>
+                      <img src="{{item.imageURL}}" alt="" style="width: 50px; height: 50px;">
+                  </ion-col>
+                  <ion-col col-9>
+                   <h6 style="color: white; position: relative; top: -10px;  border-bottom: 1px solid white;">{{item.title}}
+                    <br>
+                    <small>{{item.oartist}}</small>  
+                  </h6>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
         </div>
-
-        <section class="filter-categories">
-          <div class="main-grids safe-area">
-            <div class="inner">
-              <div class="category">
-                <div class="blur"></div>
-                <p>All</p>
-              </div>
-
-              <div class="category">
-                <div class="blur"></div>
-                <p>Songs</p>
-              </div>
-
-              <div class="category">
-                <div class="blur"></div>
-                <p>Playlists</p>
-              </div>
-
-              <div class="category">
-                <div class="blur"></div>
-                <p>Albums</p>
-              </div>
-
-              <div class="category">
-                <div class="blur"></div>
-                <p>Videos</p>
-              </div>
-
-              <div class="category">
-                <div class="blur"></div>
-                <p>Library</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="section-titles"
-          section-type="standard"
-          see-all-style="no_see-all"
-          section-icon-style="clock_white"
-          section-title-style="center"
-        >
-          <header>
-            <div class="main-grids safe-area">
-              <div class="inner">
-                <div class="icon"></div>
-
-                <h2>Most Searched</h2>
-
-                <div class="see-all"><p>See All</p></div>
-              </div>
-            </div>
-          </header>
-        </section>
-
-        <section class="filter-tags">
-          <div class="main-grids safe-area">
-            <div class="inner">
-              <div class="tags tags-absolute-pop tags-big">
-                <p>Absolute Pop</p>
-              </div>
-            
-              <div class="tags tags-drink tags-small"><p>Drink</p></div>
-              <div class="tags tags-rap tags-small"><p>Rap</p></div>
-              <div class="tags tags-autumn tags-medium"><p>Autumn</p></div>
-              <div class="tags tags-training tags-large-medium">
-                <p>Training</p>
-              </div>
-              <div class="tags tags-success tags-large-small">
-                <p>Success</p>
-              </div>
-              <div class="tags tags-travel tags-medium"><p>Travel</p></div>
-              <div class="tags tags-hits tags-small"><p>Hits</p></div>
-            </div>
-          </div>
-        </section>
-
-        <section *ngIf="recentSearches.length > 0"
-          class="section-titles"
-          section-type="standard"
-          see-all-style="no_see-all"
-          section-icon-style="clock_white"
-          section-title-style="center"
-        >
-          <header>
-            <div class="main-grids safe-area">
-              <div class="inner">
-                <div class="icon"></div>
-                <h2>Recent Searches</h2>
-              </div>
-            </div>
-          </header>
-        </section>
-
-        <section class="list-recent-searches" *ngIf="recentSearches.length > 0">
-          <div class="main-grids safe-area">
-            <div class="inner">
-              <ul>
-                <li *ngFor="let recentSearch of recentSearches" class="recent-search-item">
-                  <h2>{{ recentSearch.name }}</h2>
-                  <p>{{ recentSearch.hoursAgo }} hours ago</p> 
-
-                  <button (click)="remove(recentSearch)" class="delete-search-item">
-                    <svg
-                      width="31"
-                      height="31"
-                      viewBox="0 0 31 31"
-                    >
-                      <g fill="#FFF">
-                        <circle
-                          cx="15.5"
-                          cy="15.5"
-                          r="15.5"
-                        ></circle>
-                        <path
-                          d="M17.621 15.5l3.182-3.182a1.5 1.5 0 0 0-2.121-2.121L15.5 13.379l-3.182-3.182a1.5 1.5 0 0 0-2.121 2.121l3.182 3.182-3.182 3.182a1.5 1.5 0 0 0 2.121 2.121l3.182-3.182 3.182 3.182a1.5 1.5 0 0 0 2.121-2.121L17.621 15.5z"
-                        ></path>
-                      </g>
-                    </svg>
-                  </button>
-
-                  <div class="divider"></div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-      </div>
+        <div style="width: 100% !important; height: 100% !important;">
+            <ion-grid *ngIf="showUser">
+              <h5 style="color: white;">Users:</h5>
+                <ion-row style="width: 100%; height: 50px !important;
+                 " *ngFor="let item of resultUser; let i = index" [ngStyle]="{'margin-top': i>0 ? '15px' : '0px'}">
+                  <ion-col col-3>
+                      <img src="{{item.imageURL}}" alt="" style="width: 50px; height: 50px;">
+                  </ion-col>
+                  <ion-col col-9>
+                   <h6 style="color: white; position: relative; top: -10px; border-bottom: 1px solid white;">{{item.name}}
+                    <br>
+                    <small>@{{item.username}}</small>  
+                  </h6>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+        </div>
+ </div>
     </div>
   </div>
 </ion-content>
