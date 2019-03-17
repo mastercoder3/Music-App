@@ -5,7 +5,7 @@ admin.initializeApp();
 //Notifications Function
 
 exports.Notifications = functions.firestore
-    .document('notifications/{push}')
+    .document('notifications/{title}')
     .onUpdate(async event => {
     const data = event.after.data();
 

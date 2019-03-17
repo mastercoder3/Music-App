@@ -13,7 +13,7 @@ const admin = require("firebase-admin");
 admin.initializeApp();
 //Notifications Function
 exports.Notifications = functions.firestore
-    .document('notifications/{push}')
+    .document('notifications/{title}')
     .onUpdate((event) => __awaiter(this, void 0, void 0, function* () {
     const data = event.after.data();
     var payload = {

@@ -78,7 +78,6 @@ import { SignupPage } from '../pages/signup/signup';
 import { AuthProvider } from '../providers/auth/auth';
 import { HelperProvider } from '../providers/helper/helper';
 import { ApiProvider } from '../providers/api/api';
-import { MusicPlayerProvider } from '../providers/music-player/music-player';
 import { FcmProvider } from '../providers/fcm/fcm';
 
 const firebase = {
@@ -188,9 +187,7 @@ const firebase = {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthProvider,
     HelperProvider,
-    MusicPlayerProvider,
     ApiProvider,
-    MusicPlayerProvider,
     FcmProvider,
     Firebase
   ]
