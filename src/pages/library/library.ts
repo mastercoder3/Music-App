@@ -49,6 +49,11 @@ export class LibraryPage {
       })
   }
 
+  logout(){
+    localStorage.removeItem('uid');
+    localStorage.clear();
+  }
+
   ionViewDidEnter() {
     console.log('ionViewDidEnter LibraryPage');
 

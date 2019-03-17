@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "335286010691",
+    "firebase_url": "https://musicapp-zeitlab.firebaseio.com",
+    "project_id": "musicapp-zeitlab",
+    "storage_bucket": "musicapp-zeitlab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335286010691:android:b4ae6d8d4ef35d9a",
+        "android_client_info": {
+          "package_name": "apollo.music"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335286010691-qai6nr7ttbbrfi0ckrf0k1o1ldmardod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "apollo.music",
+            "certificate_hash": "dbae3e902fb5f26a096fb02f53842761b83f065e"
+          }
+        },
+        {
+          "client_id": "335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGlWhZjti_NqHSOrbOGh_r0WMoAxtCdOM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { HomePage } from '../home/home';
 import { VideosPage } from '../videos/videos';
 import { LibraryPage } from '../library/library';
+import { FcmProvider } from '../../providers/fcm/fcm';
+import { ToastController, Platform } from 'ionic-angular';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'page-tabs',
@@ -15,10 +18,28 @@ export class TabsPage {
 
   loadAPI: Promise<any>;
 
-  constructor() {
+  constructor(fcm: FcmProvider, toastCtrl: ToastController, platform: Platform) {
     this.loadAPI = new Promise((resolve) => {
       this.loadScript();
       resolve(true);
+  });
+  platform.ready().then(() => {
+
+    // Get a FCM token
+    fcm.getToken(localStorage.getItem('uid'))
+
+    // Listen to incoming messages
+    fcm.listenToNotifications().pipe(
+      tap(msg => {
+        // show a toast
+        const toast = toastCtrl.create({
+          message: msg.body,
+          duration: 1000
+        });
+        toast.present();
+      })
+    )
+    .subscribe()
   });
   }
 

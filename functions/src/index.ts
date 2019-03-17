@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 
 import * as admin from 'firebase-admin';
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 //Notifications Function
 
 exports.Notifications = functions.firestore
@@ -21,8 +21,8 @@ exports.Notifications = functions.firestore
    
 
     // ref to the device collection for the user
-    const db = admin.firestore()
-    const devicesRef = db.collection('devices')
+    const db = admin.firestore();
+    const devicesRef = db.collection('devices');
 
 
     // get the user's tokens and send notifications

@@ -14,7 +14,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { HttpModule } from '@angular/http';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { Facebook } from '@ionic-native/facebook';
-
+import { Firebase } from '@ionic-native/firebase';
 
 // Ionic Audio
 import {
@@ -79,6 +79,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { HelperProvider } from '../providers/helper/helper';
 import { ApiProvider } from '../providers/api/api';
 import { MusicPlayerProvider } from '../providers/music-player/music-player';
+import { FcmProvider } from '../providers/fcm/fcm';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -189,7 +190,9 @@ const firebase = {
     HelperProvider,
     MusicPlayerProvider,
     ApiProvider,
-    MusicPlayerProvider
+    MusicPlayerProvider,
+    FcmProvider,
+    Firebase
   ]
 })
 export class AppModule {}
