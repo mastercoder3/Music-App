@@ -37,9 +37,9 @@ export class AudioService {
 
     this.audioProvider.play(this.trackIndex);
 
-    // if (this.platform.is('cordova')) {
-    //   this.initialiseMusicControls(tracks[this.trackIndex]);
-    // }
+    if (this.platform.is('cordova')) {
+      this.initialiseMusicControls(tracks[this.trackIndex]);
+    }
 
     return true;
   }

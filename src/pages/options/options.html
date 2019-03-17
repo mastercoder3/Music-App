@@ -28,9 +28,9 @@
       <p>Add to</p>
       <div class="divider"></div>
       <ul class="add-to">
-        <li>Your Library</li>
-        <li>Playlist</li>
-        <li>Up Next</li>
+        <!-- <li>Your Library</li> -->
+        <li (click)="addToPlaylist()" >Playlist</li>
+        <!-- <li>Up Next</li> -->
       </ul>
 
       <br />
@@ -40,7 +40,7 @@
       <div class="divider"></div>
 
       <ul class="go-to">
-        <li class="album-details-page" (click)="goToAlbum()">Full Album</li>
+        <!-- <li class="album-details-page" (click)="goToAlbum()">Full Album</li> -->
         <li class="artist-details-page" (click)="goToArtist()">Artist Profile</li>
       </ul>
     </div>

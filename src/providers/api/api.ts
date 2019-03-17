@@ -53,4 +53,18 @@ export class ApiProvider {
     return this.afs.collection('songs').snapshotChanges();
   }
 
+  // :::::::::::::::::::::::::::::::::::::::::::::::: Playlist ::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getPlaylistById(id){
+    return this.afs.collection('playlist', ref => ref.where('uid', '==', id)).snapshotChanges();
+  }
+
+  updatePlaylist(id, data){
+    return this.afs.doc('playlist/'+id).update(data);
+  }
+
+  addToPlaylist(data){
+    return this.afs.collection('playlist').add(data);
+  }
+
 }

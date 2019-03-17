@@ -67,12 +67,12 @@
           <div class="main-grids safe-area">
             <div class="inner">
               <div class="followers">
-                <p class="number">{{ followersCount }}</p>
+                <p class="number">{{ user?.followers || 0 }}</p>
                 <p>Followers</p>
               </div>
 
               <div class="following">
-                <p class="number">{{ followingCount }}</p>
+                <p class="number">{{ user?.following || 0 }}</p>
                 <p>Following</p>
               </div>
 

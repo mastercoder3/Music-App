@@ -20,6 +20,7 @@ export class MusicPlayerPageService {
   ) {}
 
   openMusicPlayer(songs, trackIndex: number) {
+    localStorage.setItem('songId',songs[trackIndex].did);
     this.videoService.hideMiniPlayer();
     this.hideFooterPlayer();
 
@@ -68,13 +69,16 @@ export class MusicPlayerPageService {
   }
 
   setUpNextSongs() {
+    localStorage.setItem('songId', this.allSongs[this.audioService.trackIndex].did);
     this.upNextSongs = this.allSongs.slice();
+
     this.upNextSongs.splice(0, this.audioService.trackIndex + 1);
+
   }
 
   getTracksFromSongs(songs) {
     var tracks = [];
-
+    
     songs.forEach(song => {
       var track = {
         src: song.songURL,
