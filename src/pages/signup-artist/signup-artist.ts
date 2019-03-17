@@ -142,7 +142,8 @@ export class SignupArtistPage {
              professions: [''],
              type: this.Acc_profile,
              isVerified: false,
-             username: form.value.username
+             username: form.value.username,
+             signupType: 'signup'
            }
    
    

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -8,6 +8,8 @@ import { ApiProvider } from '../../providers/api/api';
 import { TabsPage } from '../tabs/tabs';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import firebase from 'firebase';
+import { SignupArtistPage } from '../signup-artist/signup-artist';
+import { FbLoginPage } from '../fb-login/fb-login';
 
 /**
  * Generated class for the LoginPage page.
@@ -25,7 +27,7 @@ export class LoginPage {
 
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, public modalCtrl: ModalController,
     private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider,private facebook: Facebook) {
     this.form = this.fb.group({
       email: ['', Validators.compose([
@@ -33,6 +35,7 @@ export class LoginPage {
       ])],
       password: ['', Validators.required]
     });
+
   }
 
   ionViewDidLoad() {
@@ -40,7 +43,13 @@ export class LoginPage {
   }
 
   signup(){
-    this.navCtrl.push(SignupPage);
+    let myfunc = () => {
+      this.navCtrl.push(SignupPage);
+    };
+    let myfunc1 = () => {
+      this.navCtrl.push(SignupArtistPage);
+    };
+    this.helper.presentActionSheet('Choose an option.','Signup as a Listener','Signup as an Atrist',myfunc,myfunc1);
   }
 
   user;
@@ -68,18 +77,37 @@ export class LoginPage {
       })
   }
 
+  temp: Array<any>;
+
   loginByFacebook(){
     this.facebook.login(['public_profile', 'user_friends', 'email'])
     .then((res: FacebookLoginResponse) => {
-      alert(res);
+      this.helper.presentLoadingDefault();
       const facebookCredential = firebase.auth.FacebookAuthProvider
           .credential(res.authResponse.accessToken);
 
         firebase.auth().signInWithCredential(facebookCredential)
           .then( success => { 
-            console.log("Firebase success: " + JSON.stringify(success)); 
-            alert(JSON.stringify(success));
+            this.api.getUserByEmail(success.email)
+            .subscribe(res=> {
+              this.temp = res;
+              if(this.temp.length === 0){
+                this.helper.closeLoading();
+                const profileModal = this.modalCtrl.create( FbLoginPage, { data: success });
+                // profileModal.onDidDismiss(() => {
+                //   this.navCtrl.setRoot(TabsPage);
+                // });
+                profileModal.present();
+              }
+              else if(this.temp.length !== 0){
+                this.helper.closeLoading();
+                localStorage.setItem('uid', success.uid);
+                localStorage.setItem('type', this.temp[0].type);
+                this.navCtrl.setRoot(TabsPage);
+              }
+            });
           }, err =>{
+            this.helper.closeLoading();
             alert(err);
           });
     },err =>{

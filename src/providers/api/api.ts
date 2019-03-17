@@ -31,6 +31,10 @@ export class ApiProvider {
     return this.afs.collection('users').valueChanges();
   }
 
+  getUserByEmail(email){
+    return this.afs.collection('users', ref => ref.where('email','==', email)).valueChanges();
+  }
+
   //:::::::::::::::::::::::::::::::::::::::::::::::::: Feautured Songs ::::::::::::::::::::::::::::::::::::::::::
 
   getFeaturedSongs(){

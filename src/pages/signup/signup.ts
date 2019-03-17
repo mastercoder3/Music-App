@@ -136,7 +136,8 @@ export class SignupPage {
           gender: form.value.gender,
           imageURL: '',
           imageId: '',
-          username: form.value.username
+          username: form.value.username,
+          signupType: 'signup'
         }
      
         this.uploadImageId = Math.floor(Date.now() / 1000);
