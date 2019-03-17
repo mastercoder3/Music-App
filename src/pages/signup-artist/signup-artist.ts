@@ -9,11 +9,9 @@ import { finalize } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ApiProvider } from '../../providers/api/api';
-import { e } from '@angular/core/src/render3';
-import { TabsPage } from '../tabs/tabs';
 
 /**
- * Generated class for the SignupPage page.
+ * Generated class for the SignupArtistPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -21,13 +19,12 @@ import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
-  selector: 'page-signup',
-  templateUrl: 'signup.html',
+  selector: 'page-signup-artist',
+  templateUrl: 'signup-artist.html',
 })
-export class SignupPage {
-
-  Acc_profile: string = 'user';
-  form: FormGroup;
+export class SignupArtistPage {
+  
+  Acc_profile: string = 'artist';
   form1: FormGroup;
   base64Image;
   sourcex;
@@ -35,35 +32,46 @@ export class SignupPage {
   downloadURL: Observable<any>;
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
-  image= '';
+  image='';
   uploadImageId;
   countries;
+  data;
   users: Array<any>;
   usernameError: boolean = false;
   error;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private camera: Camera, 
+  constructor(public navCtrl: NavController, public navParams: NavParams,private fb: FormBuilder, private camera: Camera, 
     private androidPermissions: AndroidPermissions, private helper: HelperProvider,    private fireStorage: AngularFireStorage,
     private auth: AuthProvider, private api: ApiProvider) {
-      // First Form
-    this.form = this.fb.group({
+      //Second Form
+    this.form1 = this.fb.group({
       name: ['', Validators.required],
       dob: ['', Validators.required],
       city: ['', Validators.required],
       email: ['', Validators.compose([Validators.email, Validators.required])],
       password: ['', Validators.compose([Validators.required,Validators.minLength(6)])],
+      username: ['', Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z0-9_]*$")])],
       mobile: ['', Validators.required],
       gender: ['male', Validators.required],
-      username: ['', Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z0-9_]*$")])],
+      country: ['', Validators.required],
+      fb: [''],
+      insta: [''],
+      youtube: ['']
     });
 
-        // User data
+    //get countries
 
-        this.api.getAllUsers()
-        .subscribe(res =>{
-          this.users  = res;
-        });
+    this.helper.getCountries()
+      .subscribe(res =>{
+        this.countries = res;
+      });
+    
+    // User data
 
+    this.api.getAllUsers()
+      .subscribe(res =>{
+        this.users  = res;
+      });
 
 
     //Camera Permissions
@@ -74,7 +82,7 @@ export class SignupPage {
   }
 
   ionViewDidLoad() {
- 
+    console.log('ionViewDidLoad SignupArtistPage');
   }
 
   choosePicture(){
@@ -115,56 +123,55 @@ export class SignupPage {
       });
   }
 
-  
-  onSegmentChange(event){
-    this.form.reset();
-    this.form1.reset();
-    this.base64Image = '';
-  }
-
-  data;
-
   submit(form){
-    if(!this.usernameError){    
-        this.data = {
-          name: form.value.name,
-          email: form.value.email,
-          password: form.value.password,
-          dob: form.value.dob,
-          city: form.value.city,
-          mobile: form.value.mobile,
-          gender: form.value.gender,
-          imageURL: '',
-          imageId: '',
-          username: form.value.username
+        if(this.professions.length !== 0 && !this.usernameError){
+          this.data ={
+            password: form.value.password,
+            name: form.value.name,
+             email: form.value.email,
+             dob: form.value.dob,
+             city: form.value.city,
+             mobile: form.value.mobile,
+             gender: form.value.gender,
+             imageURL: '',
+             imageId: '',
+             country: form.value.country,
+             facebook: form.value.fb,
+             instagram: form.value.insta,
+             youtube: form.value.youtube,
+             professions: [''],
+             type: this.Acc_profile,
+             isVerified: false,
+             username: form.value.username
+           }
+   
+   
+         this.uploadImageId = Math.floor(Date.now() / 1000);
+         this.helper.presentLoadingDefault();
+         if(this.base64Image)
+           this.upload();
+          else
+           this.create();
         }
-     
-        this.uploadImageId = Math.floor(Date.now() / 1000);
-        this.helper.presentLoadingDefault();
-        if(this.base64Image)
-          this.upload();
-         else
-          this.create();
-    }
-    else{
-      this.helper.presentToast('Please choose an image to continue.');
-    }
+      else{
+        this.helper.presentToast('Please select a profession.');
+      }
   }
 
   upload() {
 
-      this.ref = this.fireStorage.ref(`users/${this.uploadImageId}`);
-      let task = this.ref.putString(this.base64Image, 'data_url');
-      task.snapshotChanges()
-        .pipe(finalize(() => {
-          this.ref.getDownloadURL().subscribe(url => {
-            this.image = url;
-            if (this.image !== '') {
-              this.create();
-            }
-          });
-        })).subscribe();
-    }
+    this.ref = this.fireStorage.ref(`users/${this.uploadImageId}`);
+    let task = this.ref.putString(this.base64Image, 'data_url');
+    task.snapshotChanges()
+      .pipe(finalize(() => {
+        this.ref.getDownloadURL().subscribe(url => {
+          this.image = url;
+          if (this.image !== '') {
+            this.create();
+          }
+        });
+      })).subscribe();
+  }
 
   create(){
     this.data.imageURL = this.image;
@@ -177,8 +184,8 @@ export class SignupPage {
             localStorage.setItem('uid',res.user.uid);
             localStorage.setItem('type',this.data.type);
             this.helper.closeLoading();
-            this.helper.presentToast('Account Created.');
-            this.navCtrl.setRoot(TabsPage);
+            this.navCtrl.popToRoot();
+            this.helper.presentToast('Profile Created. Once Authorized by Admin, you can login.');
           }, err =>{
             this.helper.presentToast(err.message);
             this.helper.closeLoading();
@@ -225,8 +232,7 @@ export class SignupPage {
       this.usernameError = true;
       this.error = 'Username too short.';
     }
+  
   }
-   
-
 
 }

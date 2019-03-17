@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import { SignupArtistPage } from '../pages/signup-artist/signup-artist';
 
 
 
@@ -27,7 +28,7 @@ export class MyApp {
       splashScreen.hide();
     });
 
-    this.rootPage = LoginPage;
+    this.rootPage = SignupPage;
     // if(localStorage.getItem('uid')){
     //   this.rootPage = TabsPage;
     // }

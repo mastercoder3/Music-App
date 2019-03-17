@@ -27,6 +27,10 @@ export class ApiProvider {
     return this.afs.doc('users/'+id).update(data);
   }
 
+  getAllUsers(){
+    return this.afs.collection('users').valueChanges();
+  }
+
   //:::::::::::::::::::::::::::::::::::::::::::::::::: Feautured Songs ::::::::::::::::::::::::::::::::::::::::::
 
   getFeaturedSongs(){
