@@ -17,6 +17,7 @@ export class MusicPlayerPageService {
   upNextSongs = [];
   ads;
   adSong = [];
+  recent:Array<any> = [];
   constructor(
     private modalCtrl: ModalController,
     private videoService: VideoService,
@@ -24,7 +25,16 @@ export class MusicPlayerPageService {
     private api: ApiProvider,
     private helper: HelperProvider
   ) {
-
+    this.api.getRecentlyPlayed(localStorage.getItem('uid'))
+    .pipe(map(actions => actions.map(a =>{
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+      .subscribe(res =>{
+        this.recent = res;
+        console.log(this.recent);
+      });
   }
 
 
@@ -50,8 +60,66 @@ export class MusicPlayerPageService {
     });
 
     modal.present();
+
+
     }
   
+  }
+
+  setRecentlyPlayed(){
+    if(this.recent.length === 0){
+      let x = {
+        uid: localStorage.getItem('uid'),
+        songs: []
+      }
+      x.songs.push(localStorage.getItem('songId'));
+      this.api.addRecentPlayed(x)
+        .then( res =>{
+          console.log('recently added');
+        }, err =>{
+          console.log(err.message);
+        })
+    }
+    else{
+      const songId = localStorage.getItem('songId');
+     
+        if(this.recent[0].songs.indexOf(songId) > -1){
+          let index = this.recent[0].songs.indexOf(songId);
+          this.recent[0].songs.splice(index,1);
+        
+          if(this.recent[0].songs.length !== 10){
+            this.recent[0].songs.unshift(songId);
+            let data = {
+              uid: localStorage.getItem('uid'),
+              songs: this.recent[0].songs
+            }
+            this.api.updateRecentlyPlayed(this.recent[0].did,data)
+            .then( res =>{
+              console.log('recently added');
+            }, err =>{
+              console.log(err.message);
+            })
+          }
+            
+          
+        }
+        else{
+          if(this.recent[0].songs.length !== 10){
+            let x = this.recent[0].songs;
+            x.push(songId);
+            let data ={
+              uid: localStorage.getItem('uid'),
+              songs: x
+            }
+            this.api.updateRecentlyPlayed(this.recent[0].did,data)
+            .then( res =>{
+              console.log('recently added');
+            }, err =>{
+              console.log(err.message);
+            })
+          }
+        }      
+    }
   }
 
   playAd(songs, trackIndex){
@@ -93,6 +161,7 @@ export class MusicPlayerPageService {
 
   setUpNextSongs() {
     localStorage.setItem('songId', this.allSongs[this.audioService.trackIndex].did);
+    this.setRecentlyPlayed();
       this.upNextSongs = this.allSongs.slice();
       this.upNextSongs.splice(0, this.audioService.trackIndex + 1);
 

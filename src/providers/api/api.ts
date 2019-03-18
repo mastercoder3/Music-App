@@ -77,4 +77,18 @@ export class ApiProvider {
     return this.afs.doc('ads/'+id).update(data);
   }
 
+  // :::::::::::::::::::::::::::::::::::::::::::::: Recently Played :::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getRecentlyPlayed(id){
+    return this.afs.collection('recently', ref => ref.where('uid','==',id)).snapshotChanges();
+  }
+
+  updateRecentlyPlayed(id,data){
+    return this.afs.doc('recently/'+id).update(data);
+  }
+
+  addRecentPlayed(data){
+    return this.afs.collection('recently').add(data);
+  }
+
 }
