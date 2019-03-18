@@ -67,4 +67,14 @@ export class ApiProvider {
     return this.afs.collection('playlist').add(data);
   }
 
+  // ::::::::::::::::::::::::::::::::::::::::::::::::: Ads ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getAds(){
+    return this.afs.collection('ads', ref => ref.orderBy('view', 'asc')).snapshotChanges();
+  }
+
+  updateAdsSong(id,data){
+    return this.afs.doc('ads/'+id).update(data);
+  }
+
 }

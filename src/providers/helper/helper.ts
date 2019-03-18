@@ -3,6 +3,7 @@ import { ActionSheetController } from 'ionic-angular';
 import { ToastController, LoadingController } from 'ionic-angular';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 /*
   Generated class for the HelperProvider provider.
@@ -13,10 +14,20 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class HelperProvider {
 
+  private status: BehaviorSubject<string>;
+
   constructor(private actionSheetCtrl: ActionSheetController,
     private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http
-    ) {
+  ) {
+    this.status = new BehaviorSubject<string>('inactive');
+  }
 
+  public getTheStatus(): Observable<string> {
+    return this.status.asObservable();
+  }
+
+  public setTheStatus(newValue: string): void {
+    this.status.next(newValue);
   }
 
   presentActionSheet(title, n1, n2, myfunc, myfunc1) {
@@ -56,7 +67,7 @@ export class HelperProvider {
     });
     toast.present();
   }
-  
+
   loading;
 
   presentLoadingDefault() {

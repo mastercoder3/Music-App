@@ -93,5 +93,5 @@
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
     </plugin>
     <plugin name="cordova-plugin-firebase" spec="2.0.5" />
-    <engine name="android" spec="7.0.0" />
+    <engine name="android" spec="7.1.4" />
 </widget>

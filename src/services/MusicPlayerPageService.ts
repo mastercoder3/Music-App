@@ -7,17 +7,26 @@ import { AudioService } from './AudioService';
 import { MusicPlayerPage } from '../pages/music-player/music-player';
 
 import { Song } from '../data/Song';
+import { ApiProvider } from '../providers/api/api';
+import { map } from 'rxjs/operators';
+import { HelperProvider } from '../providers/helper/helper';
 
 @Injectable()
 export class MusicPlayerPageService {
   allSongs = [];
   upNextSongs = [];
-
+  ads;
+  adSong = [];
   constructor(
     private modalCtrl: ModalController,
     private videoService: VideoService,
-    private audioService: AudioService
-  ) {}
+    private audioService: AudioService,
+    private api: ApiProvider,
+    private helper: HelperProvider
+  ) {
+
+  }
+
 
   openMusicPlayer(songs, trackIndex: number) {
     localStorage.setItem('songId',songs[trackIndex].did);
@@ -40,6 +49,17 @@ export class MusicPlayerPageService {
     });
 
     modal.present();
+  }
+
+  playAd(songs, trackIndex){
+    this.allSongs = songs;
+    var tracks = this.getTracksFromSongs(songs);
+
+    if (!this.audioService.setTracksAndPlay(tracks, trackIndex)) {
+      return;
+    }
+
+    this.setUpNextSongs();
   }
 
   simpleOpenMusicPlayer() {
@@ -70,11 +90,17 @@ export class MusicPlayerPageService {
 
   setUpNextSongs() {
     localStorage.setItem('songId', this.allSongs[this.audioService.trackIndex].did);
-    this.upNextSongs = this.allSongs.slice();
-
-    this.upNextSongs.splice(0, this.audioService.trackIndex + 1);
+      this.upNextSongs = this.allSongs.slice();
+      this.upNextSongs.splice(0, this.audioService.trackIndex + 1);
 
   }
+
+  getAllSongs(){
+    return this.allSongs;
+  }
+
+
+
 
   getTracksFromSongs(songs) {
     var tracks = [];
