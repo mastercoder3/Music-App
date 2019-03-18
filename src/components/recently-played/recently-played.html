@@ -4,6 +4,7 @@
   see-all-style="style1"
   section-icon-style="play"
   section-title-style="left"
+  *ngIf="recent"
 >
   <header>
     <div class="main-grids safe-area">
@@ -36,26 +37,26 @@
   <div class="main-grids safe-area">
     <div class="inner">
       <div
-        *ngFor="let song of recentlyPlayedSongs; let i = index"
+        *ngFor="let song of recent; let i = index"
         class="slide"
       >
         <div class="author-like-wrapper">
           <div
             class="author-avatar music-player-song"
-            (click)="musicPlayerPageService.openMusicPlayer(recentlyPlayedSongs, i)"
+            (click)="musicPlayerPageService.openMusicPlayer(recent, i)"
           >
-            <img src="{{ song.pictureUrl }}" width="100%" height="auto" />
+            <img src="{{ song.imageURL }}" width="100%" height="auto" />
           </div>
 
           <div class="author-like">
             <div
               class="song-title-author music-player-song"
-              (click)="musicPlayerPageService.openMusicPlayer(recentlyPlayedSongs, i)"
+              (click)="musicPlayerPageService.openMusicPlayer(recent, i)"
             >
-              <h2 class="title">{{ song.name }}</h2>
+              <h2 class="title">{{ song.title }}</h2>
 
               <cite class="author">
-                <a>{{ song.artistName }}</a>
+                <a>{{ song.oartist }}</a>
               </cite>
             </div>
 
@@ -87,7 +88,7 @@
 
               <span
                 class="song-time music-player-song"
-                (click)="musicPlayerPageService.openMusicPlayer(recentlyPlayedSongs, i)"
+                (click)="musicPlayerPageService.openMusicPlayer(recent, i)"
                 >{{ song.duration }}</span
               >
             </div>
