@@ -28,7 +28,7 @@
               <div class="inner">
                 <button
                   class="minimize"
-                  (click)="modalService.dismiss()"
+                  (click)="isActive ? doNotheing() : modalService.dismiss()"
                 ></button>
 
                 <h2>Now Playing</h2>
@@ -118,7 +118,7 @@
                     <div class="command">
                       <p
                         class="prev"
-                        (click)="previous()"
+                        (click)="isActive ? doNotheing() : previous()"
                         style="margin-top: -1px"
                       ></p>
 
@@ -126,15 +126,16 @@
                         class="playPause play"
                         [class.active]="audioService.playingTrack().isPlaying"
                         (click)="
+                        isActive ? doNotheing() : (
                           audioService.playingTrack().isPlaying
                             ? audioService.pause()
-                            : audioService.play()
+                            : audioService.play() )
                         "
                       ></p>
 
                       <p
                         class="next"
-                        (click)="next()"
+                        (click)="isActive ? doNotheing() : next()"
                         style="margin-top: -1px"
                       ></p>
                     </div>

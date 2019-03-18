@@ -30,7 +30,8 @@ export class MusicPlayerPageService {
 
   openMusicPlayer(songs, trackIndex: number) {
     localStorage.setItem('songId',songs[trackIndex].did);
-    this.videoService.hideMiniPlayer();
+    if(localStorage.getItem('adStatus') !== 'active'){
+        this.videoService.hideMiniPlayer();
     this.hideFooterPlayer();
 
     this.allSongs = songs;
@@ -49,6 +50,8 @@ export class MusicPlayerPageService {
     });
 
     modal.present();
+    }
+  
   }
 
   playAd(songs, trackIndex){

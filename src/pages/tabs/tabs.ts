@@ -19,6 +19,7 @@ export class TabsPage {
   loadAPI: Promise<any>;
 
   constructor(fcm: FcmProvider, toastCtrl: ToastController, platform: Platform) {
+    localStorage.setItem('adStatus','inactive');
     this.loadAPI = new Promise((resolve) => {
       this.loadScript();
       resolve(true);

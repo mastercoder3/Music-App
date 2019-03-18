@@ -26,6 +26,7 @@ export class MusicPlayerPage {
   time;
   adSong: Array<any> = [];
   ads;
+  isActive= false;
 
   constructor(
     private modalCtrl: ModalController,
@@ -59,10 +60,6 @@ export class MusicPlayerPage {
       })))
         .subscribe(res =>{
           this.ads = res;
-          // setTimeout( () =>{
-          //   this.musicPlayerPageService.playAd(this.ads,0);
-          // }, 1000)
-          
         })
   }
 
@@ -78,17 +75,30 @@ export class MusicPlayerPage {
   }
 
   previous() {
-    this.audioService.previous();
-    this.musicPlayerPageService.setUpNextSongs();
-  }
-
-  next() {
-    if(localStorage.getItem('adStatus') === 'active'){
+    if(localStorage.getItem('adStatus') === 'active' && this.count !== 0){
       this.play()
     }
     else{
-      this.audioService.next();
-      this.musicPlayerPageService.setUpNextSongs();
+
+      if(localStorage.getItem('adStatus') === 'inactive'){
+        this.audioService.previous();
+        this.musicPlayerPageService.setUpNextSongs();
+      }
+      this.setAds();
+    }
+
+  }
+
+  next() {
+    if(localStorage.getItem('adStatus') === 'active' && this.count !== 0){
+      this.play()
+    }
+    else{
+
+      if(localStorage.getItem('adStatus') === 'inactive'){
+        this.audioService.next();
+        this.musicPlayerPageService.setUpNextSongs();
+      }
       this.setAds();
     }
 
@@ -109,11 +119,11 @@ export class MusicPlayerPage {
       this.audioService.seekTo(seeker);
     }
 
-    // if(event.value === 100){
-    //   setTimeout( ()=>{
-    //     this.next();
-    //   }, 500);
-    // }
+    if(event.value === 100){
+      setTimeout( ()=>{
+        this.next();
+      }, 500);
+    }
       
   }
 
@@ -122,37 +132,24 @@ export class MusicPlayerPage {
   allSongs;
 
   play(){
-    console.log(this.ads[0]);
+    this.isActive = true;
     this.adSong.push(this.ads[0]);
     this.updateAds(this.ads[0]);
-    console.log('coming');
     this.flagSongs = this.musicPlayerPageService.allSongs;
     this.flagIndex = this.audioService.trackIndex;
     this.musicPlayerPageService.playAd(this.adSong,0);
     this.resetTime();
+    setTimeout( () =>{
+      this.isActive = false;
+      localStorage.setItem('adStatus','changed')
+    }, 10000);
   }
 
   setAds(){
-    if(localStorage.getItem('adStatus') === 'active'){
- 
-      // this.time = parseInt(localStorage.getItem('timer'));
-      // if( Math.floor((Date.now() - this.time )/1000) > 1 && this.count >= 1){
-        
-      //   this.helper.setTheStatus('active');
-      // this.adSong.push(this.ads[0]);
-      // this.updateAds(this.ads[0]);
-      // this.flagSongs = this.allSongs;
-      // this.flagIndex = this.audioService.trackIndex;
-     
-    
-      // localStorage.setItem('adStatus','active');
-      // this.resetTime();
-      // }
-      // else{
-      //   this.count++;
-      //   localStorage.setItem('count', this.count.toString());
-      //   this.checkAdConition();
-      // }
+    if(localStorage.getItem('adStatus') === 'changed'){
+      this.musicPlayerPageService.playAd(this.flagSongs,this.flagIndex);
+      this.resetTime();
+      localStorage.setItem('adStatus','inactive');
     }
     else{
       this.count++;
@@ -160,59 +157,13 @@ export class MusicPlayerPage {
       this.checkAdConition();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // if(localStorage.getItem('adStatus') === 'active'){
-
-    // this.adSong.push(this.ads[0]);
-    // this.updateAds(this.ads[0]);
-    
-    // this.flagSongs = this.musicPlayerPageService.allSongs;
-    // this.flagIndex = this.audioService.trackIndex;
-    // console.log(this.flagIndex);
-    // console.log(this.flagSongs);
-    // localStorage.setItem('adStatus','active');
-    // this.resetTime();
-
-      // this.time = parseInt(localStorage.getItem('timer'));
-      // if( Math.floor((Date.now() - this.time )/1000) > 1){
-      //   this.audioService.pause();
-      //   var tracks = this.getTracksFromSongs(this.flagSongs);
-      //   if (!this.audioService.setTracksAndPlay(tracks, this.flagIndex )) {
-      //     return;
-      //   }
-      //   this.resetTime();
-      //   localStorage.setItem('adStatus','inactive');
-      // }
-      // else{
-      //   localStorage.setItem('adStatus','inactive');
-
-      // }
-    // }
-    // else if(!localStorage.getItem('adStatus') || localStorage.getItem('adStatus') === 'inactive'){
- 
-    // }
-    
-
   }
 
   checkAdConition(){
-
     this.time = parseInt(localStorage.getItem('timer'));
     this.count = parseInt(localStorage.getItem('count'))
-    console.log(this.count);
     console.log(Math.floor((Date.now() - this.time )/1000))
-    if( Math.floor((Date.now() - this.time )/1000) > 1 && this.count >= 1){
+    if( Math.floor((Date.now() - this.time )/1000) > 720 && this.count >= 4){
       localStorage.setItem('adStatus','active');
     }
     else{
@@ -237,5 +188,9 @@ export class MusicPlayerPage {
       }, err =>{
         console.log('error while updating');
       })
+  }
+
+  doNotheing(){
+    return;
   }
 }
