@@ -4,24 +4,39 @@ import { Video } from '../data/Video';
 
 import { Shuffler } from '../data/Helpers/Shuffler';
 import { VideosInitializer } from '../data/Initializers/VideosInitializer';
+import { ApiProvider } from '../providers/api/api';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class VideoService {
-  allVideos: Video[] = [];
+  allVideos = [];
 
-  currentVideo: Video;
+  currentVideo;
   currentVideoIndex: number;
 
-  constructor() {
-    this.allVideos = Shuffler.shuffle(VideosInitializer.videos.slice());
+  constructor(private api: ApiProvider) {
+    this.api.getOnlyVideos()
+      .pipe(map(actions => actions.map(a =>{
+        const data = a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
+        .subscribe(res =>{
+          this.allVideos = res;
+        })
+    console.log('%c video service', 'background-color: black; color: white;')
+    // this.allVideos = Shuffler.shuffle(VideosInitializer.videos.slice());
   }
 
-  setCurrentVideo(video: Video) {
+  setCurrentVideo(video) {
+    console.log(video);
     this.currentVideoIndex = this.allVideos.findIndex(otherVideo => {
-      return otherVideo.name === video.name;
+      return otherVideo.title === video.title;
     });
 
+    console.log(this.currentVideoIndex);
     this.currentVideo = this.allVideos[this.currentVideoIndex];
+    console.log(this.currentVideo);
   }
 
   next() {

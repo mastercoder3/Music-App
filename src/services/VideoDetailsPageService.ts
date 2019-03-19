@@ -17,11 +17,12 @@ export class VideoDetailsPageService {
     public musicPlayerPageService: MusicPlayerPageService
   ) {}
 
-  openVideo(video: Video) {
+  openVideo(video) {
     this.videoService.hideMiniPlayer();
 
     this.musicPlayerPageService.hideFooterPlayer();
 
+    console.log(video);
     const modal = this.modalCtrl.create(VideoDetailsPage, { video: video });
 
     modal.onDidDismiss(() => {

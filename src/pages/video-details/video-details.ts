@@ -16,7 +16,7 @@ import { Shuffler } from '../../data/Helpers/Shuffler';
   templateUrl: 'video-details.html'
 })
 export class VideoDetailsPage {
-  relatedVideos: Video[] = [];
+  relatedVideos = [];
   showHeader: boolean = true;
 
   constructor(
@@ -51,7 +51,7 @@ export class VideoDetailsPage {
     });
   }
 
-  changeVideo(video: Video) {
+  changeVideo(video) {
     this.videoService.setCurrentVideo(video);
     this.setRelatedVideos();
   }

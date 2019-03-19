@@ -41,7 +41,6 @@ export class PopularVideosComponent implements OnInit {
       })))
         .subscribe(res =>{
           this.videos =res;
-          console.log(res);
         })
   }
 }

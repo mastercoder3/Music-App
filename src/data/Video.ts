@@ -2,18 +2,18 @@ import { Randomizer } from './Helpers/Randomizer';
 
 export class Video {
   constructor(
-    name: string,
-    artistName: string,
-    pictureUrl: string,
-    youtubeVideoCode: string
+    title: string,
+    oartist: string,
+    imageURL: string,
+    video: string
   ) {
-    this.name = name;
-    this.artistName = artistName;
-    this.pictureUrl = pictureUrl;
+    this.title = title;
+    this.oartist = oartist;
+    this.imageURL = imageURL;
 
-    this.videoUrl =
+    this.video =
       'https://www.youtube.com/embed/' +
-      youtubeVideoCode +
+      video +
       '?controls=0&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;loop=0&amp;fs=0&amp;hl=en&amp;enablejsapi=1&amp;widgetid=1';
 
     this.viewsCount = Randomizer.randomIntFromInterval(
@@ -34,12 +34,12 @@ export class Video {
   }
 
   id: string;
-  name: string;
-  artistName: string;
-  pictureUrl: string;
+  title: string;
+  oartist: string;
+  imageURL: string;
   viewsCount: string;
   likesCount: string;
-  videoUrl: string;
+  video: string;
   isLiked: boolean;
   duration: string;
 }
