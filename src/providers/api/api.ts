@@ -53,6 +53,10 @@ export class ApiProvider {
     return this.afs.collection('songs').snapshotChanges();
   }
 
+  getNewSongs(){
+    return this.afs.collection('songs', ref=>ref.orderBy('upload', 'desc'). limit(20)).snapshotChanges();
+  }
+
   // :::::::::::::::::::::::::::::::::::::::::::::::: Playlist ::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
   getPlaylistById(id){

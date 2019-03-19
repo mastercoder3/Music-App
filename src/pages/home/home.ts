@@ -10,10 +10,14 @@ import { SearchPage } from '../search/search';
 })
 export class HomePage {
 
+  type;
+
   constructor(
     private videoService: VideoService,
     private modalCtrl: ModalController
-  ) {}
+  ) {
+    this.type = localStorage.getItem('type');
+  }
 
   ionViewDidEnter() {
     console.log('ionViewDidEnter HomePage');

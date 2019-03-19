@@ -52,13 +52,13 @@
 
                 <popular-videos></popular-videos>
 
-                <favorite-artists></favorite-artists>
+                <favorite-artists *ngIf="type === 'user'"></favorite-artists>
 
                 <best-playlists [isLibrary]="false"></best-playlists>
 
-                <popular-albums></popular-albums>
+                <!-- <popular-albums></popular-albums>
 
-                <charts></charts>
+                <charts></charts> -->
               </section>
               <!-- end bottom padding -->
             </div>

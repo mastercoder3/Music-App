@@ -1,4 +1,4 @@
-import { Component, Inject, forwardRef } from '@angular/core';
+import { Component, Inject, forwardRef, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
@@ -11,18 +11,22 @@ import { Playlist } from '../../data/Playlist';
 import { Shuffler } from '../../data/Helpers/Shuffler';
 import { SongsInitializer } from '../../data/Initializers/SongsInitializer';
 import { PlaylistsInitializer } from '../../data/Initializers/PlaylistsInitializer';
+import { ApiProvider } from '../../providers/api/api';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'recommended',
   templateUrl: 'recommended.html'
 })
-export class RecommendedComponent {
+export class RecommendedComponent implements OnInit{
   recommendedSongs: Song[] = [];
   recommendedPlaylists: Playlist[] = [];
+  songs;
 
   constructor(
     private navCtrl: NavController,
-    @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService
+    @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
+    private api: ApiProvider
   ) {
     console.log('Hello RecommendedComponent Component');
 
@@ -30,9 +34,27 @@ export class RecommendedComponent {
     this.recommendedPlaylists = Shuffler.shuffle(
       PlaylistsInitializer.playlists.slice()
     );
+
+
+  }
+
+  ngOnInit(){
+    this.getData();
   }
 
   goToPlaylist(playlist: Playlist) {
     this.navCtrl.push(PlaylistPage, { playlist: playlist });
+  }
+
+  getData(){
+    this.api.getNewSongs()
+      .pipe(map(actions => actions.map(a => {
+        const data = a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
+        .subscribe(res =>{
+          this.songs = res;
+        });
   }
 }

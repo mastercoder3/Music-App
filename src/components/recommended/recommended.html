@@ -18,16 +18,16 @@
   </header>
 </section>
 
-<section class="section-tabs" section-type="tabs">
+<!-- <section class="section-tabs" section-type="tabs">
   <div class="main-grids safe-area">
     <div class="buttons-row">
       <a href="#tab1" class="button active tab-link">Songs</a>
       <a href="#tab2" class="button tab-link">Playlists</a>
     </div>
   </div>
-</section>
+</section> -->
 
-<div class="tabs-animated-wrapp">
+<!-- <div class="tabs-animated-wrapp">
   <div class="tabs">
     <div id="tab1" class="tab active">
       <section class="multi-row-swiper-container checkPlaylist">
@@ -36,22 +36,22 @@
         >
           <div class="swiper-wrapper">
             <div
-              *ngFor="let song of recommendedSongs; let i = index"
+              *ngFor="let song of songs; let i = index"
               class="swiper-slide music-player-song"
               (click)="
-                musicPlayerPageService.openMusicPlayer(recommendedSongs, i)
+                musicPlayerPageService.openMusicPlayer(songs, i)
               "
             >
               <div class="slide">
                 <div class="img-play">
-                  <img src="{{ song.pictureUrl }}" width="100%" height="auto" />
+                  <img src="{{ song.imageURL }}" width="100%" height="auto" />
                 </div>
               </div>
 
-              <h2>{{ song.name }}</h2>
+              <h2>{{ song.title }}</h2>
 
               <cite class="author" avatar="22sz2" album-cover="22sz5">
-                <a>{{ song.artistName }}</a>
+                <a>{{ song.oartist }}</a>
               </cite>
             </div>
 
@@ -89,12 +89,12 @@
               </div>
 
               <h2>{{ playlist.name }}</h2>
-              <!--
+              
                 <cite class="author" avatar="90sz2" album-cover="90sz5">
                   <a>Artist name</a>
                 </cite>
               -->
-            </div>
+            <!-- </div>
 
             <div class="swiper-slide"></div>
           </div>
@@ -102,4 +102,36 @@
       </section>
     </div>
   </div>
+</div> -->
+<div style="width: 100% !important;">
+
+
+<ion-grid >
+  <ion-row>
+    <ion-col col-12>
+        <ion-slides>
+
+            <ion-slide style="max-width: 100px;"  *ngFor="let item of songs; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
+                (click)="musicPlayerPageService.openMusicPlayer(songs, i)">
+                <div class="slide">
+                    <div class="img-inner-wrapper">
+                      <img
+                        src="{{item?.imageURL}}"
+                        style="border-radius: 9px; width: 100px; height: 100px;"
+                      />
+          
+                      <h2 style="color: white">{{ item?.title}}</h2>
+          
+                      <cite class="author">
+                        <a style="color: rgb(189, 189, 189) !important; text-decoration: none; font-style: normal;">{{ item?.oartist }}</a>
+                      </cite>
+                    </div>
+                  </div>
+            </ion-slide>
+          
+          
+          </ion-slides>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </div>
