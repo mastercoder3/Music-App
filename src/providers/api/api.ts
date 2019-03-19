@@ -98,7 +98,7 @@ export class ApiProvider {
   //  :::::::::::::::::::::::::::::::::::::::::: Popular Videos ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
   getpopularVideos(){
-    return this.afs.collection('songs', ref=> ref.where('video','>', '').orderBy('views','desc').limit(7)).snapshotChanges();
+    return this.afs.collection('songs').snapshotChanges();
   }
 
 }
