@@ -95,4 +95,10 @@ export class ApiProvider {
     return this.afs.collection('recently').add(data);
   }
 
+  //  :::::::::::::::::::::::::::::::::::::::::: Popular Videos ::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getpopularVideos(){
+    return this.afs.collection('songs', ref=> ref.where('video','>', '').orderBy('views','desc').limit(7)).snapshotChanges();
+  }
+
 }

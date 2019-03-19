@@ -30,6 +30,7 @@ export class LibraryPage {
   downloadURL: Observable<any>;
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
+  type;
 
   constructor(
     private videoService: VideoService,
@@ -41,6 +42,7 @@ export class LibraryPage {
 
   ionViewDidLoad() {
     this.getData();
+    this.type = localStorage.getItem('type');
   }
 
   getData(){
