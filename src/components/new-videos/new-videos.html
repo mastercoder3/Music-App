@@ -33,14 +33,14 @@
           <div class="video-avatar">
             <img
               alt="avatar"
-              src="{{ video.pictureUrl }}"
+              src="{{ video.imageURL }}"
               class="avatar"
               width="100%"
               height="100%"
             />
 
             <div class="like-container">
-              <span class="heart-icon" [class.active]="video.isLiked"
+              <span class="heart-icon" [class.active]="video?.isLiked"
                 ><svg width="17px" height="15px" viewBox="0 0 17 15">
                   <g
                     stroke="none"
@@ -58,20 +58,20 @@
                         ></path>
                       </g>
                     </g>
-                  </g></svg
-              ></span>
+                  </g></svg>
+                </span>
             </div>
 
             <div class="video-time-label">
               <div class="blur"></div>
-              <p class="video-time">{{ video.duration }}</p>
+              <p class="video-time">{{ video?.duration || '00:00' }}</p>
             </div>
           </div>
 
           <div class="video-info">
-            <h2 class="title">{{ video.name }}</h2>
+            <h2 class="title">{{ video.title }}</h2>
 
-            <cite class="author">{{ video.name }}</cite>
+            <cite class="author">{{ video.oartist }}</cite>
 
             <p class="video-views">
               <svg width="17" height="14" viewBox="0 0 17 14">
@@ -81,7 +81,7 @@
                   d="M8.502 13.29c5.294 0 8.32-5.667 8.32-6.611 0-.945-3.026-6.611-8.32-6.611-5.295 0-8.32 5.666-8.32 6.61 0 .945 3.025 6.612 8.32 6.612zm0-3.584a3.025 3.025 0 1 0 0-6.05 3.025 3.025 0 0 0 0 6.05z"
                   opacity=".42"
                 ></path></svg
-              >{{ video.viewsCount }}
+              >{{ video?.views }}
             </p>
           </div>
         </div>

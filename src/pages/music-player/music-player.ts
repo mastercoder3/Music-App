@@ -27,6 +27,9 @@ export class MusicPlayerPage {
   adSong: Array<any> = [];
   ads;
   isActive= false;
+  likedsongs;
+  isLiked = false;
+  exist= false;
 
   constructor(
     private modalCtrl: ModalController,
@@ -60,7 +63,72 @@ export class MusicPlayerPage {
       })))
         .subscribe(res =>{
           this.ads = res;
-        })
+        });
+
+    this.api.getLikedSongs(localStorage.getItem('uid'))
+    .pipe(map(actions => actions.map(a =>{
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+      .subscribe(res =>{
+        this.likedsongs = res;
+        this.checkCurrentSongLike();
+      });
+  }
+
+  checkCurrentSongLike(){
+    if(this.likedsongs.length > 0 ){
+       let x: Array<string> = this.likedsongs[0].songs;
+      let check: Array<string> = x.filter(data => data === localStorage.getItem('songId'));
+      if(check.length > 0){
+        this.isLiked = true;
+      }
+      else{
+        this.isLiked = false;
+      }
+      this.exist = true;
+    }
+    else{
+      this.exist = false;
+    }
+   
+  }
+
+  likeSong(val){
+    if(val === 'like'){
+      if(this.exist){
+        let x: Array<string> = this.likedsongs[0].songs;
+        x.push(localStorage.getItem('songId'));
+        let data = {
+          uid: localStorage.getItem('uid'),
+          songs: x
+        };
+        this.api.updateLikedSongs(this.likedsongs[0].did, data);
+      }
+      else if(!this.exist){
+        let x = [];
+        x.push(localStorage.getItem('songId'));
+        let data = {
+          uid: localStorage.getItem('uid'),
+          songs: x
+        };
+        this.api.addLikedsong(data);
+      }
+    }
+    else if(val === 'dislike'){
+      let x: Array<string> = this.likedsongs[0].songs;
+      x.splice(x.indexOf(localStorage.getItem('songId')), 1);
+      let data = {
+        uid: localStorage.getItem('uid'),
+        songs: x
+      };
+      this.api.updateLikedSongs(this.likedsongs[0].did, data).then(res =>{
+        this.isLiked = false;
+      }, err =>{
+        console.log(err);
+      })
+    }
   }
 
 
@@ -86,7 +154,7 @@ export class MusicPlayerPage {
       }
       this.setAds();
     }
-
+    this.checkCurrentSongLike();
   }
 
   next() {
@@ -101,7 +169,8 @@ export class MusicPlayerPage {
       }
       this.setAds();
     }
-
+    console.log(localStorage.getItem('songId'));
+    this.checkCurrentSongLike();
   }
 
   changeSong(song: Song) {

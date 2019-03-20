@@ -9,7 +9,6 @@ import { MusicPlayerPage } from '../pages/music-player/music-player';
 import { Song } from '../data/Song';
 import { ApiProvider } from '../providers/api/api';
 import { map } from 'rxjs/operators';
-import { HelperProvider } from '../providers/helper/helper';
 
 @Injectable()
 export class MusicPlayerPageService {
@@ -22,8 +21,7 @@ export class MusicPlayerPageService {
     private modalCtrl: ModalController,
     private videoService: VideoService,
     private audioService: AudioService,
-    private api: ApiProvider,
-    private helper: HelperProvider
+    private api: ApiProvider
   ) {
     this.api.getRecentlyPlayed(localStorage.getItem('uid'))
     .pipe(map(actions => actions.map(a =>{

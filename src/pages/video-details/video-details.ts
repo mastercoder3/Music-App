@@ -6,8 +6,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ModalService } from '../../services/ModalService';
 import { VideoService } from '../../services/VideoService';
 
-import { Video } from '../../data/Video';
-
 import { Shuffler } from '../../data/Helpers/Shuffler';
 
 @IonicPage()

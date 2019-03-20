@@ -1,27 +1,35 @@
-import { Component, Inject, forwardRef } from '@angular/core';
+import { Component, Inject, forwardRef, OnInit } from '@angular/core';
 
 import { VideoDetailsPageService } from '../../services/VideoDetailsPageService';
+import { ApiProvider } from '../../providers/api/api';
+import { map } from 'rxjs/operators';
 
-import { Video } from '../../data/Video';
-
-import { Shuffler } from '../../data/Helpers/Shuffler';
-import { VideosInitializer } from '../../data/Initializers/VideosInitializer';
 
 @Component({
   selector: 'new-videos',
   templateUrl: 'new-videos.html'
 })
-export class NewVideosComponent {
-  newVideos: Video[] = [];
+export class NewVideosComponent implements OnInit {
+  newVideos;
 
   constructor(
     @Inject(forwardRef(() => VideoDetailsPageService))
-    public videoDetailsPageService: VideoDetailsPageService
+    public videoDetailsPageService: VideoDetailsPageService,
+    private api: ApiProvider
   ) {
     console.log('Hello NewVideosComponent Component');
-    this.newVideos = Shuffler.shuffle(VideosInitializer.videos.slice()).splice(
-      0,
-      4
-    );
+   
+  }
+
+  ngOnInit(){
+    this.api.getNewVideos()
+      .pipe(map(actions => actions.map(a =>{
+        const data =a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
+        .subscribe(res =>{
+          this.newVideos = res;
+        })
   }
 }

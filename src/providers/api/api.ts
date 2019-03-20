@@ -105,4 +105,21 @@ export class ApiProvider {
     return this.afs.collection('songs', ref => ref.where('video', '>', '')).snapshotChanges();
   }
 
+  getNewVideos(){
+    return this.afs.collection('songs', ref => ref.where('video','>','').orderBy('video').orderBy('upload','asc').limit(4)).snapshotChanges();
+  }
+
+  // ::::::::::::::::::::::::::::::::::::::::::::::::: Liked Tracks ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getLikedSongs(uid){
+    return this.afs.collection('liked', ref => ref.where('uid','==', uid)).snapshotChanges();
+  }
+
+  updateLikedSongs(id,data){
+    return this.afs.doc('liked/'+id).update(data);
+  }
+
+  addLikedsong(data){
+    return this.afs.collection('liked').add(data);
+  }
 }

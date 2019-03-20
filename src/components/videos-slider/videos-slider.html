@@ -9,17 +9,17 @@
         (click)="videoDetailsPageService.openVideo(video)"
       >
         <div class="slide">
-          <img src="{{ video.pictureUrl }}" width="100%" height="100%" />
+          <img src="{{ video.imageURL }}" style="width:237px; height: 120px;" />
 
           <div class="video-time-label">
             <div class="blur"></div>
-            <p class="video-time">{{ video.duration }}</p>
+            <p class="video-time">{{ video?.duration || '00:00'}}</p>
           </div>
         </div>
 
-        <h2>{{ video.name }}</h2>
+        <h2>{{ video.title }}</h2>
 
-        <cite class="author">{{ video.artistName }}</cite>
+        <cite class="author">{{ video.oartist }}</cite>
       </div>
     </div>
   </div>

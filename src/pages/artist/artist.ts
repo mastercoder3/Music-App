@@ -11,17 +11,6 @@ import { ModalService } from '../../services/ModalService';
 import { VideoService } from '../../services/VideoService';
 import { AudioService } from '../../services/AudioService';
 
-import { AlbumPage } from '../album/album';
-import { PurchasesPage } from '../purchases/purchases';
-
-import { Artist } from '../../data/Artist';
-import { Song } from '../../data/Song';
-import { Album } from '../../data/Album';
-import { Purchase } from '../../data/Purchase';
-
-import { Shuffler } from '../../data/Helpers/Shuffler';
-import { SongsInitializer } from '../../data/Initializers/SongsInitializer';
-import { AlbumsInitializer } from '../../data/Initializers/AlbumsInitializer';
 
 @IonicPage()
 @Component({
@@ -29,11 +18,12 @@ import { AlbumsInitializer } from '../../data/Initializers/AlbumsInitializer';
   templateUrl: 'artist.html'
 })
 export class ArtistPage {
-  artist: Artist;
+  artist;
+  type;
 
-  popularSongs: Song[] = [];
-  artistAlbums: Album[] = [];
-  singles: Song[] = [];
+  popularSongs = [];
+  artistAlbums = [];
+  singles= [];
 
   constructor(
     private navParams: NavParams,
@@ -44,23 +34,25 @@ export class ArtistPage {
     private audioService: AudioService,
     @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService
   ) {
-    this.artist = this.navParams.get('artist');
+    this.type = localStorage.getItem('type');
+    this.artist = this.navParams.get('data');
+    console.log(this.artist);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArtistPage');
 
-    this.popularSongs = Shuffler.shuffle(SongsInitializer.songs.slice()).splice(
-      0,
-      10
-    );
-    this.artistAlbums = Shuffler.shuffle(
-      AlbumsInitializer.albums.slice()
-    ).splice(0, 5);
-    this.singles = Shuffler.shuffle(SongsInitializer.songs.slice()).splice(
-      0,
-      10
-    );
+    // this.popularSongs = Shuffler.shuffle(SongsInitializer.songs.slice()).splice(
+    //   0,
+    //   10
+    // );
+    // this.artistAlbums = Shuffler.shuffle(
+    //   AlbumsInitializer.albums.slice()
+    // ).splice(0, 5);
+    // this.singles = Shuffler.shuffle(SongsInitializer.songs.slice()).splice(
+    //   0,
+    //   10
+    // );
   }
 
   ionViewDidEnter() {
@@ -75,19 +67,19 @@ export class ArtistPage {
     }
   }
 
-  goToAlbum(album: Album) {
-    this.navCtrl.push(AlbumPage, { album: album });
-  }
+  // goToAlbum(album: Album) {
+  //   this.navCtrl.push(AlbumPage, { album: album });
+  // }
 
-  buySong(song: Song) {
-    var purchase = new Purchase(
-      song.name,
-      song.pictureUrl,
-      song.artistName,
-      song.price
-    );
+  // buySong(song: Song) {
+  //   var purchase = new Purchase(
+  //     song.name,
+  //     song.pictureUrl,
+  //     song.artistName,
+  //     song.price
+  //   );
 
-    const modal = this.modalCtrl.create(PurchasesPage, { purchase: purchase });
-    modal.present();
-  }
+  //   const modal = this.modalCtrl.create(PurchasesPage, { purchase: purchase });
+  //   modal.present();
+  // }
 }

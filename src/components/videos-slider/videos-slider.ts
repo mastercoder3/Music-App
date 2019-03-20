@@ -1,23 +1,33 @@
-import { Component, Inject, forwardRef } from '@angular/core';
+import { Component, Inject, forwardRef, OnInit } from '@angular/core';
 
 import { VideoDetailsPageService } from '../../services/VideoDetailsPageService';
+import { ApiProvider } from '../../providers/api/api';
 
-import { Video } from '../../data/Video';
-
-import { VideosInitializer } from '../../data/Initializers/VideosInitializer';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'videos-slider',
   templateUrl: 'videos-slider.html'
 })
-export class VideosSliderComponent {
-  videos: Video[] = [];
-
+export class VideosSliderComponent implements OnInit {
+  // videos: Video[] = [];
+  videos;
   constructor(
     @Inject(forwardRef(() => VideoDetailsPageService))
-    public videoDetailsPageService: VideoDetailsPageService
+    public videoDetailsPageService: VideoDetailsPageService,
+    private api: ApiProvider
   ) {
-    console.log('Hello VideosSliderComponent Component');
-    this.videos = VideosInitializer.videos;
+  }
+
+  ngOnInit(){
+    this.api.getpopularVideos()
+      .pipe(map(actions => actions.map(a => {
+        const data = a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
+      .subscribe(res =>{
+        this.videos =res;
+      });
   }
 }

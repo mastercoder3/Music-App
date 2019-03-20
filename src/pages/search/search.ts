@@ -1,5 +1,5 @@
 import { Component, forwardRef, Inject } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 import { ModalService } from '../../services/ModalService';
 
@@ -13,6 +13,7 @@ import { PlaylistsInitializer } from '../../data/Initializers/PlaylistsInitializ
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
 import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
+import { ArtistPage } from '../artist/artist';
 
 @IonicPage()
 @Component({
@@ -31,7 +32,7 @@ export class SearchPage {
 
   constructor(public modalService: ModalService, private api: ApiProvider,
     @Inject(forwardRef(() => MusicPlayerPageService))
-    public musicPlayerPageService: MusicPlayerPageService) {}
+    public musicPlayerPageService: MusicPlayerPageService, private nav: NavController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchPage');
@@ -108,7 +109,7 @@ export class SearchPage {
   searchText(val: string){
     if(val.length >3){
           this.resultSongs = this.songs.filter(data => data.title.toLowerCase().indexOf(val.toLowerCase()) !== -1 );
-          this.resultUser = this.users.filter(data => data.username.toLowerCase().indexOf(val.toLowerCase() && (data.isVerified === true || data.type ==='user')) !== -1);
+          this.resultUser = this.users.filter(data => data.username.toLowerCase().indexOf(val.toLowerCase()) !== -1 && data.isVerified === true);
           if(this.resultSongs.length !== 0 ){
             this.showSong = true;
           }
@@ -128,5 +129,11 @@ export class SearchPage {
       this.showUser = false;
     }
 
+  }
+
+  UserProfile(item){
+    console.log(item)
+    this.modalService.dismiss();
+    this.nav.push(ArtistPage, {data: item});
   }
 }

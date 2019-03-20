@@ -8,7 +8,7 @@
   >
     <div class="album-cover-blur">
       <img
-        src="{{ artist.pictureUrl }}"
+        src="{{ artist?.imageURL || 'assets/imgs/user.png'}}"
         class="album cover"
         alt="cover"
         width="100%"
@@ -34,7 +34,7 @@
 
             <div class="album-cover">
               <img
-                src="{{ artist.pictureUrl }}"
+                src="{{ artist?.imageURL || 'assets/imgs/user.png'}}"
                 class="album cover"
                 width="100%"
                 height="100%"
@@ -42,8 +42,8 @@
             </div>
 
             <div class="title-author">
-              <h2 class="title">{{ artist.name }}</h2>
-              <cite class="author">{{ artist.followersCount }} Listeners</cite>
+              <h2 class="title">{{ artist?.name }}</h2>
+              <cite class="author">{{ artist?.followersCount }} Listeners</cite>
             </div>
           </div>
         </div>
@@ -55,17 +55,17 @@
         <section class="profile-avatar-user">
           <div class="main-grids safe-area">
             <div class="inner">
-              <img src="{{ artist.pictureUrl }}" width="100%" height="auto" />
+              <img src="{{ artist?.imageURL }}" width="100%" height="auto" />
 
               <div class="user-country">
-                <cite class="user">{{ artist.name }}</cite>
-                <p class="listeners">{{ artist.followersCount }} Listeners</p>
+                <cite class="user">{{ artist?.name }}</cite>
+                <p class="listeners">{{ artist?.followersCount }} Listeners</p>
               </div>
 
-              <button class="following active" *ngIf="artist.following">
+              <button class="following active" *ngIf="type === 'user'" >
                 following
               </button>
-              <button class="following" *ngIf="!artist.following">
+              <button class="following" *ngIf="type === 'user'" >
                 follow
               </button>
             </div>
@@ -156,8 +156,8 @@
                                         ></path>
                                       </g>
                                     </g>
-                                  </g></svg
-                              ></span>
+                                  </g>
+                                  </svg></span>
                             </div>
 
                             <span class="song-price" (click)="buySong(song)"
@@ -185,7 +185,7 @@
                 <header>
                   <div class="main-grids safe-area">
                     <div class="inner">
-                      <div class="icon"></div>
+                      <div clss="icon"></div>
                       <h2>Albums</h2>
                     </div>
                   </div>
