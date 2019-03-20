@@ -187,10 +187,15 @@ export class MusicPlayerPage {
       let seeker = (event.value * this.audioService.playingTrack().duration ) / 100;
       this.audioService.seekTo(seeker);
     }
-
-    if(event.value === 100){
+    // console.log(this.audioService.isRepeat);
+    if(event.value === 100 && this.audioService.isShuffle){
       setTimeout( ()=>{
         this.next();
+      }, 500);
+    }
+    else if(event.value === 100 && this.audioService.isRepeat){
+      setTimeout( ()=>{
+        this.audioService.play();
       }, 500);
     }
       
