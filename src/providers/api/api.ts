@@ -122,4 +122,10 @@ export class ApiProvider {
   addLikedsong(data){
     return this.afs.collection('liked').add(data);
   }
+
+  // ::::::::::::::::::::::::::::::::::::::::::::: Upload songs :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  addSong(data){
+    return this.afs.collection('songs').add(data);
+  }
 }

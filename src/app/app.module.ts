@@ -15,6 +15,8 @@ import { HttpModule } from '@angular/http';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { Facebook } from '@ionic-native/facebook';
 import { Firebase } from '@ionic-native/firebase';
+import { FileChooser } from '@ionic-native/file-chooser';
+import { File } from '@ionic-native/file';
 
 // Ionic Audio
 import {
@@ -197,7 +199,9 @@ const firebase = {
     HelperProvider,
     ApiProvider,
     FcmProvider,
-    Firebase
+    Firebase,
+    FileChooser,
+    File
   ]
 })
 export class AppModule {}

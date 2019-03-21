@@ -1,5 +1,5 @@
 import { Component, Inject, forwardRef } from '@angular/core';
-import { IonicPage, NavController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, App } from 'ionic-angular';
 
 import { VideoService } from '../../services/VideoService';
 import { AudioService } from '../../services/AudioService';
@@ -39,7 +39,7 @@ export class LibraryPage {
     private navCtrl: NavController,
     private modal: ModalController,
     @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
-    private api: ApiProvider, private camera: Camera, private helper: HelperProvider,  private fireStorage: AngularFireStorage,
+    private api: ApiProvider, private camera: Camera, private helper: HelperProvider,  private fireStorage: AngularFireStorage, private app: App
   ) {}
 
   ionViewDidLoad() {
@@ -58,7 +58,7 @@ export class LibraryPage {
   logout(){
     localStorage.removeItem('uid');
     localStorage.clear();
-    this.navCtrl.setRoot(LoginPage);
+    this.app.getRootNav().setRoot(LoginPage);
   }
 
   ionViewDidEnter() {
