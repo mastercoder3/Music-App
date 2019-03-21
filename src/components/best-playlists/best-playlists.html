@@ -49,7 +49,7 @@
           <ion-slides>
   
               <ion-slide style="max-width: 295px;"  *ngFor="let item of playlist; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
-                  (click)="musicPlayerPageService.openMusicPlayer(item, i)">
+                  (click)="musicPlayerPageService.openMusicPlayer(playlist, i)">
                   <div class="slide">
                       <div class="img-inner-wrapper">
                         <img
@@ -74,36 +74,3 @@
     </ion-row>
   </ion-grid>
 
-<!-- <section class="best-playlists-swiper-container checkPlaylist">
-  <div
-    class="swiper-container swiper-padding-left square-swiper playlist-swiper best-playlists-swiper-container no-fastclick"
-  >
-    <div class="swiper-wrapper">
-      <div
-        *ngFor="let playlist of bestPlaylists"
-        class="swiper-slide the-playlist"
-        album-cover="79sz6"
-      >
-        <div class="slide slide-1">
-          <a class="playlist-button" (click)="goToPlaylist(playlist)">
-            <div class="img-play">
-              <img src="{{ playlist.pictureUrl }}" width="100%" height="auto" />
-
-              <div class="blur"></div>
-
-              <div class="playlist-song-number">
-                {{ playlist.songsCount }} Songs
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <h2>{{ playlist.name }}</h2>
-
-        <p class="playlist-followers">{{ playlist.followersCount }}</p>
-      </div>
-
-      <div class="swiper-slide"></div>
-    </div>
-  </div>
-</section> -->

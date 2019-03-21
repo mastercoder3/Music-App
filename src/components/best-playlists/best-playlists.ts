@@ -17,7 +17,6 @@ import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
 })
 export class BestPlaylistsComponent {
   @Input() isLibrary;
-  bestPlaylists: Playlist[] = [];
   songs: Array<any>;
   myPlaylist;
   playlist;
@@ -27,7 +26,6 @@ export class BestPlaylistsComponent {
     public musicPlayerPageService: MusicPlayerPageService) {
     console.log('Hello BestPlaylistsComponent Component');
 
-    this.bestPlaylists = Shuffler.shuffle(PlaylistsInitializer.playlists);
     this.getData();
   }
 
@@ -44,6 +42,7 @@ export class BestPlaylistsComponent {
       })))
         .subscribe(res =>{
           this.songs = res;
+          console.log(this.songs)
           this.api.getPlaylistById(localStorage.getItem('uid'))
               .pipe(map(actions => actions.map(a => {
                 const data =a.payload.doc.data();
@@ -52,6 +51,7 @@ export class BestPlaylistsComponent {
             })))
               .subscribe(resp =>{
                 this.myPlaylist = resp;
+                console.log(this.myPlaylist);
                 this.setPlaylist();
               });
         });

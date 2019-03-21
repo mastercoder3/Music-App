@@ -81,6 +81,7 @@ import { ApiProvider } from '../providers/api/api';
 import { FcmProvider } from '../providers/fcm/fcm';
 import { SignupArtistPage } from '../pages/signup-artist/signup-artist';
 import { FbLoginPage } from '../pages/fb-login/fb-login';
+import { SongUploadPage } from '../pages/song-upload/song-upload';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -118,6 +119,7 @@ const firebase = {
     SignupPage,
     SignupArtistPage,
     FbLoginPage,
+    SongUploadPage,
     // Components
     FeaturedComponent,
     MostPlayedComponent,
@@ -133,7 +135,7 @@ const firebase = {
     NewVideosComponent,
     LibraryFavoritesComponent,
     MiniVideoPlayerComponent,
-    PlayerFooterComponent
+    PlayerFooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -172,7 +174,8 @@ const firebase = {
     LoginPage,
     SignupPage,
     SignupArtistPage,
-    FbLoginPage
+    FbLoginPage,
+    SongUploadPage
   ],
   providers: [
     StatusBar,

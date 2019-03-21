@@ -1,75 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, forwardRef, Inject } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
-import { AlbumPage } from '../../pages/album/album';
-
-import { Album } from '../../data/Album';
-import { AlbumPair } from '../../data/AlbumPair';
-import { SongPair } from '../../data/SongPair';
-
-import { Shuffler } from '../../data/Helpers/Shuffler';
-import { AlbumsInitializer } from '../../data/Initializers/AlbumsInitializer';
-import { SongsInitializer } from '../../data/Initializers/SongsInitializer';
+import { ApiProvider } from '../../providers/api/api';
+import { map } from 'rxjs/operators';
+import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
 
 @Component({
   selector: 'library-favorites',
   templateUrl: 'library-favorites.html'
 })
-export class LibraryFavoritesComponent {
-  albumPairs: AlbumPair[] = [];
-  songPairs: SongPair[] = [];
+export class LibraryFavoritesComponent implements OnInit {
+  songPairs;
 
-  constructor(private navCtrl: NavController) {
+  songs;
+  liked;
+
+
+  constructor(private navCtrl: NavController, private api: ApiProvider,
+    @Inject(forwardRef(() => MusicPlayerPageService))
+    public musicPlayerPageService: MusicPlayerPageService) {
     console.log('Hello LibraryFavoritesComponent Component');
-
-    this.initialiseAlbumPairs();
-    this.initialiseSongPairs();
   }
 
-  initialiseAlbumPairs() {
-    var favoriteAlbums = Shuffler.shuffle(
-      AlbumsInitializer.albums.slice()
-    ).splice(0, 10);
+  ngOnInit(){
+    this.getData();
+  }
 
-    for (var i = 0; i < favoriteAlbums.length; i++) {
-      var albumPair = new AlbumPair();
+  getData(){
+    this.api.getAllSongs()
+    .pipe(map(actions => actions.map(a => {
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
 
-      var album1 = favoriteAlbums[i];
-      albumPair.album1 = album1;
+    .subscribe(res =>{
+      this.songs = res;
+      this.api.getLikedSongs(localStorage.getItem('uid'))
+      .pipe(map(actions => actions.map(a => {
+        const data = a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
 
-      i++;
-      if (i < favoriteAlbums.length) {
-        var album2 = favoriteAlbums[i];
-        albumPair.album2 = album2;
-      }
+      .subscribe(resp =>{
+        this.liked = resp;
+        console.log(resp);
+        this.getPlayingSongs();
+      });
+    });
+    
+  }
 
-      this.albumPairs.push(albumPair);
+  getPlayingSongs(){
+    if(this.liked.length !== 0){
+      this.songPairs = this.songs.filter( data => this.liked[0].songs.indexOf(data.did)> -1);
+      console.log(this.songPairs)
     }
   }
 
-  initialiseSongPairs() {
-    var favoriteSongs = Shuffler.shuffle(SongsInitializer.songs.slice()).splice(
-      0,
-      10
-    );
-
-    for (var i = 0; i < favoriteSongs.length; i++) {
-      var songPair = new SongPair();
-
-      var song1 = favoriteSongs[i];
-      songPair.song1 = song1;
-
-      i++;
-      if (i < favoriteSongs.length) {
-        var song2 = favoriteSongs[i];
-        songPair.song2 = song2;
-      }
-
-      this.songPairs.push(songPair);
-    }
-  }
-
-  goToAlbum(album: Album) {
-    this.navCtrl.push(AlbumPage, { album: album });
-  }
 }

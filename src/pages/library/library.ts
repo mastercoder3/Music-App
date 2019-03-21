@@ -1,5 +1,5 @@
 import { Component, Inject, forwardRef } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController } from 'ionic-angular';
 
 import { VideoService } from '../../services/VideoService';
 import { AudioService } from '../../services/AudioService';
@@ -14,6 +14,7 @@ import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask 
 import { finalize } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { LoginPage } from '../login/login';
+import { SongUploadPage } from '../song-upload/song-upload';
 
 @IonicPage()
 @Component({
@@ -36,6 +37,7 @@ export class LibraryPage {
     private videoService: VideoService,
     private audioService: AudioService,
     private navCtrl: NavController,
+    private modal: ModalController,
     @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
     private api: ApiProvider, private camera: Camera, private helper: HelperProvider,  private fireStorage: AngularFireStorage,
   ) {}
@@ -131,6 +133,11 @@ export class LibraryPage {
       }, err =>{
         this.helper.presentToast(err.message);
       })
+  }
+
+  uploadSong(){
+   const modal =  this.modal.create(SongUploadPage);
+   modal.present();
   }
 
 
