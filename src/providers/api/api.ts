@@ -128,4 +128,32 @@ export class ApiProvider {
   addSong(data){
     return this.afs.collection('songs').add(data);
   }
+
+  // :::::::::::::::::::::::::::::::::::::::::::::: Followers ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getFollowers(id){
+    return this.afs.collection('followers', ref => ref.where('uid', '==', id)).snapshotChanges();
+  }
+
+  updateFollowers(id,data){
+    return this.afs.doc('followers/'+id).update(data);
+  }
+
+  addFollowers(data){
+    return this.afs.collection('followers').add(data);
+  }
+
+  // :::::::::::::::::::::::::::::::::::::::::::::: Following ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getFollowings(id){
+    return this.afs.collection('following', ref => ref.where('uid', '==', id)).snapshotChanges();
+  }
+
+  updateFollowing(id,data){
+    return this.afs.doc('following/'+id).update(data);
+  }
+
+  addFollowing(data){
+    return this.afs.collection('following').add(data);
+  }
 }

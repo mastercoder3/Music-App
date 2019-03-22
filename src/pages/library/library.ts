@@ -140,6 +140,10 @@ export class LibraryPage {
    modal.present();
   }
 
+  buy(){
+    
+  }
+
 
 
 }

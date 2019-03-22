@@ -153,17 +153,23 @@ export class SongUploadPage implements OnInit {
 
   uploadSong() {
     this.ref = this.fireStorage.ref(`Songs/${this.songname}`);
-    let task = this.ref.put(this.blob);
-    task.snapshotChanges()
-      .pipe(finalize(() => {
-        this.ref.getDownloadURL().subscribe(url => {
-          this.data.songURL = url;
-          alert(url);
-          if(this.data.songURL !== ''){
-            this.createSong();
-          }
-        });
-      })).subscribe();
+    let reader = new FileReader();
+      reader.readAsDataURL(this.blob);
+      reader.onload = () => {
+        let base64 = reader.result // Here is your base64.
+        let task = this.ref.putString('data:image/jpeg;base64,'+base64, 'data_url' );
+        task.snapshotChanges()
+          .pipe(finalize(() => {
+            this.ref.getDownloadURL().subscribe(url => {
+              this.data.songURL = url;
+              alert(url);
+              if(this.data.songURL !== ''){
+                this.createSong();
+              }
+            });
+          })).subscribe();
+      }
+   
   }
 
   createSong(){
@@ -185,16 +191,18 @@ export class SongUploadPage implements OnInit {
     this.fileChooser.open()
      .then(res =>{
        this.file.resolveLocalFilesystemUrl(res).then(newUrl =>{
+         
          let dirPath = newUrl.nativeURL;
-         let dirPathSegment = dirPath.split('/');
-         dirPathSegment.pop();
-         dirPath = dirPathSegment.join('/');
+         this.songUri = dirPath;
+        //  let dirPathSegment = dirPath.split('/');
+        //  dirPathSegment.pop();
+        //  dirPath = dirPathSegment.join('/');
 
          this.file.readAsArrayBuffer(dirPath, newUrl.name)
           .then( buffer =>{
-            this.blob = new Blob([buffer], {type: "audio/mpeg" });
+            this.blob = new Blob([buffer], {type: "audio/mp3" });
             this.songname = newUrl.name;
-            alert(this.blob);
+            alert(JSON.stringify(this.blob));
           }, err =>{
             alert(err)
           })

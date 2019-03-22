@@ -26,6 +26,7 @@ export class OptionsPage {
   randomAlbum: Album;
   randomArtist: Artist;
   playlist: Array<any>;
+  myplaylist;
 
   constructor(
     private navCtrl: NavController,
@@ -33,33 +34,36 @@ export class OptionsPage {
     public audioService: AudioService,
     private api: ApiProvider,
     private helper: HelperProvider
-  ) {}
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OptionsPage');
 
     this.api.getPlaylistById(localStorage.getItem('uid'))
-      .pipe(map(actions => actions.map(a =>{
+      .pipe(map(actions => actions.map(a => {
         const data = a.payload.doc.data();
         const did = a.payload.doc.id;
-        return{did, ...data};
+        return { did, ...data };
       })))
-        .subscribe( res =>{
-          this.playlist = res;
-        });
+      .subscribe(res => {
+        this.playlist = res;
+        console.log(res)
+        if (res)
+          this.myplaylist = this.playlist[0];
+      });
 
 
     this.randomAlbum =
       AlbumsInitializer.albums[
-        Randomizer.randomIntFromInterval(0, AlbumsInitializer.albums.length - 1)
+      Randomizer.randomIntFromInterval(0, AlbumsInitializer.albums.length - 1)
       ];
 
     this.randomArtist =
       ArtistsInitializer.artists[
-        Randomizer.randomIntFromInterval(
-          0,
-          ArtistsInitializer.artists.length - 1
-        )
+      Randomizer.randomIntFromInterval(
+        0,
+        ArtistsInitializer.artists.length - 1
+      )
       ];
   }
 
@@ -71,38 +75,114 @@ export class OptionsPage {
     this.navCtrl.push(ArtistPage, { artist: this.randomArtist });
   }
 
-  addToPlaylist(){
-    if(this.playlist.length === 0){
-      let x = {
+  // addToPlaylist(){
+  //   if(this.playlist.length === 0){
+  //     let x = {
+  //       uid: localStorage.getItem('uid'),
+  //       songs: []
+  //     }
+  //     x.songs.push(localStorage.getItem('songId'));
+  //     this.api.addToPlaylist(x)
+  //       .then(res =>{
+  //         this.helper.presentToast('Song added to Playlist');
+  //       }, err =>{
+  //         this.helper.presentToast(err.message);
+  //       });
+  //   }
+  //   else{
+  //     let x = [];
+  //     x = this.playlist.filter(data => data.songs.indexOf(localStorage.getItem('songId') ) > -1);
+  //     if(x.length === 0){
+  //       this.playlist[0].songs.push(localStorage.getItem('songId'))
+  //       let id = this.playlist[0].did;
+  //       delete this.playlist[0]['did']
+  //       this.api.updatePlaylist(id, this.playlist[0])
+  //         .then(res =>{
+  //           this.helper.presentToast('Song added to Playlist');
+  //         }, err =>{
+  //           this.helper.presentToast(err.message);
+  //         });
+  //     }
+  //     else
+  //       this.helper.presentToast('Songs Already Added in Playlist.')
+
+  //   }
+
+  // }
+  title;
+  createNew() {
+    let func = (data) => {
+      this.title = data.title;
+    }
+    let alert = this.helper.showAlert(func);
+    alert.present();
+    alert.onDidDismiss((data) => {
+      if (data.title !== "") {
+        this.addToPlaylistName(data.title);
+      }
+    });
+  }
+
+  temp;
+  flag: Array<any> = [];
+
+  addToPlaylistName(value) {
+    if (this.playlist.length === 0) {
+      this.temp = {
         uid: localStorage.getItem('uid'),
+        playlist: []
+      }
+      let data = {
+        name: value,
         songs: []
       }
-      x.songs.push(localStorage.getItem('songId'));
-      this.api.addToPlaylist(x)
-        .then(res =>{
+      data.songs.push(localStorage.getItem('songId'));
+      this.flag.push(data);
+      this.temp.playlist = this.flag;
+      this.api.addToPlaylist(this.temp)
+        .then(res => {
           this.helper.presentToast('Song added to Playlist');
-        }, err =>{
+        }, err => {
           this.helper.presentToast(err.message);
         });
     }
-    else{
-      let x = [];
-      x = this.playlist.filter(data => data.songs.indexOf(localStorage.getItem('songId') ) > -1);
-      if(x.length === 0){
-        this.playlist[0].songs.push(localStorage.getItem('songId'))
-        let id = this.playlist[0].did;
-        delete this.playlist[0]['did']
-        this.api.updatePlaylist(id, this.playlist[0])
-          .then(res =>{
-            this.helper.presentToast('Song added to Playlist');
-          }, err =>{
-            this.helper.presentToast(err.message);
-          });
+    else {
+      this.temp = this.myplaylist.playlist;
+      let data = {
+        name: value,
+        songs: []
       }
-      else
-        this.helper.presentToast('Songs Already Added in Playlist.')
-      
+      data.songs.push(localStorage.getItem('songId'));
+      this.temp.push(data);
+      this.api.updatePlaylist(this.playlist[0].did, {
+        uid: localStorage.getItem('uid'),
+        playlist: this.temp
+      })
+        .then(res => {
+          this.helper.presentToast('Song added to Playlist');
+        }, err => {
+          this.helper.presentToast(err.message);
+        });
     }
+  }
 
+  addToExistingPlaylist(item, i) {
+   let x :Array<any> = this.myplaylist.playlist[i].songs.filter(data => data === localStorage.getItem('songId'));
+   if(x.length > 0){
+     this.helper.presentToast('Song already Exists in the playlist.');
+   }
+   else{
+     this.myplaylist.playlist[i].songs.push(localStorage.getItem('songId'));
+     this.temp = {
+       uid: localStorage.getItem('uid'),
+       playlist: this.myplaylist.playlist
+     }
+     this.api.updatePlaylist(this.myplaylist.did, this.temp)
+     .then(res => {
+      this.helper.presentToast('Song added to Playlist');
+    }, err => {
+      this.helper.presentToast(err.message);
+    });
+   }
   }
 }

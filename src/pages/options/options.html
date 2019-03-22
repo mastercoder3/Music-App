@@ -25,11 +25,13 @@
 
   <div class="music-player-option-container" style="min-width: 300px;">
     <div class="inner">
-      <p>Add to</p>
+      <p>Add to (Playlist)</p>
       <div class="divider"></div>
       <ul class="add-to">
         <!-- <li>Your Library</li> -->
-        <li (click)="addToPlaylist()" >Playlist</li>
+        <!-- <li (click)="addToPlaylist()" >Playlist</li> -->
+        <li *ngFor="let item of myplaylist?.playlist; let i = index" (click)="addToExistingPlaylist(item,i)" >{{item?.name}}</li>
+        <li (click)="createNew()" >Create New</li>
         <!-- <li>Up Next</li> -->
       </ul>
 

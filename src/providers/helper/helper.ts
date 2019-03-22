@@ -4,6 +4,8 @@ import { ToastController, LoadingController } from 'ionic-angular';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AlertController } from 'ionic-angular';
+
 
 /*
   Generated class for the HelperProvider provider.
@@ -17,7 +19,7 @@ export class HelperProvider {
   private status: BehaviorSubject<string>;
 
   constructor(private actionSheetCtrl: ActionSheetController,
-    private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http
+    private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http, public alertCtrl: AlertController
   ) {
     this.status = new BehaviorSubject<string>('inactive');
   }
@@ -94,6 +96,32 @@ export class HelperProvider {
   extractData(res) {
     let body = res.json();
     return body;
+  }
+
+  showAlert(myfunc) {
+    const alert = this.alertCtrl.create({
+      title: 'Custom Playlist',
+      subTitle: 'Enter a Name.',
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Name'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: myfunc
+        }
+      ]
+    });
+    return alert;
   }
 
 }
