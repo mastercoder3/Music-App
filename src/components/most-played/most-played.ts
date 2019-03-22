@@ -8,6 +8,8 @@ import { Shuffler } from '../../data/Helpers/Shuffler';
 import { SongsInitializer } from '../../data/Initializers/SongsInitializer';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
+import { NavController } from 'ionic-angular';
+import { SeeAllPage } from '../../pages/see-all/see-all';
 
 @Component({
   selector: 'most-played',
@@ -19,7 +21,7 @@ export class MostPlayedComponent implements OnInit {
 
   constructor(
     @Inject(forwardRef(() => MusicPlayerPageService))
-    public musicPlayerPageService: MusicPlayerPageService, private api: ApiProvider
+    public musicPlayerPageService: MusicPlayerPageService, private api: ApiProvider, private nav: NavController
   ) {
     console.log('Hello MostPlayedComponent Component');
     this.mostPlayedSongs = Shuffler.shuffle(SongsInitializer.songs.slice());
@@ -39,5 +41,12 @@ export class MostPlayedComponent implements OnInit {
         .subscribe(res =>{
           this.songs = res;
         });
+  }
+
+  seeall(){
+    this.nav.push(SeeAllPage, {
+      data: '',
+      type: 'most'
+    })
   }
 }

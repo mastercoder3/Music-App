@@ -84,6 +84,7 @@ import { FcmProvider } from '../providers/fcm/fcm';
 import { SignupArtistPage } from '../pages/signup-artist/signup-artist';
 import { FbLoginPage } from '../pages/fb-login/fb-login';
 import { SongUploadPage } from '../pages/song-upload/song-upload';
+import { SeeAllPage } from '../pages/see-all/see-all';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -122,6 +123,7 @@ const firebase = {
     SignupArtistPage,
     FbLoginPage,
     SongUploadPage,
+    SeeAllPage,
     // Components
     FeaturedComponent,
     MostPlayedComponent,
@@ -177,7 +179,8 @@ const firebase = {
     SignupPage,
     SignupArtistPage,
     FbLoginPage,
-    SongUploadPage
+    SongUploadPage,
+    SeeAllPage
   ],
   providers: [
     StatusBar,

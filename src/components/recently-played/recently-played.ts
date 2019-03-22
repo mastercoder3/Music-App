@@ -8,6 +8,8 @@ import { Shuffler } from '../../data/Helpers/Shuffler';
 import { SongsInitializer } from '../../data/Initializers/SongsInitializer';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
+import { NavController } from 'ionic-angular';
+import { SeeAllPage } from '../../pages/see-all/see-all';
 
 @Component({
   selector: 'recently-played',
@@ -23,7 +25,7 @@ export class RecentlyPlayedComponent {
   exist = false;
 
   constructor(@Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
-  private api: ApiProvider) {
+  private api: ApiProvider, private navCtrl: NavController) {
     console.log('Hello RecentlyPlayedComponent Component');
 
     this.recentlyPlayedSongs = Shuffler.shuffle(
@@ -42,7 +44,7 @@ export class RecentlyPlayedComponent {
       })))
         .subscribe(res =>{
           this.songs = res;
-          this.api.getRecentlyPlayed(localStorage.getItem('uid'))
+          this.api.getRecentlyPlayed2(localStorage.getItem('uid'))
           .pipe(map(actions => actions.map(a =>{
             const data = a.payload.doc.data();
             const did = a.payload.doc.id;
@@ -130,6 +132,13 @@ export class RecentlyPlayedComponent {
         console.log(err);
       })
     }
+  }
+
+  seeall(){
+    this.navCtrl.push(SeeAllPage, {
+      data: '',
+      type: 'recent'
+    })
   }
 
 

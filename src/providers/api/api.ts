@@ -46,7 +46,11 @@ export class ApiProvider {
   }
 
   getMostPlayedSongs(){
-    return this.afs.collection('songs', ref => ref.orderBy('views', 'desc').limit(10)).snapshotChanges();
+    return this.afs.collection('songs', ref => ref.orderBy('views', 'desc').limit(7)).snapshotChanges();
+  }
+
+  getMostPlayedSongs1(){
+    return this.afs.collection('songs', ref => ref.orderBy('views', 'desc').limit(20)).snapshotChanges();
   }
 
   getAllSongs(){
@@ -85,6 +89,10 @@ export class ApiProvider {
 
   getRecentlyPlayed(id){
     return this.afs.collection('recently', ref => ref.where('uid','==',id)).snapshotChanges();
+  }
+
+  getRecentlyPlayed2(id){
+    return this.afs.collection('recently', ref => ref.where('uid','==',id).limit(5)).snapshotChanges();
   }
 
   updateRecentlyPlayed(id,data){

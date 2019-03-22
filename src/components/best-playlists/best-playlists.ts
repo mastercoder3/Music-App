@@ -10,6 +10,7 @@ import { PlaylistsInitializer } from '../../data/Initializers/PlaylistsInitializ
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
 import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
+import { SeeAllPage } from '../../pages/see-all/see-all';
 
 @Component({
   selector: 'best-playlists',
@@ -20,6 +21,7 @@ export class BestPlaylistsComponent {
   songs: Array<any>;
   myPlaylist;
   playlist;
+  images: Array<any>=[];
 
   constructor(private navCtrl: NavController, private api: ApiProvider,
     @Inject(forwardRef(() => MusicPlayerPageService))
@@ -51,15 +53,24 @@ export class BestPlaylistsComponent {
             })))
               .subscribe(resp =>{
                 this.myPlaylist = resp;
-                console.log(this.myPlaylist);
-                this.setPlaylist();
+                if(this.myPlaylist.length !== 0)
+                  this.playlist = this.myPlaylist[0];
+                  this.setImages();
               });
         });
   }
 
-  setPlaylist(){
-    if(this.myPlaylist.length !==0){
-      this.playlist = this.songs.filter( data => this.myPlaylist[0].songs.indexOf(data.did) > -1);
-    }
+  setImages(){
+    this.playlist.playlist.forEach(a => {
+      let x = this.songs.filter(data => data.did === a.songs[0])
+      this.images.push(x[0].imageURL);
+    });
+  }
+
+  openSeeAllPage(item,i){
+    this.navCtrl.push(SeeAllPage, {
+      data: item,
+      type: 'playlist'
+    });
   }
 }

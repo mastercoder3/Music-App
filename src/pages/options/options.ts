@@ -75,40 +75,6 @@ export class OptionsPage {
     this.navCtrl.push(ArtistPage, { artist: this.randomArtist });
   }
 
-  // addToPlaylist(){
-  //   if(this.playlist.length === 0){
-  //     let x = {
-  //       uid: localStorage.getItem('uid'),
-  //       songs: []
-  //     }
-  //     x.songs.push(localStorage.getItem('songId'));
-  //     this.api.addToPlaylist(x)
-  //       .then(res =>{
-  //         this.helper.presentToast('Song added to Playlist');
-  //       }, err =>{
-  //         this.helper.presentToast(err.message);
-  //       });
-  //   }
-  //   else{
-  //     let x = [];
-  //     x = this.playlist.filter(data => data.songs.indexOf(localStorage.getItem('songId') ) > -1);
-  //     if(x.length === 0){
-  //       this.playlist[0].songs.push(localStorage.getItem('songId'))
-  //       let id = this.playlist[0].did;
-  //       delete this.playlist[0]['did']
-  //       this.api.updatePlaylist(id, this.playlist[0])
-  //         .then(res =>{
-  //           this.helper.presentToast('Song added to Playlist');
-  //         }, err =>{
-  //           this.helper.presentToast(err.message);
-  //         });
-  //     }
-  //     else
-  //       this.helper.presentToast('Songs Already Added in Playlist.')
-
-  //   }
-
-  // }
   title;
   createNew() {
     let func = (data) => {
