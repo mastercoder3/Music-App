@@ -4,6 +4,7 @@ import { ModalService } from '../../services/ModalService';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
 import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
+import { VideoDetailsPageService } from '../../services/VideoDetailsPageService';
 
 /**
  * Generated class for the SeeAllPage page.
@@ -25,12 +26,15 @@ export class SeeAllPage implements OnInit {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalService: ModalService, private api: ApiProvider,
     @Inject(forwardRef(() => MusicPlayerPageService))
-    public musicPlayerPageService: MusicPlayerPageService) {
+    public musicPlayerPageService: MusicPlayerPageService,
+    @Inject(forwardRef(() => VideoDetailsPageService))
+    public videoDetailsPageService: VideoDetailsPageService) {
     this.data = this.navParams.get('data');
     this.type = this.navParams.get('type');
   }
 
   ngOnInit(){
+    this.listSongs = null;
     if(this.type === 'playlist'){
       this.setPlaylistSongs();
     }
@@ -39,6 +43,12 @@ export class SeeAllPage implements OnInit {
     }
     else if(this.type === 'most'){
       this.getMostPlayed()
+    }
+    else if(this.type === 'foryou'){
+      this.setForYou();
+    }
+    else if(this.type === 'videos'){
+      this.setVideos();
     }
   }
 
@@ -96,6 +106,33 @@ export class SeeAllPage implements OnInit {
       .subscribe(res =>{
         this.listSongs = res;
       });
+  }
+
+  setForYou(){
+    this.api.getNewSongs1()
+    .pipe(map(actions => actions.map(a => {
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+      .subscribe(res =>{
+        this.listSongs = res;
+
+      });
+  }
+
+  videos;
+
+  setVideos(){
+    this.api.getpopularVideos()
+    .pipe(map(actions => actions.map(a => {
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+      .subscribe(res =>{
+        this.videos =res;
+      })
   }
 
   ionViewDidLoad() {

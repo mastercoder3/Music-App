@@ -9,6 +9,8 @@ import { Shuffler } from '../../data/Helpers/Shuffler';
 import { VideosInitializer } from '../../data/Initializers/VideosInitializer';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
+import { NavController } from 'ionic-angular';
+import { SeeAllPage } from '../../pages/see-all/see-all';
 
 @Component({
   selector: 'popular-videos',
@@ -22,7 +24,8 @@ export class PopularVideosComponent implements OnInit {
     public videoService: VideoService,
     @Inject(forwardRef(() => VideoDetailsPageService))
     public videoDetailsPageService: VideoDetailsPageService,
-    private api: ApiProvider
+    private api: ApiProvider,
+     private nav: NavController
   ) {
     console.log('Hello PopularVideosComponent Component');
     this.popularVideos = Shuffler.shuffle(VideosInitializer.videos.slice());
@@ -33,7 +36,7 @@ export class PopularVideosComponent implements OnInit {
   }
 
   getData(){
-    this.api.getpopularVideos()
+    this.api.getpopularVideos1()
       .pipe(map(actions => actions.map(a => {
         const data = a.payload.doc.data();
         const did = a.payload.doc.id;
@@ -42,5 +45,12 @@ export class PopularVideosComponent implements OnInit {
         .subscribe(res =>{
           this.videos =res;
         })
+  }
+
+  seeall(){
+    this.nav.push(SeeAllPage,{
+      data: '',
+      type: 'videos'
+    })
   }
 }

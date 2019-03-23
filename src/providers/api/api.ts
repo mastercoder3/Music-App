@@ -58,6 +58,10 @@ export class ApiProvider {
   }
 
   getNewSongs(){
+    return this.afs.collection('songs', ref=>ref.orderBy('upload', 'desc'). limit(7)).snapshotChanges();
+  }
+
+  getNewSongs1(){
     return this.afs.collection('songs', ref=>ref.orderBy('upload', 'desc'). limit(20)).snapshotChanges();
   }
 
@@ -107,6 +111,10 @@ export class ApiProvider {
 
   getpopularVideos(){
     return this.afs.collection('songs', ref=> ref.where('video','>', '').orderBy('video').orderBy('views','desc').limit(7)).snapshotChanges();
+  }
+
+  getpopularVideos1(){
+    return this.afs.collection('songs', ref=> ref.where('video','>', '').orderBy('video').orderBy('views','desc').limit(20)).snapshotChanges();
   }
 
   getOnlyVideos(){
@@ -164,4 +172,7 @@ export class ApiProvider {
   addFollowing(data){
     return this.afs.collection('following').add(data);
   }
+
+  // ::::::::::::::::::::::::::::::::::::::::::::::: get Artists :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 }

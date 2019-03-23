@@ -13,6 +13,7 @@ import { SongsInitializer } from '../../data/Initializers/SongsInitializer';
 import { PlaylistsInitializer } from '../../data/Initializers/PlaylistsInitializer';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
+import { SeeAllPage } from '../../pages/see-all/see-all';
 
 @Component({
   selector: 'recommended',
@@ -26,7 +27,7 @@ export class RecommendedComponent implements OnInit{
   constructor(
     private navCtrl: NavController,
     @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
-    private api: ApiProvider
+    private api: ApiProvider, private nav: NavController
   ) {
     console.log('Hello RecommendedComponent Component');
 
@@ -55,6 +56,14 @@ export class RecommendedComponent implements OnInit{
       })))
         .subscribe(res =>{
           this.songs = res;
+          console.log(this.songs)
         });
+  }
+
+  seeall(){
+    this.nav.push(SeeAllPage,{
+      data: '',
+      type: 'foryou'
+    })
   }
 }
