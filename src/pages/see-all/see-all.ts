@@ -50,7 +50,24 @@ export class SeeAllPage implements OnInit {
     else if(this.type === 'videos'){
       this.setVideos();
     }
+    else if(this.type === 'videos1'){
+      this.setNewVideos();
+    }
   }
+
+  setNewVideos(){
+    this.api.getNewVideos()
+    .pipe(map(actions => actions.map(a =>{
+      const data =a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+      .subscribe(res =>{
+        this.videos = res;
+      })
+  }
+
+
 
   setPlaylistSongs(){
     this.api.getAllSongs()

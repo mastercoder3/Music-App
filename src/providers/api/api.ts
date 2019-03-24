@@ -39,6 +39,12 @@ export class ApiProvider {
     return this.afs.collection('users', ref => ref.where('email','==', email)).valueChanges();
   }
 
+  // ::::::::::::::::::::::::::::::::::::::::::::::::: Update Songs ::::::::::::::::::::::::::::::::::::::::::::
+
+  updateSongs(id, data){
+    return this.afs.doc('songs/'+id).update(data);
+  }
+
   //:::::::::::::::::::::::::::::::::::::::::::::::::: Feautured Songs ::::::::::::::::::::::::::::::::::::::::::
 
   getFeaturedSongs(){
@@ -123,6 +129,10 @@ export class ApiProvider {
 
   getNewVideos(){
     return this.afs.collection('songs', ref => ref.where('video','>','').orderBy('video').orderBy('upload','asc').limit(4)).snapshotChanges();
+  }
+
+  getNewVideos1(){
+    return this.afs.collection('songs', ref => ref.where('video','>','').orderBy('video').orderBy('upload','asc').limit(20)).snapshotChanges();
   }
 
   // ::::::::::::::::::::::::::::::::::::::::::::::::: Liked Tracks ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

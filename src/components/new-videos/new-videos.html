@@ -13,7 +13,7 @@
         <h2>New Videos</h2>
 
         <div class="see-all">
-          <p><a>See All</a></p>
+          <p><a (click)="seeall()">See All</a></p>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
               height="100%"
             />
 
-            <div class="like-container">
+            <!-- <div class="like-container">
               <span class="heart-icon" [class.active]="video?.isLiked"
                 ><svg width="17px" height="15px" viewBox="0 0 17 15">
                   <g
@@ -60,7 +60,7 @@
                     </g>
                   </g></svg>
                 </span>
-            </div>
+            </div> -->
 
             <div class="video-time-label">
               <div class="blur"></div>
@@ -80,8 +80,7 @@
                   fill-rule="evenodd"
                   d="M8.502 13.29c5.294 0 8.32-5.667 8.32-6.611 0-.945-3.026-6.611-8.32-6.611-5.295 0-8.32 5.666-8.32 6.61 0 .945 3.025 6.612 8.32 6.612zm0-3.584a3.025 3.025 0 1 0 0-6.05 3.025 3.025 0 0 0 0 6.05z"
                   opacity=".42"
-                ></path></svg
-              >{{ video?.views }}
+                ></path></svg>{{ video?.views }}
             </p>
           </div>
         </div>

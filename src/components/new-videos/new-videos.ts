@@ -3,6 +3,8 @@ import { Component, Inject, forwardRef, OnInit } from '@angular/core';
 import { VideoDetailsPageService } from '../../services/VideoDetailsPageService';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
+import { NavController } from 'ionic-angular';
+import { SeeAllPage } from '../../pages/see-all/see-all';
 
 
 @Component({
@@ -15,7 +17,8 @@ export class NewVideosComponent implements OnInit {
   constructor(
     @Inject(forwardRef(() => VideoDetailsPageService))
     public videoDetailsPageService: VideoDetailsPageService,
-    private api: ApiProvider
+    private api: ApiProvider,
+    private nav: NavController
   ) {
     console.log('Hello NewVideosComponent Component');
    
@@ -31,5 +34,12 @@ export class NewVideosComponent implements OnInit {
         .subscribe(res =>{
           this.newVideos = res;
         })
+  }
+
+  seeall(){
+    this.nav.push(SeeAllPage, {
+      data: '',
+      type: 'videos1'
+    })
   }
 }

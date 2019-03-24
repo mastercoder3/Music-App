@@ -11,6 +11,7 @@ import { ModalService } from '../../services/ModalService';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { ApiProvider } from '../../providers/api/api';
 import { File } from '@ionic-native/file';
+import { FilePath } from '@ionic-native/file-path';
 
 /**
  * Generated class for the SongUploadPage page.
@@ -37,11 +38,11 @@ export class SongUploadPage implements OnInit {
   image;
   songUri: string;
   data;
-  blob;
+  blob: Blob;
   songname;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,private camera: Camera, 
     private androidPermissions: AndroidPermissions, private helper: HelperProvider, private fireStorage: AngularFireStorage,
-     public modalService: ModalService, private fileChooser: FileChooser, private api: ApiProvider,private file: File) {
+     public modalService: ModalService, private fileChooser: FileChooser, private api: ApiProvider,private file: File, private filePath: FilePath) {
       //Camera Permissions
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.CAMERA).then(
       success => console.log('Permission granted'),
@@ -152,23 +153,20 @@ export class SongUploadPage implements OnInit {
   }
 
   uploadSong() {
-    this.ref = this.fireStorage.ref(`Songs/${this.songname}`);
-    let reader = new FileReader();
-      reader.readAsDataURL(this.blob);
-      reader.onload = () => {
-        let base64 = reader.result // Here is your base64.
-        let task = this.ref.putString('data:image/jpeg;base64,'+base64, 'data_url' );
-        task.snapshotChanges()
-          .pipe(finalize(() => {
-            this.ref.getDownloadURL().subscribe(url => {
-              this.data.songURL = url;
-              alert(url);
-              if(this.data.songURL !== ''){
-                this.createSong();
-              }
-            });
-          })).subscribe();
-      }
+
+
+      this.ref = this.fireStorage.ref(`Songs/${this.uploadImageId}`);
+      let task = this.ref.put(this.blob);
+      task.snapshotChanges()
+        .pipe(finalize(() => {
+          this.ref.getDownloadURL().subscribe(url => {
+            this.data.songURL = url;
+            alert(url);
+            if(this.data.songURL !== ''){
+              this.createSong();
+            }
+          });
+        })).subscribe();
    
   }
 
@@ -189,26 +187,47 @@ export class SongUploadPage implements OnInit {
 
   openFile(){
     this.fileChooser.open()
-     .then(res =>{
-       this.file.resolveLocalFilesystemUrl(res).then(newUrl =>{
-         
-         let dirPath = newUrl.nativeURL;
-         this.songUri = dirPath;
-        //  let dirPathSegment = dirPath.split('/');
-        //  dirPathSegment.pop();
-        //  dirPath = dirPathSegment.join('/');
-
-         this.file.readAsArrayBuffer(dirPath, newUrl.name)
-          .then( buffer =>{
+     .then( (res) =>{
+      // alert(res);
+      this.filePath.resolveNativePath(res)
+      .then(resp => {
+        // alert(resp);
+          let dirPath = resp;
+           let dirPathSegment = dirPath.split('/');
+          let x = dirPathSegment.pop();
+          // alert(x)
+           dirPath = dirPathSegment.join('/');
+          //  alert(dirPath);
+           this.file.readAsArrayBuffer(dirPath, x)
+          .then( (buffer)=>{
             this.blob = new Blob([buffer], {type: "audio/mp3" });
-            this.songname = newUrl.name;
-            alert(JSON.stringify(this.blob));
+            this.songname = x;
+            alert(this.blob.type);
+            // alert(JSON.stringify(this.blob));
           }, err =>{
             alert(err)
           })
-       }, err=>{
-         alert(err);
-       } )
+        
+      })
+      //  this.file.resolveLocalFilesystemUrl(res).then( (newUrl) =>{
+         
+      //    let dirPath = newUrl.nativeURL;
+      //    this.songUri = dirPath;
+      //    let dirPathSegment = dirPath.split('/');
+      //    dirPathSegment.pop();
+      //    dirPath = dirPathSegment.join('/');
+      //    alert(dirPath);
+      //    this.file.readAsArrayBuffer(dirPath, newUrl.name)
+      //     .then( (buffer)=>{
+      //       this.blob = new Blob([buffer], {type: "audio/mp3" });
+      //       this.songname = newUrl.name;
+      //       alert(JSON.stringify(this.blob));
+      //     }, err =>{
+      //       alert(err)
+      //     })
+      //  }, err=>{
+      //    alert(err);
+      //  } )
      }, err =>{
        alert(err);
      })

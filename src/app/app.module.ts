@@ -17,6 +17,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { Firebase } from '@ionic-native/firebase';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { File } from '@ionic-native/file';
+import { FilePath } from '@ionic-native/file-path';
 
 // Ionic Audio
 import {
@@ -149,7 +150,7 @@ const firebase = {
     IonicModule.forRoot(MyApp),
     NgXCreditCardsModule,
     AngularFireModule.initializeApp(firebase), // imports firebase/app needed for everything
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFirestoreModule.enablePersistence(), // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
     IonicAudioModule.forRoot(defaultAudioProviderFactory)
@@ -203,6 +204,7 @@ const firebase = {
     ApiProvider,
     FcmProvider,
     Firebase,
+    FilePath,
     FileChooser,
     File
   ]

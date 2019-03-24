@@ -159,6 +159,7 @@ export class MusicPlayerPageService {
 
   setUpNextSongs() {
     localStorage.setItem('songId', this.allSongs[this.audioService.trackIndex].did);
+    this.updateSong();
     this.setRecentlyPlayed();
       this.upNextSongs = this.allSongs.slice();
       this.upNextSongs.splice(0, this.audioService.trackIndex + 1);
@@ -167,6 +168,16 @@ export class MusicPlayerPageService {
 
   getAllSongs(){
     return this.allSongs;
+  }
+
+  updateSong(){
+    this.allSongs[this.audioService.trackIndex].views++
+    this.api.updateSongs(localStorage.getItem('songId'), this.allSongs[this.audioService.trackIndex] )
+    .then(res =>{
+      console.log('views Updated');
+    }, err =>{
+      console.log(err)
+    })
   }
 
 

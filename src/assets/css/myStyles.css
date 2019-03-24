@@ -49,3 +49,9 @@ margin-right: 10px;
 .range-knob-handle{
     display: none;
 }
+
+@media (min-width: 350px) and (max-width: 375px){
+    .mini-next .next{
+        float: right !important;
+    }
+}
