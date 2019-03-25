@@ -101,7 +101,8 @@
                           ? audioService.playingTrack().title
                           : ''
                       }}
-                      
+                       <i class="fa fa-download" aria-hidden="true" style="color:white; font-size: 1.3em; 
+                           text-align: right !important; float: right;" (click)="download()" ></i>
                     </h2>
                     <br />
                     <cite class="author" avatar="11sz2" album-cover="11sz6"
@@ -164,8 +165,7 @@
                           position: relative; top: 15px;" (click)="likeSong('like')"></i>
                           <i class="fa fa-heart" *ngIf="isLiked" aria-hidden="true" style="color:#00ACFF; font-size: 1.8em; 
                           position: relative; top: 15px;" (click)="likeSong('dislike')" ></i>
-                           <!-- <i class="fa fa-download" aria-hidden="true" style="color:white; font-size: 1.8em; 
-                           position: relative; right: 10px;" ></i> -->
+                          
                         </div>
                       </div>
                      

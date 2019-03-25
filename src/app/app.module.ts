@@ -19,6 +19,8 @@ import { FileChooser } from '@ionic-native/file-chooser';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 // Ionic Audio
 import {
@@ -211,7 +213,9 @@ const firebase = {
     FilePath,
     FileChooser,
     File,
-    GooglePlus
+    GooglePlus,
+    FileTransfer,
+    NativeStorage
   ]
 })
 export class AppModule {}

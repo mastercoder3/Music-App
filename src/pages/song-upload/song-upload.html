@@ -59,6 +59,17 @@
         <ion-icon name="musical-note" style="margin-top:12px;color:white;"></ion-icon>
       </ion-col>
       <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+        <ion-select style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important; width: 100%;" formControlName="mood">
+          <ion-option value="happy" selected>Happy</ion-option>
+          <ion-option value="sad">Sad</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+        <ion-icon name="musical-note" style="margin-top:12px;color:white;"></ion-icon>
+      </ion-col>
+      <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
         <ion-input type="text" placeholder="Video Link" formControlName="video"
           style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
       </ion-col>

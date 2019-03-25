@@ -35,4 +35,12 @@ export class AuthProvider {
     return user;
   }
 
+  logout(){
+    this.auth.auth.signOut();
+  }
+
+  checkLoginStatus(){
+    return this.auth.authState;
+  }
+
 }

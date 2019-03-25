@@ -7,6 +7,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { SignupArtistPage } from '../pages/signup-artist/signup-artist';
+import { AuthProvider } from '../providers/auth/auth';
 
 
 
@@ -19,7 +20,8 @@ export class MyApp {
   constructor(
     platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen
+    splashScreen: SplashScreen,
+    auth: AuthProvider
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -29,6 +31,8 @@ export class MyApp {
     });
 
     this.rootPage = LoginPage;
+
+
     if(localStorage.getItem('uid')){
       this.rootPage = TabsPage;
     }

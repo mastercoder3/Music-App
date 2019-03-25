@@ -12,6 +12,9 @@ import { Song } from '../../data/Song';
 import { HelperProvider } from '../../providers/helper/helper';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 @IonicPage()
 @Component({
@@ -36,16 +39,20 @@ export class MusicPlayerPage {
     public modalService: ModalService,
     public audioService: AudioService,
     private params: NavParams,
+    private transfer: FileTransfer,
+    private nativeStorage: NativeStorage,
     @Inject(forwardRef(() => MusicPlayerPageService))
     public musicPlayerPageService: MusicPlayerPageService,
     private helper: HelperProvider,
-    private api: ApiProvider
+    private api: ApiProvider,
+    private file: File
   ) {
     this.songs = this.params.get('songs');
     this.index = this.params.get('index');
     localStorage.removeItem('count');
     localStorage.removeItem('timer');
     localStorage.setItem('adStatus', 'inactive');
+   
   }
 
   ionViewDidLoad() {
@@ -266,5 +273,41 @@ export class MusicPlayerPage {
 
   doNotheing(){
     return;
+  }
+
+  download(){
+    alert('yes coming')
+    const fileTransfer: FileTransferObject = this.transfer.create();
+    let id = Math.floor(Date.now() / 1000);
+    fileTransfer.download(this.audioService.playingTrack().src, this.file.dataDirectory + `${id}.mp3`).then((entry) => {
+      this.nativeStorage.getItem('offline')
+        .then(
+          data =>{
+            if(data){
+              let x: Array<any> = JSON.parse(data);
+              x.push(entry.toURL());
+              this.nativeStorage.setItem('offline', JSON.stringify(x))
+              .then(
+                () => this.helper.presentToast('Song saved as Offline'),
+                error => console.error('Error storing item', error)
+              );
+            }
+            else{
+              let x = [];
+              x.push(entry.toURL())
+              this.nativeStorage.setItem('offline', JSON.stringify(x))
+              .then(
+                () => this.helper.presentToast('Song saved as Offline'),
+                error => console.error('Error storing item', error)
+              );
+            }
+          }
+        );
+      alert('download complete: ' + entry.toURL());
+    }, (err) => {
+      // handle error
+      console.log(err);
+      alert('Error' + err);
+    });
   }
 }

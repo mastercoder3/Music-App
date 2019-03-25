@@ -37,7 +37,7 @@ export class LoginPage {
     private gplus: GooglePlus) {
       firebase.auth().onAuthStateChanged( user => {
         if (user){
-         console.log(user)
+         this.auth.logout();
         } else { 
             console.log(user)
         }
@@ -94,9 +94,13 @@ export class LoginPage {
   temp: Array<any>;
 
   loginByFacebook(){
+    this.facebook.logout();
+    this.auth.logout();
     this.facebook.login(['public_profile', 'user_friends', 'email'])
     .then((res: FacebookLoginResponse) => {
       this.helper.presentLoadingDefault();
+      alert('fb resp')
+      alert(JSON.stringify(res))
       const facebookCredential = firebase.auth.FacebookAuthProvider
           .credential(res.authResponse.accessToken);
 
@@ -105,6 +109,8 @@ export class LoginPage {
             this.api.getUserByEmail(success.email)
             .subscribe(res=> {
               this.temp = res;
+              alert('temp respo')
+              alert(JSON.stringify(this.temp));
               if(this.temp.length === 0){
                 this.helper.closeLoading();
                 const profileModal = this.modalCtrl.create( FbLoginPage, { data: success });
@@ -122,33 +128,40 @@ export class LoginPage {
             });
           }, err =>{
             this.helper.closeLoading();
-            alert(err);
+            alert('err')
+            alert(err.message);
           });
     },err =>{
-      alert(err)
+      alert(err.message)
     })
   }
 
-  async nativeGoogleLogin(): Promise<firebase.User> {
+   nativeGoogleLogin(){
     try {
-  
-      const gplusUser = await this.gplus.login({
-        'webClientId': '389850484452-bgrmvm2ce6o32an02drkda666t5atps1.apps.googleusercontent.com',
-        'offline': true,
-        'scopes': 'profile email'
+      this.auth.logout();
+      this.gplus.logout();
+       this.gplus.login({
+
+      })
+      .then(res =>{
+        const googleCredential = firebase.auth.GoogleAuthProvider
+        .credential(res.idToken);
+
+        firebase.auth().signInWithCredential(googleCredential)
+        .then( response => {
+            console.log("Firebase success: " + JSON.stringify(response));
+            alert(response);
+        });
       });
   
-      return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken));
   
     } catch(err) {
-      console.log(err)
+     alert(err)
     }
   }
 
   loginWithGoogle(){
-    this.nativeGoogleLogin().then(res =>{
-      alert(res);
-    });
+    this.nativeGoogleLogin();
   }
 
 }

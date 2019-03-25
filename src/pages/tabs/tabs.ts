@@ -4,8 +4,10 @@ import { HomePage } from '../home/home';
 import { VideosPage } from '../videos/videos';
 import { LibraryPage } from '../library/library';
 import { FcmProvider } from '../../providers/fcm/fcm';
-import { ToastController, Platform } from 'ionic-angular';
+import { ToastController, Platform, App } from 'ionic-angular';
 import { tap } from 'rxjs/operators';
+import { AuthProvider } from '../../providers/auth/auth';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-tabs',
@@ -18,7 +20,7 @@ export class TabsPage {
 
   loadAPI: Promise<any>;
 
-  constructor(fcm: FcmProvider, toastCtrl: ToastController, platform: Platform) {
+  constructor(fcm: FcmProvider, toastCtrl: ToastController, platform: Platform, private auth: AuthProvider, private app: App) {
     localStorage.setItem('adStatus','inactive');
     this.loadAPI = new Promise((resolve) => {
       this.loadScript();

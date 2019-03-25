@@ -61,7 +61,8 @@ export class SongUploadPage implements OnInit {
       artist: ['', Validators.required],
       movie: ['', Validators.required],
       album: ['', Validators.required],
-      video: ['']
+      video: [''],
+      mood: ['']
     });
   }
 
@@ -88,6 +89,7 @@ export class SongUploadPage implements OnInit {
       songId: '',
       songURL: '',
       views: 0,
+      mood: form.value.mood,
       uploadBy: localStorage.getItem('uid')
     }
     this.helper.presentLoadingDefault();
