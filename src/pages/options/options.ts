@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { ModalService } from '../../services/ModalService';
 import { AudioService } from '../../services/AudioService';
@@ -27,14 +27,23 @@ export class OptionsPage {
   randomArtist: Artist;
   playlist: Array<any>;
   myplaylist;
+  artist;
+  name;
+  image;
 
   constructor(
     private navCtrl: NavController,
     public modalService: ModalService,
     public audioService: AudioService,
     private api: ApiProvider,
-    private helper: HelperProvider
-  ) { }
+    private helper: HelperProvider,
+    private navparams: NavParams
+  ) {
+    this.artist = this.navparams.get('artist');
+    this.name = this.navparams.get('title');
+    this.image = this.navparams.get('image');
+    console.log(this.artist)
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OptionsPage');

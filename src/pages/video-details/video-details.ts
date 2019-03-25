@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams } from 'ionic-angular';
+import { IonicPage, NavParams, ModalController } from 'ionic-angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -9,6 +9,7 @@ import { VideoService } from '../../services/VideoService';
 import { Shuffler } from '../../data/Helpers/Shuffler';
 import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
+import { OptionsPage } from '../options/options';
 
 @IonicPage()
 @Component({
@@ -25,7 +26,7 @@ export class VideoDetailsPage {
     public videoService: VideoService,
     private screenOrientation: ScreenOrientation,
     public sanitizer: DomSanitizer,
-    private api: ApiProvider
+    private api: ApiProvider, private modalCtrl: ModalController
   ) {
     var video = this.navParams.get('video');
     this.videoService.setCurrentVideo(video);
@@ -139,5 +140,15 @@ export class VideoDetailsPage {
     var tempVideos = this.videoService.allVideos.slice();
     tempVideos.splice(this.videoService.currentVideoIndex, 1);
     this.relatedVideos = Shuffler.shuffle(tempVideos.slice());
+  }
+
+  options(){
+    localStorage.setItem('songId', this.videoService.currentVideo.did);
+    const modal = this.modalCtrl.create(OptionsPage,{
+      artist: this.videoService.currentVideo.oartist,
+      title: this.videoService.currentVideo.title,
+      image: this.videoService.currentVideo.imageURL
+    });
+    modal.present();
   }
 }

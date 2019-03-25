@@ -5,7 +5,7 @@
         <div class="inner">
           <div class="album-cover">
             <img
-              src="{{ audioService.playingTrack().art }}"
+              src="{{ audioService.playingTrack()?.art || image}}"
               class="album cover"
               alt="cover"
               width="100%"
@@ -13,9 +13,9 @@
             />
           </div>
           <div class="title-author">
-            <h2 class="title">{{ audioService.playingTrack().title }}</h2>
+            <h2 class="title">{{ audioService.playingTrack()?.title || name}}</h2>
             <cite class="author" avatar="2sz2" album-cover="2sz5">{{
-              audioService.playingTrack().artist
+              audioService.playingTrack()?.artist || artist
             }}</cite>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { MusicPlayerPageService } from './MusicPlayerPageService';
 import { VideoDetailsPage } from '../pages/video-details/video-details';
 
 import { Video } from '../data/Video';
+import { AudioService } from './AudioService';
 
 @Injectable()
 export class VideoDetailsPageService {
@@ -14,13 +15,15 @@ export class VideoDetailsPageService {
     private modalCtrl: ModalController,
     private videoService: VideoService,
     @Inject(forwardRef(() => MusicPlayerPageService))
-    public musicPlayerPageService: MusicPlayerPageService
+    public musicPlayerPageService: MusicPlayerPageService,
+    private audioService: AudioService
   ) {}
 
   openVideo(video) {
     this.videoService.hideMiniPlayer();
 
     this.musicPlayerPageService.hideFooterPlayer();
+    this.audioService.stop();
 
     console.log(video);
     const modal = this.modalCtrl.create(VideoDetailsPage, { video: video });
