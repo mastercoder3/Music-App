@@ -96,5 +96,9 @@
     <plugin name="cordova-plugin-filechooser" spec="1.2.0" />
     <plugin name="cordova-plugin-file" spec="6.0.1" />
     <plugin name="cordova-plugin-filepath" spec="1.5.1" />
+    <plugin name="cordova-plugin-googleplus" spec="7.0.0">
+        <variable name="REVERSED_CLIENT_ID" value="335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com" />
+        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
+    </plugin>
     <engine name="android" spec="7.1.4" />
 </widget>

@@ -18,6 +18,7 @@ import { Firebase } from '@ionic-native/firebase';
 import { FileChooser } from '@ionic-native/file-chooser';
 import { File } from '@ionic-native/file';
 import { FilePath } from '@ionic-native/file-path';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 // Ionic Audio
 import {
@@ -86,6 +87,7 @@ import { SignupArtistPage } from '../pages/signup-artist/signup-artist';
 import { FbLoginPage } from '../pages/fb-login/fb-login';
 import { SongUploadPage } from '../pages/song-upload/song-upload';
 import { SeeAllPage } from '../pages/see-all/see-all';
+import { StartPopupPage } from '../pages/start-popup/start-popup';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -125,6 +127,7 @@ const firebase = {
     FbLoginPage,
     SongUploadPage,
     SeeAllPage,
+    StartPopupPage,
     // Components
     FeaturedComponent,
     MostPlayedComponent,
@@ -181,7 +184,8 @@ const firebase = {
     SignupArtistPage,
     FbLoginPage,
     SongUploadPage,
-    SeeAllPage
+    SeeAllPage,
+    StartPopupPage
   ],
   providers: [
     StatusBar,
@@ -206,7 +210,8 @@ const firebase = {
     Firebase,
     FilePath,
     FileChooser,
-    File
+    File,
+    GooglePlus
   ]
 })
 export class AppModule {}

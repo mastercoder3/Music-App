@@ -10,6 +10,10 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { SignupArtistPage } from '../signup-artist/signup-artist';
 import { FbLoginPage } from '../fb-login/fb-login';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs/Observable';
+
+import { GooglePlus } from '@ionic-native/google-plus';
 
 /**
  * Generated class for the LoginPage page.
@@ -26,9 +30,19 @@ import { FbLoginPage } from '../fb-login/fb-login';
 export class LoginPage {
 
   form: FormGroup;
+  user1: Observable<firebase.User>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, public modalCtrl: ModalController,
-    private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider,private facebook: Facebook) {
+    private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider,private facebook: Facebook, private afAuth: AngularFireAuth, 
+    private gplus: GooglePlus) {
+      firebase.auth().onAuthStateChanged( user => {
+        if (user){
+         console.log(user)
+        } else { 
+            console.log(user)
+        }
+      });
+      // this.user1 = this.afAuth.authState;
     this.form = this.fb.group({
       email: ['', Validators.compose([
         Validators.required, Validators.email
@@ -113,6 +127,28 @@ export class LoginPage {
     },err =>{
       alert(err)
     })
+  }
+
+  async nativeGoogleLogin(): Promise<firebase.User> {
+    try {
+  
+      const gplusUser = await this.gplus.login({
+        'webClientId': '389850484452-bgrmvm2ce6o32an02drkda666t5atps1.apps.googleusercontent.com',
+        'offline': true,
+        'scopes': 'profile email'
+      });
+  
+      return await this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken));
+  
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  loginWithGoogle(){
+    this.nativeGoogleLogin().then(res =>{
+      alert(res);
+    });
   }
 
 }

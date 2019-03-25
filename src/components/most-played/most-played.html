@@ -17,35 +17,6 @@
     </div>
   </header>
 </section>
-
-<!-- <section class="most-played-swiper-container checkPlaylist">
-  <div
-    class="swiper-container swiper-padding-left square-swiper playlist-swiper most-played-swiper playlist-song no-fastclick"
-  >
-    <div class="swiper-wrapper" swiper-label="hide">
-      <div
-        *ngFor="let song of mostPlayedSongs; let i = index"
-        class="swiper-slide music-player-song"
-        (click)="musicPlayerPageService.openMusicPlayer(mostPlayedSongs, i)"
-      >
-        <div class="slide">
-          <div class="img-play">
-            <img src="{{ song.pictureUrl }}" width="100%" height="auto" />
-          </div>
-        </div>
-
-        <h2>{{ song.name }}</h2>
-
-        <cite class="author">
-          <a>{{ song.artistName }}</a>
-        </cite>
-      </div>
-
-      <div class="swiper-slide"></div>
-    </div>
-  </div>
-</section> -->
-
 <ion-grid>
     <ion-row>
       <ion-col col-12>
@@ -57,9 +28,8 @@
                       <div class="img-inner-wrapper">
                         <img
                           src="{{item?.imageURL}}"
-                          width="100%"
-                          height="auto"
-                          style="border-radius: 9px;"
+                          
+                          style="border-radius: 9px; width: 250px; height: 200px;"
                         />
             
                         <h2 style="color: white">{{ item?.title}}</h2>

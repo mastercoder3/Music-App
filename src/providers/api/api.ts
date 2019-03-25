@@ -185,4 +185,10 @@ export class ApiProvider {
 
   // ::::::::::::::::::::::::::::::::::::::::::::::: get Artists :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+
+  getPopUp(){
+    return this.afs.collection('popup').valueChanges();
+  }
+
 }

@@ -61,7 +61,7 @@ export class SongUploadPage implements OnInit {
       artist: ['', Validators.required],
       movie: ['', Validators.required],
       album: ['', Validators.required],
-      video: ['', Validators.required]
+      video: ['']
     });
   }
 
@@ -87,7 +87,8 @@ export class SongUploadPage implements OnInit {
       imageURL: '',
       songId: '',
       songURL: '',
-      views: 0
+      views: 0,
+      uploadBy: localStorage.getItem('uid')
     }
     this.helper.presentLoadingDefault();
     this.upload();
@@ -161,7 +162,6 @@ export class SongUploadPage implements OnInit {
         .pipe(finalize(() => {
           this.ref.getDownloadURL().subscribe(url => {
             this.data.songURL = url;
-            alert(url);
             if(this.data.songURL !== ''){
               this.createSong();
             }
@@ -188,46 +188,21 @@ export class SongUploadPage implements OnInit {
   openFile(){
     this.fileChooser.open()
      .then( (res) =>{
-      // alert(res);
       this.filePath.resolveNativePath(res)
       .then(resp => {
-        // alert(resp);
           let dirPath = resp;
            let dirPathSegment = dirPath.split('/');
           let x = dirPathSegment.pop();
-          // alert(x)
            dirPath = dirPathSegment.join('/');
-          //  alert(dirPath);
            this.file.readAsArrayBuffer(dirPath, x)
           .then( (buffer)=>{
             this.blob = new Blob([buffer], {type: "audio/mp3" });
             this.songname = x;
-            alert(this.blob.type);
-            // alert(JSON.stringify(this.blob));
           }, err =>{
             alert(err)
           })
         
       })
-      //  this.file.resolveLocalFilesystemUrl(res).then( (newUrl) =>{
-         
-      //    let dirPath = newUrl.nativeURL;
-      //    this.songUri = dirPath;
-      //    let dirPathSegment = dirPath.split('/');
-      //    dirPathSegment.pop();
-      //    dirPath = dirPathSegment.join('/');
-      //    alert(dirPath);
-      //    this.file.readAsArrayBuffer(dirPath, newUrl.name)
-      //     .then( (buffer)=>{
-      //       this.blob = new Blob([buffer], {type: "audio/mp3" });
-      //       this.songname = newUrl.name;
-      //       alert(JSON.stringify(this.blob));
-      //     }, err =>{
-      //       alert(err)
-      //     })
-      //  }, err=>{
-      //    alert(err);
-      //  } )
      }, err =>{
        alert(err);
      })

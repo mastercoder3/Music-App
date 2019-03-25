@@ -7,6 +7,8 @@ import { ModalService } from '../../services/ModalService';
 import { VideoService } from '../../services/VideoService';
 
 import { Shuffler } from '../../data/Helpers/Shuffler';
+import { ApiProvider } from '../../providers/api/api';
+import { map } from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -16,13 +18,14 @@ import { Shuffler } from '../../data/Helpers/Shuffler';
 export class VideoDetailsPage {
   relatedVideos = [];
   showHeader: boolean = true;
-
+  likedsongs;
   constructor(
     private navParams: NavParams,
     public modalService: ModalService,
     public videoService: VideoService,
     private screenOrientation: ScreenOrientation,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private api: ApiProvider
   ) {
     var video = this.navParams.get('video');
     this.videoService.setCurrentVideo(video);
@@ -33,6 +36,74 @@ export class VideoDetailsPage {
 
     this.setRelatedVideos();
     this.setHeaderVisibility();
+    
+    this.api.getLikedSongs(localStorage.getItem('uid'))
+    .pipe(map(actions => actions.map(a =>{
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+      .subscribe(res =>{
+        this.likedsongs = res;
+        this.checkCurrentSongLike();
+      });
+  }
+
+  exist= false;
+  isLiked = false;
+
+  checkCurrentSongLike(){
+    if(this.likedsongs.length > 0 ){
+       let x: Array<string> = this.likedsongs[0].songs;
+      let check: Array<string> = x.filter(data => data === this.videoService.currentVideo.did);
+      if(check.length > 0){
+        this.isLiked = true;
+      }
+      else{
+        this.isLiked = false;
+      }
+      this.exist = true;
+    }
+    else{
+      this.exist = false;
+    }
+   
+  }
+
+  likeSong(val){
+    if(val === 'like'){
+      if(this.exist){
+        let x: Array<string> = this.likedsongs[0].songs;
+        x.push(this.videoService.currentVideo.did);
+        let data = {
+          uid: localStorage.getItem('uid'),
+          songs: x
+        };
+        this.api.updateLikedSongs(this.likedsongs[0].did, data);
+      }
+      else if(!this.exist){
+        let x = [];
+        x.push(this.videoService.currentVideo.did);
+        let data = {
+          uid: localStorage.getItem('uid'),
+          songs: x
+        };
+        this.api.addLikedsong(data);
+      }
+    }
+    else if(val === 'dislike'){
+      let x: Array<string> = this.likedsongs[0].songs;
+      x.splice(x.indexOf(this.videoService.currentVideo.did), 1);
+      let data = {
+        uid: localStorage.getItem('uid'),
+        songs: x
+      };
+      this.api.updateLikedSongs(this.likedsongs[0].did, data).then(res =>{
+        this.isLiked = false;
+      }, err =>{
+        console.log(err);
+      })
+    }
   }
 
   setHeaderVisibility() {

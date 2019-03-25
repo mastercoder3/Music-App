@@ -31,7 +31,7 @@ import { PlayerFooterComponent } from './player-footer/player-footer';
     NewVideosComponent,
     LibraryFavoritesComponent,
     MiniVideoPlayerComponent,
-    PlayerFooterComponent
+    PlayerFooterComponent,
   ],
   imports: [],
   exports: [
@@ -49,7 +49,8 @@ import { PlayerFooterComponent } from './player-footer/player-footer';
     NewVideosComponent,
     LibraryFavoritesComponent,
     MiniVideoPlayerComponent,
-    PlayerFooterComponent
+    PlayerFooterComponent,
+
   ]
 })
 export class ComponentsModule {}
