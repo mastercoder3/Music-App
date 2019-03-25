@@ -102,6 +102,7 @@
         <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
     </plugin>
     <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
-    <engine name="android" spec="7.1.4" />
     <plugin name="cordova-plugin-nativestorage" spec="2.3.2" />
+    <plugin name="cordova-plugin-music-controls" spec="2.2.0" />
+    <engine name="android" spec="7.1.4" />
 </widget>

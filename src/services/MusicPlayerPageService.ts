@@ -35,6 +35,10 @@ export class MusicPlayerPageService {
       });
   }
 
+  getCurrentSongDetails(){
+    return this.allSongs[this.audioService.trackIndex];
+  }
+
 
   openMusicPlayer(songs, trackIndex: number) {
     localStorage.setItem('songId',songs[trackIndex].did);

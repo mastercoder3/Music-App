@@ -59,6 +59,7 @@ export class MusicPlayerPage {
     console.log('ionViewDidLoad MusicPlayerPage');  
     this.getData();
     this.resetTime();
+    this.nativeStorage.clear();
   }
 
   getData(){
@@ -275,32 +276,42 @@ export class MusicPlayerPage {
     return;
   }
 
-  download(){
-    alert('yes coming')
+  setDownload(){
+    
     const fileTransfer: FileTransferObject = this.transfer.create();
     let id = Math.floor(Date.now() / 1000);
     fileTransfer.download(this.audioService.playingTrack().src, this.file.dataDirectory + `${id}.mp3`).then((entry) => {
       this.nativeStorage.getItem('offline')
         .then(
           data =>{
-            if(data){
               let x: Array<any> = JSON.parse(data);
-              x.push(entry.toURL());
+              let temp = this.musicPlayerPageService.getCurrentSongDetails();
+              temp.songURL = entry.toURL();
+              x.push(temp);
               this.nativeStorage.setItem('offline', JSON.stringify(x))
               .then(
-                () => this.helper.presentToast('Song saved as Offline'),
+                () =>  {
+                  this.helper.presentToast('Song saved as Offline');
+                  this.setSavedSongsId();
+               },
                 error => console.error('Error storing item', error)
               );
-            }
-            else{
-              let x = [];
-              x.push(entry.toURL())
-              this.nativeStorage.setItem('offline', JSON.stringify(x))
-              .then(
-                () => this.helper.presentToast('Song saved as Offline'),
-                error => console.error('Error storing item', error)
-              );
-            }
+         
+          },
+          err =>{
+            let x = [];
+            let temp = this.musicPlayerPageService.getCurrentSongDetails();
+              temp.songURL = entry.toURL();
+              x.push(temp);
+            this.nativeStorage.setItem('offline', JSON.stringify(x))
+            .then(
+              () =>
+              {
+                 this.helper.presentToast('Song saved as Offline');
+                 this.setSavedSongsId();
+              },
+              error => console.error('Error storing item', error)
+            );
           }
         );
       alert('download complete: ' + entry.toURL());
@@ -309,5 +320,44 @@ export class MusicPlayerPage {
       console.log(err);
       alert('Error' + err);
     });
+  
+  }
+
+
+  download(){
+
+    this.nativeStorage.getItem('songsId')
+    .then( res => {
+      let x: Array<any> = JSON.parse(res) ;
+      let check: Array<any> = x.filter(data => data.did === localStorage.getItem('songId'));
+      if(check.length > 0){
+        this.helper.presentToast('Song Already saved');
+      return;
+      }
+      else{
+        alert('coming here')
+        this.setDownload();
+      }
+      
+    }, err =>{
+      alert(JSON.stringify(err))
+      this.setDownload();
+    })
+
+
+
+  }
+
+  setSavedSongsId(){
+    this.nativeStorage.getItem('songsId')
+    .then(ress =>{
+      let x: Array<any> = JSON.parse(ress);
+      x.push(localStorage.getItem('songId'));
+      this.nativeStorage.setItem('songsId',JSON.stringify(x));
+    }, errr =>{
+      let x: Array<any> = [];
+      x.push(localStorage.getItem('songId'));
+      this.nativeStorage.setItem('songsId',JSON.stringify(x));
+    })   
   }
 }

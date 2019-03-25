@@ -90,6 +90,7 @@ import { FbLoginPage } from '../pages/fb-login/fb-login';
 import { SongUploadPage } from '../pages/song-upload/song-upload';
 import { SeeAllPage } from '../pages/see-all/see-all';
 import { StartPopupPage } from '../pages/start-popup/start-popup';
+import { OfflineSongsComponent } from '../components/offline-songs/offline-songs';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -146,6 +147,7 @@ const firebase = {
     LibraryFavoritesComponent,
     MiniVideoPlayerComponent,
     PlayerFooterComponent,
+    OfflineSongsComponent
   ],
   imports: [
     BrowserModule,

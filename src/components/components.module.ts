@@ -14,6 +14,7 @@ import { NewVideosComponent } from './new-videos/new-videos';
 import { LibraryFavoritesComponent } from './library-favorites/library-favorites';
 import { MiniVideoPlayerComponent } from './mini-video-player/mini-video-player';
 import { PlayerFooterComponent } from './player-footer/player-footer';
+import { OfflineSongsComponent } from './offline-songs/offline-songs';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PlayerFooterComponent } from './player-footer/player-footer';
     LibraryFavoritesComponent,
     MiniVideoPlayerComponent,
     PlayerFooterComponent,
+    OfflineSongsComponent,
   ],
   imports: [],
   exports: [
@@ -50,6 +52,7 @@ import { PlayerFooterComponent } from './player-footer/player-footer';
     LibraryFavoritesComponent,
     MiniVideoPlayerComponent,
     PlayerFooterComponent,
+    OfflineSongsComponent,
 
   ]
 })
