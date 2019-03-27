@@ -5,10 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
-import { SignupArtistPage } from '../pages/signup-artist/signup-artist';
 import { AuthProvider } from '../providers/auth/auth';
-
 
 
 @Component({

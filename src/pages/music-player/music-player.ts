@@ -1,5 +1,5 @@
 import { Component, Inject, forwardRef } from '@angular/core';
-import { IonicPage, ModalController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavParams, Platform } from 'ionic-angular';
 
 import { ModalService } from '../../services/ModalService';
 import { AudioService } from '../../services/AudioService';
@@ -45,7 +45,8 @@ export class MusicPlayerPage {
     public musicPlayerPageService: MusicPlayerPageService,
     private helper: HelperProvider,
     private api: ApiProvider,
-    private file: File
+    private file: File,
+    private platform: Platform
   ) {
     this.songs = this.params.get('songs');
     this.index = this.params.get('index');
@@ -277,13 +278,25 @@ export class MusicPlayerPage {
   }
 
   setDownload(){
-    
+
+    let path = '';
+    if(this.platform.is('ios')){
+      path = this.file.documentsDirectory;
+    }
+    else{
+       path = this.file.externalDataDirectory.toString().slice(8);
+    }
+
+    alert(path);
+   
     const fileTransfer: FileTransferObject = this.transfer.create();
     let id = Math.floor(Date.now() / 1000);
-    fileTransfer.download(this.audioService.playingTrack().src, this.file.dataDirectory + `${id}.mp3`).then((entry) => {
+   let src = this.audioService.playingTrack().src;
+    fileTransfer.download(src, path + `${id}.mp3`, true).then((entry) => {
       this.nativeStorage.getItem('offline')
         .then(
           data =>{
+            
               let x: Array<any> = JSON.parse(data);
               let temp = this.musicPlayerPageService.getCurrentSongDetails();
               temp.songURL = entry.toURL();
@@ -318,10 +331,11 @@ export class MusicPlayerPage {
     }, (err) => {
       // handle error
       console.log(err);
-      alert('Error' + err);
+      alert('Error' + JSON.stringify(err));
     });
   
   }
+
 
 
   download(){
@@ -335,12 +349,10 @@ export class MusicPlayerPage {
       return;
       }
       else{
-        alert('coming here')
         this.setDownload();
       }
       
     }, err =>{
-      alert(JSON.stringify(err))
       this.setDownload();
     })
 

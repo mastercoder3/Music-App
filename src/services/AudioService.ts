@@ -38,7 +38,6 @@ export class AudioService {
     this.audioProvider.play(this.trackIndex);
 
     if (this.platform.is('cordova')) {
-      alert('yes cordova is running')
       this.initialiseMusicControls(tracks[this.trackIndex]);
     }
 
