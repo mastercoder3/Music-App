@@ -60,7 +60,6 @@ export class MusicPlayerPage {
     console.log('ionViewDidLoad MusicPlayerPage');  
     this.getData();
     this.resetTime();
-    this.nativeStorage.clear();
   }
 
   getData(){
@@ -287,7 +286,6 @@ export class MusicPlayerPage {
        path = this.file.externalDataDirectory.toString().slice(8);
     }
 
-    alert(path);
    
     const fileTransfer: FileTransferObject = this.transfer.create();
     let id = Math.floor(Date.now() / 1000);

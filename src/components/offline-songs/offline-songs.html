@@ -26,7 +26,7 @@
         <ion-slides>
 
             <ion-slide style="max-width: 295px;"  *ngFor="let item of offline; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
-              (click)="musicPlayerPageService.openMusicPlayer(offline, i)"
+              (click)="openOfflineMusicPlayer(offline, i)"
               >
                 <div class="slide">
                     <div class="img-inner-wrapper">

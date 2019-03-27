@@ -1,5 +1,8 @@
 import { Media, MediaObject } from '@ionic-native/media';
 import { Injectable } from '@angular/core';
+import { ModalController } from 'ionic-angular';
+import { MyMusicPlayerPage } from '../../pages/my-music-player/my-music-player';
+import { HelperProvider } from '../helper/helper';
 
 /*
   Generated class for the MusicappServiceProvider provider.
@@ -14,28 +17,51 @@ export class MusicappServiceProvider {
   allsongs;
   trackIndex: number;
   public currentProgress;
+  public songPlaying = false;
+  public exist = false;
 
-  constructor(private media: Media) {
+  constructor(private media: Media, public modal: ModalController, private helper: HelperProvider) {
     console.log('Hello MusicappServiceProvider Provider');
   }
 
   create(song, trackIndex){
     this.allsongs = song;
     this.trackIndex = trackIndex;
-    console.log(this.allsongs);
     this.file= this.media.create(this.allsongs[this.trackIndex].songURL);
     this.file.play();
+    this.exist = true;
+  }
+
+  createsong(){
+    this.file= this.media.create(this.allsongs[this.trackIndex].songURL);
+    this.file.play();
+    this.exist = true;
+    this.file.onStatusUpdate.subscribe ( res => {
+     if(res === this.media.MEDIA_PAUSED){
+        this.songPlaying = false;
+        this.helper.setTheSong(false);
+      }
+      else if (res === this.media.MEDIA_RUNNING){
+        this.songPlaying = true;
+        this.helper.setTheSong(true);
+      }
+    })
   }
 
   pause(){
     this.file.pause();
+    this.songPlaying = false;
   }
   
   play(){
     this.file.play();
+    this.songPlaying = true;
   }
 
   durationText() {
+    if(!this.file.getDuration()){
+      return '00:00';
+    }
     var minutes = Math.floor(this.file.getDuration() / 60);
     var seconds = this.file.getDuration() - minutes * 60;
 
@@ -43,6 +69,7 @@ export class MusicappServiceProvider {
       (minutes < 10 ? '0' + minutes : minutes) +
       ':' +
       (seconds < 10 ? '0' + seconds.toFixed(0) : seconds.toFixed(0));
+
 
     return duration;
   }
@@ -76,12 +103,14 @@ export class MusicappServiceProvider {
       this.file.release();
       this.file = this.media.create(this.allsongs[this.trackIndex].songURL);
       this.file.play();
+      this.songPlaying = true;
     }
     else{
       this.trackIndex = 0;
       this.file.release();
       this.file = this.media.create(this.allsongs[this.trackIndex].songURL);
       this.file.play();
+      this.songPlaying = true;
     }
   }
 
@@ -91,13 +120,90 @@ export class MusicappServiceProvider {
       this.file.release();
       this.file = this.media.create(this.allsongs[this.trackIndex].songURL);
       this.file.play();
+      this.songPlaying = true;
     }
     else{
       this.trackIndex--;
       this.file.release();
       this.file = this.media.create(this.allsongs[this.trackIndex].songURL);
       this.file.play();
+      this.songPlaying = true;
     }
   }
+
+  getCurrentTrack(){
+    return this.allsongs[this.trackIndex];
+  }
+
+  seekTo(val: number){
+    this.file.seekTo(val);
+  }
+
+  hideFooterPlayer() {
+    var footerPlayerElements = document.getElementsByClassName(
+      'offline-footer-player'
+    );
+
+    for (var i = 0; i < footerPlayerElements.length; i++) {
+      var footerPlayer = footerPlayerElements[i];
+
+      if (footerPlayer) {
+        footerPlayer.classList.remove('alwaysblock');
+        footerPlayer.classList.remove('mini');
+        footerPlayer.classList.remove('mini-active');
+      }
+    }
+  }
+
+  showFooterPlayer() {
+    var footerPlayerElements = document.getElementsByClassName(
+      'offline-footer-player'
+    );
+
+    for (var i = 0; i < footerPlayerElements.length; i++) {
+      var footerPlayer = footerPlayerElements[i];
+
+      if (footerPlayer) {
+        footerPlayer.classList.add('alwaysblock');
+        footerPlayer.classList.add('mini');
+        footerPlayer.classList.add('mini-active');
+      }
+    }
+  }
+
+mediaPlaying(){
+//  return  this.file.onStatusUpdate;
+}
+
+getMedia(){
+  return this.file;
+}
+
+openMediaPlayer(){
+  this.hideFooterPlayer();
+  const modal = this.modal.create(MyMusicPlayerPage);
+  modal.onDidDismiss(() => {
+    this.showFooterPlayer();
+  });
+
+  modal.present();
+}
+
+openMusicPlayer(songs, index){
+  this.hideFooterPlayer();
+  this.allsongs = songs;
+  this.trackIndex = index;
+  if(this.file)
+    this.file.release();
+  this.createsong();
+  const modal = this.modal.create(MyMusicPlayerPage);
+  modal.onDidDismiss(() => {
+    this.showFooterPlayer();
+  });
+
+  modal.present();
+  
+}
+
 
 }

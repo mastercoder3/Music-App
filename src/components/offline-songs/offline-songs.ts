@@ -1,6 +1,8 @@
-import { Component, OnInit, OnChanges, forwardRef, Inject } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
+import {  NavController, ModalController } from 'ionic-angular';
+import { MyMusicPlayerPage } from '../../pages/my-music-player/my-music-player';
+import { MusicappServiceProvider } from '../../providers/musicapp-service/musicapp-service';
 
 /**
  * Generated class for the OfflineSongsComponent component.
@@ -16,9 +18,8 @@ export class OfflineSongsComponent implements OnInit, OnChanges {
 
  offline;
 
-  constructor(private nativeStorage: NativeStorage,
-    @Inject(forwardRef(() => MusicPlayerPageService))
-    public musicPlayerPageService: MusicPlayerPageService) {
+  constructor(private nativeStorage: NativeStorage, private modal: ModalController, private player: MusicappServiceProvider,
+    private nav: NavController) {
 
   }
 
@@ -27,7 +28,6 @@ export class OfflineSongsComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(){
-    console.log('coming');
     this.nativeStorage.getItem('offline')
       .then(res =>{
         alert(res);
@@ -35,6 +35,26 @@ export class OfflineSongsComponent implements OnInit, OnChanges {
       }, err =>{
         alert(JSON.stringify(err))
       })
+  }
+
+  openOfflineMusicPlayer(data, i){
+    this.player.openMusicPlayer(this.offline, i);
+  }
+
+  showFooterPlayer() {
+    var footerPlayerElements = document.getElementsByClassName(
+      'offline-footer-player'
+    );
+
+    for (var i = 0; i < footerPlayerElements.length; i++) {
+      var footerPlayer = footerPlayerElements[i];
+
+      if (footerPlayer) {
+        footerPlayer.classList.add('alwaysblock');
+        footerPlayer.classList.add('mini');
+        footerPlayer.classList.add('mini-active');
+      }
+    }
   }
 
 }

@@ -94,6 +94,7 @@ import { StartPopupPage } from '../pages/start-popup/start-popup';
 import { OfflineSongsComponent } from '../components/offline-songs/offline-songs';
 import { MyMusicPlayerPage } from '../pages/my-music-player/my-music-player';
 import { MusicappServiceProvider } from '../providers/musicapp-service/musicapp-service';
+import { OfflineFooterComponent } from '../components/offline-footer/offline-footer';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -151,7 +152,8 @@ const firebase = {
     LibraryFavoritesComponent,
     MiniVideoPlayerComponent,
     PlayerFooterComponent,
-    OfflineSongsComponent
+    OfflineSongsComponent,
+    OfflineFooterComponent
   ],
   imports: [
     BrowserModule,

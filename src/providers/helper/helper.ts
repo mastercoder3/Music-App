@@ -17,11 +17,13 @@ import { AlertController } from 'ionic-angular';
 export class HelperProvider {
 
   private status: BehaviorSubject<string>;
+  private song: BehaviorSubject<boolean>;
 
   constructor(private actionSheetCtrl: ActionSheetController,
     private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http, public alertCtrl: AlertController
   ) {
     this.status = new BehaviorSubject<string>('inactive');
+    this.song = new BehaviorSubject<boolean>(false);
   }
 
   public getTheStatus(): Observable<string> {
@@ -30,6 +32,14 @@ export class HelperProvider {
 
   public setTheStatus(newValue: string): void {
     this.status.next(newValue);
+  }
+
+  public getTheSong(): Observable<boolean>{
+    return this.song.asObservable();
+  }
+
+  public setTheSong(newValue: boolean): void{
+    this.song.next(newValue)
   }
 
   presentActionSheet(title, n1, n2, myfunc, myfunc1) {

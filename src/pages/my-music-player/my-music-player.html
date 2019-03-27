@@ -57,7 +57,7 @@
         </ion-col>
         <ion-col col-4>&nbsp;</ion-col>
         <ion-col col-4 style=" text-align: right;">
-          <span class="played" style="color: white; position: relative; top: -30px;">{{ player.durationText() || '00:00'}}</span>
+          <span class="played" style="color: white; position: relative; top: -30px;">{{ time}}</span>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -77,14 +77,14 @@
         <div style="margin-left: auto; margin-right: auto;">
           <h4 style="text-align: center;">
             <ion-icon name="rewind" style="color: white; font-size: 2.2em; position: relative; top: -10px; right: 5px;"
-            (click)="player.previous()"
+            (click)="previous()"
             ></ion-icon>
-            <i class="fas fa-play-circle" *ngIf="!playing"
+            <i class="fas fa-play-circle" *ngIf="!player.songPlaying"
              style="color: white; font-size: 4em !important;" (click)="play()"></i>
-            <i class="fas fa-pause-circle" *ngIf="playing"
+            <i class="fas fa-pause-circle" *ngIf="player.songPlaying"
              style="color: white; font-size: 4em !important;" (click)="pause()"></i>
             <ion-icon name="fastforward"  style="color: white; font-size: 2.2em; position: relative; top: -10px; left: 5px;;" 
-            (click)="player.next()"></ion-icon>
+            (click)="next()"></ion-icon>
           </h4>
 
         </div>
