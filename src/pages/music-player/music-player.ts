@@ -60,7 +60,6 @@ export class MusicPlayerPage {
     console.log('ionViewDidLoad MusicPlayerPage');  
     this.getData();
     this.resetTime();
-    this.nativeStorage.clear();
   }
 
   getData(){
@@ -144,6 +143,7 @@ export class MusicPlayerPage {
   share() {
     const modal = this.modalCtrl.create(SharePage);
     modal.present();
+    
   }
 
   options() {
@@ -246,7 +246,7 @@ export class MusicPlayerPage {
     this.time = parseInt(localStorage.getItem('timer'));
     this.count = parseInt(localStorage.getItem('count'))
     console.log(Math.floor((Date.now() - this.time )/1000))
-    if( Math.floor((Date.now() - this.time )/1000) > 720 && this.count >= 4){
+    if( Math.floor((Date.now() - this.time )/1000) > 10 && this.count >= 1){
       localStorage.setItem('adStatus','active');
     }
     else{

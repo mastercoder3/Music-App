@@ -191,4 +191,11 @@ export class ApiProvider {
     return this.afs.collection('popup').valueChanges();
   }
 
+
+  // ::::::::::::::::::::::::::::::::::::::::::::::::: Artist ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getArtistTracks(id){
+    return this.afs.collection('songs', ref => ref.where('uid', '==', id)).valueChanges();
+  }
+
 }

@@ -17,6 +17,7 @@ import { LoginPage } from '../login/login';
 import { SongUploadPage } from '../song-upload/song-upload';
 import { AuthProvider } from '../../providers/auth/auth';
 import firebase  from 'firebase';
+import { map } from 'rxjs/operators';
 
 @IonicPage()
 @Component({
@@ -35,6 +36,13 @@ export class LibraryPage {
   task: AngularFireUploadTask;
   type;
   USER: firebase.User;
+  followers: Array<any>;
+  nFollowers;
+  following;
+  nfollowing;
+  tracks;
+  ntracks;
+  views;
 
   constructor(
     private videoService: VideoService,
@@ -47,8 +55,9 @@ export class LibraryPage {
   ) {}
 
   ionViewDidLoad() {
-    this.getData();
     this.type = localStorage.getItem('type');
+    this.getData();
+
     
   }
 
@@ -58,6 +67,46 @@ export class LibraryPage {
         this.user = res;
         console.log(res);
       })
+    
+    this.api.getFollowers(localStorage.getItem('uid'))
+      .pipe(map(actions => actions.map(a => {
+        const data =a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
+      .subscribe(res => {
+        this.followers = res;
+        this.nFollowers = this.followers[0].users.length;
+      })
+
+      if(localStorage.getItem('type')==='user'){
+        this.api.getFollowings(localStorage.getItem('uid'))
+        .pipe(map(actions => actions.map(a => {
+          const data =a.payload.doc.data();
+          const did = a.payload.doc.id;
+          return {did, ...data};
+        })))
+        .subscribe(res => {
+          this.following = res;
+          this.nfollowing = this.following[0].users.length;
+        })
+      }
+      
+      if(this.type === 'artist'){
+        this.api.getArtistTracks(localStorage.getItem('uid'))
+        .subscribe(res => {
+          this.tracks = res;
+          console.log(res);
+          if(this.tracks.length > 0){
+            this.ntracks = this.tracks.length;
+            this.views = 0;
+            this.tracks.forEach(a => {
+              this.views = this.views + a.views;
+            });
+          }
+           
+        })
+      }
   }
 
   logout(){
@@ -147,7 +196,8 @@ export class LibraryPage {
   }
 
   buy(){
-    
+    alert("CORDOVA_PLUGIN_NOT_INSTALLED.");
+    this.navCtrl.popToRoot()
   }
 
   resetPassword(){

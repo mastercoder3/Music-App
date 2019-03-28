@@ -9,10 +9,10 @@ import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
   templateUrl: 'library-favorites.html'
 })
 export class LibraryFavoritesComponent implements OnInit {
-  songPairs;
+  songPairs: Array<any>;
 
-  songs;
-  liked;
+  songs: Array<any>;
+  liked: Array<any>;
 
 
   constructor(private navCtrl: NavController, private api: ApiProvider,

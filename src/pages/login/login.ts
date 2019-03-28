@@ -70,6 +70,7 @@ export class LoginPage {
             this.api.getUserById(res.user.uid)
               .subscribe(resp =>{
                   this.user = resp;
+                  console.log(resp);
                   if(this.user){
                     this.helper.closeLoading();
                     localStorage.setItem('uid', res.user.uid);

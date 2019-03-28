@@ -67,13 +67,18 @@
           <div class="main-grids safe-area">
             <div class="inner">
               <div class="followers">
-                <p class="number">{{ user?.followers || 0 }}</p>
+                <p class="number">{{ nFollowers || 0 }}</p>
                 <p>Followers</p>
               </div>
 
-              <div class="following">
-                <p class="number">{{ user?.following || 0 }}</p>
+              <div class="following" *ngIf="type === 'user'">
+                <p class="number">{{ nfollowing || 0 }}</p>
                 <p>Following</p>
+              </div>
+
+              <div class="following" >
+                <p class="number">{{ ntracks || 0 }}</p>
+                <p>No. of Tracks</p>
               </div>
 
               <button style="    position: absolute;
@@ -101,6 +106,12 @@
               background-clip: initial;
               background-color: rgba(138, 127, 135, 0.08);
               transition: all .3s ease-in-out;" *ngIf="type === 'artist'" (click)="uploadSong()" >Upload</button>
+              <br>
+              <br>
+              <div class="followers" *ngIf="type === 'artist'">
+                <p class="number">{{ views || 0 }}</p>
+                <p>Views</p>
+              </div>
             </div>
           </div>
         </section>

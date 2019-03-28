@@ -176,6 +176,33 @@ export class HelperProvider {
     return alert;
   }
 
+  showAlertGeneric(t,s,p,btn,myfunc) {
+    const alert = this.alertCtrl.create({
+      title: t,
+      subTitle: s,
+      inputs: [
+        {
+          name: 'data',
+          placeholder: p,
+          type: 'text'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: btn,
+          handler: myfunc
+        }
+      ]
+    });
+    return alert;
+  }
+
   stopMusic(){
     if(this.music.playingTrack()){
       this.music.stop();

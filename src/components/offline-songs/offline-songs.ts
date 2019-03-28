@@ -33,7 +33,7 @@ export class OfflineSongsComponent implements OnInit{
           this.offline = res;
         })
       }, err =>{
-        alert(JSON.stringify(err))
+        console.log(err)
       })
 
 

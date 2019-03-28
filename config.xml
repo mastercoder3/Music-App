@@ -104,6 +104,9 @@
     <plugin name="cordova-plugin-file-transfer" spec="1.7.1" />
     <plugin name="cordova-plugin-nativestorage" spec="2.3.2" />
     <plugin name="cordova-plugin-music-controls" spec="2.2.0" />
-    <engine name="android" spec="7.1.4" />
     <plugin name="cordova-plugin-media" spec="5.0.2" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="5.4.4">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="24.1.1+" />
+    </plugin>
+    <engine name="android" spec="7.1.4" />
 </widget>

@@ -33,9 +33,9 @@
 
                 <h2>Now Playing</h2>
 
-                <button (click)="share()" class="share-icon"></button>
+                <button (click)="isActive ? doNotheing : share()" class="share-icon"></button>
                 <button
-                  (click)="options()"
+                  (click)="isActive ? doNotheing() : options()"
                   class="options-icon options-page"
                 ></button>
               </div>
@@ -71,7 +71,7 @@
               [style.width]="audioService.progressPercentage() + '%'"
             ></div>
             <div class="loaded" style="width: 100%;"></div> -->
-            <ion-range min="0" max="100" [ngModel]="audioService.progressPercentage()" (ionChange)="changeSeeker($event)" >
+            <ion-range min="0" max="100" [ngModel]="audioService.progressPercentage()" [disabled]="isActive" (ionChange)="changeSeeker($event)" >
             </ion-range>
           </div>
           <br><br>
@@ -102,7 +102,7 @@
                           : ''
                       }}
                        <i class="fa fa-download" aria-hidden="true" style="color:white; font-size: 1.3em; 
-                           text-align: right !important; float: right;" (click)="download()" ></i>
+                           text-align: right !important; float: right;" (click)="download()" *ngIf="!isActive" ></i>
                     </h2>
                     <br />
                     <cite class="author" avatar="11sz2" album-cover="11sz6"
@@ -161,9 +161,9 @@
                         "
                       >
                         <div class="icon">
-                          <i class="fa fa-heart-o" *ngIf="!isLiked" aria-hidden="true" style="color:white; font-size: 1.8em; 
+                          <i class="fa fa-heart-o" *ngIf="!isLiked && !isActive" aria-hidden="true" style="color:white; font-size: 1.8em; 
                           position: relative; top: 15px;" (click)="likeSong('like')"></i>
-                          <i class="fa fa-heart" *ngIf="isLiked" aria-hidden="true" style="color:#00ACFF; font-size: 1.8em; 
+                          <i class="fa fa-heart" *ngIf="isLiked && !isActive" aria-hidden="true" style="color:#00ACFF; font-size: 1.8em; 
                           position: relative; top: 15px;" (click)="likeSong('dislike')" ></i>
                           
                         </div>

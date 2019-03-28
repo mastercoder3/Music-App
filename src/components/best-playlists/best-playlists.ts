@@ -61,6 +61,7 @@ export class BestPlaylistsComponent {
   }
 
   setImages(){
+    if(this.playlist)
     this.playlist.playlist.forEach(a => {
       let x = this.songs.filter(data => data.did === a.songs[0])
       this.images.push(x[0].imageURL);

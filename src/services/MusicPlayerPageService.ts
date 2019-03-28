@@ -178,13 +178,16 @@ export class MusicPlayerPageService {
   }
 
   updateSong(){
-    this.allSongs[this.audioService.trackIndex].views++
+    if(localStorage.getItem('adStatus') === 'inactive'){
+          this.allSongs[this.audioService.trackIndex].views++
     this.api.updateSongs(localStorage.getItem('songId'), this.allSongs[this.audioService.trackIndex] )
     .then(res =>{
       console.log('views Updated');
     }, err =>{
       console.log(err)
     })
+    }
+
   }
 
 
