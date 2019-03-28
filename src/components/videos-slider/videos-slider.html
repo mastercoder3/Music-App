@@ -9,7 +9,7 @@
         (click)="videoDetailsPageService.openVideo(video)"
       >
         <div class="slide">
-          <img src="{{ video.imageURL }}" style="width:237px; height: 120px;" />
+          <img src="{{ video.imageURL || 'assets/imgs/album.jpg' }}" style="width:237px; height: 120px;" />
 
           <div class="video-time-label">
             <div class="blur"></div>

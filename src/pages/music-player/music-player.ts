@@ -283,6 +283,7 @@ export class MusicPlayerPage {
       path = this.file.documentsDirectory;
     }
     else{
+      if(this.platform.is('cordova'))
        path = this.file.externalDataDirectory.toString().slice(8);
     }
 
@@ -341,7 +342,9 @@ export class MusicPlayerPage {
     this.nativeStorage.getItem('songsId')
     .then( res => {
       let x: Array<any> = JSON.parse(res) ;
-      let check: Array<any> = x.filter(data => data.did === localStorage.getItem('songId'));
+      alert(JSON.stringify(x))
+      let check: Array<any> = x.filter(data => data === localStorage.getItem('songId'));
+      alert(JSON.stringify(check))
       if(check.length > 0){
         this.helper.presentToast('Song Already saved');
       return;

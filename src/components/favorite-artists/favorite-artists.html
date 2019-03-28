@@ -20,7 +20,7 @@
 
           <a>
             <div class="slide favourite-artist-1">
-              <img src="{{ artist.imageURL }}" width="100%" height="auto">
+              <img src="{{ artist.imageURL || 'assets/imgs/album.jpg' }}" width="100%" height="auto">
               <cite class="author">{{ artist.name }}</cite>
             </div>
           </a>

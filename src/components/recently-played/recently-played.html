@@ -45,7 +45,7 @@
             class="author-avatar music-player-song"
             (click)="musicPlayerPageService.openMusicPlayer(recent, i)"
           >
-            <img src="{{ song.imageURL }}" width="100%" height="auto" />
+            <img src="{{ song.imageURL || 'assets/imgs/album.jpg' }}" width="100%" height="auto" />
           </div>
 
           <div class="author-like">

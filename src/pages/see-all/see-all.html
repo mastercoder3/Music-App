@@ -34,7 +34,7 @@
           [ngStyle]="{'margin-top': i>0 ? '15px' : '0px'}"
           (click)="videoDetailsPageService.openVideo(item)">
             <ion-col col-3>
-                <img src="{{item.imageURL}}" alt="" style="width: 50px; height: 50px;">
+                <img src="{{item.imageURL || 'assets/imgs/album.jpg'}}" alt="" style="width: 50px; height: 50px;">
             </ion-col>
             <ion-col col-9>
              <h6 style="color: white; position: relative; top: -10px;  border-bottom: 1px solid white;">{{item.title}}

@@ -5,7 +5,7 @@
   <!-- Background blur -->
   <div class="album-cover-blur">
     <img
-      src="{{ audioService.playingTrack().pictureUrl }}"
+      src="{{ audioService.playingTrack().pictureUrl || 'assets/imgs/album.jpg' }}"
       class="album cover"
       alt="cover"
       width="100%"
@@ -234,7 +234,7 @@
                         <div class="author-like-wrapper">
                           <div class="author-avatar">
                             <img
-                              src="{{ song.imageURL }}"
+                              src="{{ song.imageURL || 'assets/imgs/album.jpg' }}"
                               width="100%"
                               height="auto"
                             />
