@@ -5,7 +5,7 @@
   <!-- Background blur -->
   <div class="album-cover-blur">
     <img
-      src="{{ audioService.playingTrack().pictureUrl || 'assets/imgs/album.jpg' }}"
+      src="{{ audioService.playingTrack().pictureUrl }}"
       class="album cover"
       alt="cover"
       width="100%"
@@ -53,7 +53,7 @@
                 src="{{
                   audioService.playingTrack()
                     ? audioService.playingTrack().art
-                    : ''
+                    : 'assets/imgs/album.jpg'
                 }}"
                 class="album cover"
                 alt="cover"

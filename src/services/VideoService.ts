@@ -6,6 +6,8 @@ import { Shuffler } from '../data/Helpers/Shuffler';
 import { VideosInitializer } from '../data/Initializers/VideosInitializer';
 import { ApiProvider } from '../providers/api/api';
 import { map } from 'rxjs/operators';
+import { ModalController } from 'ionic-angular';
+import { StartPopupPage } from '../pages/start-popup/start-popup';
 
 @Injectable()
 export class VideoService {
@@ -13,8 +15,9 @@ export class VideoService {
 
   currentVideo;
   currentVideoIndex: number;
+  popups;
 
-  constructor(private api: ApiProvider) {
+  constructor(private api: ApiProvider, private modal: ModalController) {
     this.api.getOnlyVideos()
       .pipe(map(actions => actions.map(a =>{
         const data = a.payload.doc.data();
@@ -24,19 +27,23 @@ export class VideoService {
         .subscribe(res =>{
           this.allVideos = res;
         })
+    
+    this.api.getPopUp()
+        .subscribe(res => {
+            this.popups = res;
+        })
     console.log('%c video service', 'background-color: black; color: white;')
     // this.allVideos = Shuffler.shuffle(VideosInitializer.videos.slice());
   }
 
   setCurrentVideo(video) {
-    console.log(video);
     this.currentVideoIndex = this.allVideos.findIndex(otherVideo => {
       return otherVideo.title === video.title;
     });
-
-    console.log(this.currentVideoIndex);
+    let x =  Date.now();
+    localStorage.setItem('videoAd', x.toString() );
+    this.checkVideoAd();
     this.currentVideo = this.allVideos[this.currentVideoIndex];
-    console.log(this.currentVideo);
   }
 
   next() {
@@ -45,6 +52,24 @@ export class VideoService {
         ? 0
         : this.currentVideoIndex + 1;
     this.currentVideo = this.allVideos[this.currentVideoIndex];
+    this.checkVideoAd();
+  }
+
+  checkVideoAd(){
+    if(localStorage.getItem('videoAd')){
+      let x = parseInt(localStorage.getItem('videoAd'))
+      if(Math.floor((Date.now() - x) / 1000) > 720){
+        let number = Math.floor(Math.random() * this.popups.length);
+        const modal = this.modal.create(StartPopupPage, {
+          data: this.popups[number].imageURL
+        });
+        modal.present();
+        modal.onDidDismiss( () =>{
+          let x =  Date.now();
+          localStorage.setItem('videoAd', x.toString() );
+        })
+      }
+    }
   }
 
   previous() {
@@ -54,6 +79,7 @@ export class VideoService {
         : this.currentVideoIndex - 1;
 
     this.currentVideo = this.allVideos[this.currentVideoIndex];
+    this.checkVideoAd();
   }
 
   showMiniPlayer() {

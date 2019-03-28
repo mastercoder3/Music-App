@@ -6,7 +6,6 @@ import { MusicPlayerPageService } from './MusicPlayerPageService';
 
 import { VideoDetailsPage } from '../pages/video-details/video-details';
 
-import { Video } from '../data/Video';
 import { AudioService } from './AudioService';
 
 @Injectable()

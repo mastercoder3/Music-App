@@ -285,4 +285,12 @@ export class AudioService {
 
     this.musicControls.listen(); // activates the observable above
   }
+
+  destroyMusicControls(){
+    this.musicControls.destroy().then(res =>{
+      console.log('destroyed');
+    }, err => {
+      console.log('err while destroying')
+    })
+  }
 }

@@ -122,6 +122,7 @@ export class VideoDetailsPage {
   }
 
   changeVideo(video) {
+    console.log('coming');
     this.videoService.setCurrentVideo(video);
     this.setRelatedVideos();
   }
@@ -151,4 +152,6 @@ export class VideoDetailsPage {
     });
     modal.present();
   }
+
+
 }

@@ -1,7 +1,6 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage';
 import {  NavController, ModalController } from 'ionic-angular';
-import { MyMusicPlayerPage } from '../../pages/my-music-player/my-music-player';
 import { MusicappServiceProvider } from '../../providers/musicapp-service/musicapp-service';
 
 /**
@@ -14,7 +13,7 @@ import { MusicappServiceProvider } from '../../providers/musicapp-service/musica
   selector: 'offline-songs',
   templateUrl: 'offline-songs.html'
 })
-export class OfflineSongsComponent implements OnInit, OnChanges {
+export class OfflineSongsComponent implements OnInit, OnChanges, DoCheck {
 
  offline;
 
@@ -23,18 +22,28 @@ export class OfflineSongsComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges(){
-    console.log('comingggggggggggg')
-  }
-
   ngOnInit(){
     this.nativeStorage.getItem('offline')
       .then(res =>{
-        alert(res);
+        // alert(res);
         this.offline = JSON.parse(res);
       }, err =>{
-        alert(JSON.stringify(err))
+        // alert(JSON.stringify(err))
       })
+  }
+
+  ngDoCheck(){
+    this.nativeStorage.getItem('offline')
+    .then(res =>{
+      // alert(res);
+      this.offline = JSON.parse(res);
+    }, err =>{
+      // alert(JSON.stringify(err))
+    })
+  }
+
+  ngOnChanges(){
+   
   }
 
   openOfflineMusicPlayer(data, i){

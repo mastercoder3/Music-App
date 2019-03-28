@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, forwardRef, Inject } from '@angular/core';
 import { ActionSheetController } from 'ionic-angular';
 import { ToastController, LoadingController } from 'ionic-angular';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AlertController } from 'ionic-angular';
+import { AudioService } from '../../services/AudioService';
+import { MusicappServiceProvider } from '../musicapp-service/musicapp-service';
 
 
 /*
@@ -20,7 +22,8 @@ export class HelperProvider {
   private song: BehaviorSubject<boolean>;
 
   constructor(private actionSheetCtrl: ActionSheetController,
-    private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http, public alertCtrl: AlertController
+    private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http, public alertCtrl: AlertController,
+    private music: AudioService
   ) {
     this.status = new BehaviorSubject<string>('inactive');
     this.song = new BehaviorSubject<boolean>(false);
@@ -133,5 +136,17 @@ export class HelperProvider {
     });
     return alert;
   }
+
+  stopMusic(){
+    if(this.music.playingTrack()){
+      this.music.stop();
+      this.music.pause();
+      this.music.destroyMusicControls();
+      alert('coming')
+    }
+  }
+
+
+
 
 }

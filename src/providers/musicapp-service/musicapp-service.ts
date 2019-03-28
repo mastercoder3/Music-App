@@ -1,8 +1,9 @@
 import { Media, MediaObject } from '@ionic-native/media';
-import { Injectable } from '@angular/core';
+import { Injectable, forwardRef, Inject } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 import { MyMusicPlayerPage } from '../../pages/my-music-player/my-music-player';
 import { HelperProvider } from '../helper/helper';
+import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
 
 /*
   Generated class for the MusicappServiceProvider provider.
@@ -191,8 +192,10 @@ openMediaPlayer(){
 
 openMusicPlayer(songs, index){
   this.hideFooterPlayer();
+  this.hideFooterPlayerSecond();
   this.allsongs = songs;
   this.trackIndex = index;
+  this.helper.stopMusic();
   if(this.file)
     this.file.release();
   this.createsong();
@@ -204,6 +207,37 @@ openMusicPlayer(songs, index){
   modal.present();
   
 }
+
+hideFooterPlayerSecond() {
+  var footerPlayerElements = document.getElementsByClassName(
+    'unique-footer-player'
+  );
+
+  for (var i = 0; i < footerPlayerElements.length; i++) {
+    var footerPlayer = footerPlayerElements[i];
+
+    if (footerPlayer) {
+      footerPlayer.classList.remove('alwaysblock');
+      footerPlayer.classList.remove('mini');
+      footerPlayer.classList.remove('mini-active');
+    }
+  }
+}
+
+destroy(){
+  this.file.pause();
+  this.file.release();
+}
+
+getAllsongs(){
+  return this.allsongs;
+}
+
+getCurrentTrackIndex(){
+  return this.trackIndex;
+}
+
+
 
 
 }

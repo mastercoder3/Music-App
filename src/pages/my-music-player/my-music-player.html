@@ -66,8 +66,8 @@
      <ion-row>
        <ion-col col-12>
          <h2 style="color:white; text-align: center; padding-left: 30px;">{{ (song?.title.length > 15) ? (song?.title | slice:0:15) + '...' : (song?.title) }}
-          <i class="fa fa-download" aria-hidden="true" style="color:white; font-size: 1.3em; 
-          text-align: right !important; float: right;" (click)="download()" ></i>
+          <!-- <i class="far fa-trash-alt" aria-hidden="true" style="color:white; font-size: 1.3em; 
+          text-align: right !important; float: right;" (click)="delete()" ></i> -->
         </h2>
         <h6 style="text-align: center; color: rgb(105, 105, 105);">{{song?.oartist}}</h6>
        </ion-col>

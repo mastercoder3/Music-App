@@ -9,6 +9,8 @@ import { MusicPlayerPage } from '../pages/music-player/music-player';
 import { Song } from '../data/Song';
 import { ApiProvider } from '../providers/api/api';
 import { map } from 'rxjs/operators';
+import { MusicappServiceProvider } from '../providers/musicapp-service/musicapp-service';
+import { HelperProvider } from '../providers/helper/helper';
 
 @Injectable()
 export class MusicPlayerPageService {
@@ -21,7 +23,7 @@ export class MusicPlayerPageService {
     private modalCtrl: ModalController,
     private videoService: VideoService,
     private audioService: AudioService,
-    private api: ApiProvider
+    private api: ApiProvider, private player: MusicappServiceProvider
   ) {
     this.api.getRecentlyPlayed(localStorage.getItem('uid'))
     .pipe(map(actions => actions.map(a =>{
@@ -45,7 +47,8 @@ export class MusicPlayerPageService {
     if(localStorage.getItem('adStatus') !== 'active'){
         this.videoService.hideMiniPlayer();
     this.hideFooterPlayer();
-
+    this.hideFooterPlayerSecond();
+    this.stopOfflinePlayer();
     this.allSongs = songs;
     var tracks = this.getTracksFromSongs(songs);
 
@@ -137,7 +140,7 @@ export class MusicPlayerPageService {
 
   simpleOpenMusicPlayer() {
     this.hideFooterPlayer();
-
+    this.hideFooterPlayerSecond();
     const modal = this.modalCtrl.create(MusicPlayerPage);
 
     modal.onDidDismiss(() => {
@@ -235,6 +238,28 @@ export class MusicPlayerPageService {
         footerPlayer.classList.remove('mini');
         footerPlayer.classList.remove('mini-active');
       }
+    }
+  }
+
+  hideFooterPlayerSecond() {
+    var footerPlayerElements = document.getElementsByClassName(
+      'offline-footer-player'
+    );
+
+    for (var i = 0; i < footerPlayerElements.length; i++) {
+      var footerPlayer = footerPlayerElements[i];
+
+      if (footerPlayer) {
+        footerPlayer.classList.remove('alwaysblock');
+        footerPlayer.classList.remove('mini');
+        footerPlayer.classList.remove('mini-active');
+      }
+    }
+  }
+
+  stopOfflinePlayer(){
+    if(this.player.getMedia()){
+      this.player.destroy();
     }
   }
 }

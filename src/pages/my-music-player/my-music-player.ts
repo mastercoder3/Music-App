@@ -2,6 +2,7 @@ import { Component, OnInit, Inject, forwardRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalService } from '../../services/ModalService';
 import { MusicappServiceProvider } from '../../providers/musicapp-service/musicapp-service';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 /**
  * Generated class for the MyMusicPlayerPage page.
@@ -51,7 +52,7 @@ export class MyMusicPlayerPage  implements OnInit{
   constructor(public navCtrl: NavController, 
     @Inject(forwardRef(() => MusicappServiceProvider))
     public player: MusicappServiceProvider,
-     public modalService: ModalService) {
+     public modalService: ModalService, private native: NativeStorage) {
   }
 
   ionViewDidLoad() {
@@ -60,6 +61,7 @@ export class MyMusicPlayerPage  implements OnInit{
 
   ngOnInit(){
     this.song = this.player.getCurrentTrack();
+    this.allsongs = this.player.getAllsongs();
     this.text = true;
     this.playing = true;
     setTimeout( () =>{
@@ -136,6 +138,21 @@ export class MyMusicPlayerPage  implements OnInit{
       this.next();
     }, 500);
   }
+ }
+
+ temp:Array<any> ;
+ delete(){
+  // this.native.getItem('offline')
+  //   .then(res =>{
+  //     this.temp= JSON.parse(res);
+  //     if(this.allsongs.length === 1){
+  //       this.temp.slice(this.temp.indexOf(this.allsongs[this.d]))
+
+  //     }
+  //     else if(this.allsongs.length > 1 ){
+
+  //     }
+  //   })
  }
 
 
