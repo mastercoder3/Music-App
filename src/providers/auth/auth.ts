@@ -22,7 +22,7 @@ export class AuthProvider {
   }
 
   setPersistance(){
-    return this.auth.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+    return this.auth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
   }
 
   forgotPassword(email){
@@ -31,8 +31,10 @@ export class AuthProvider {
 
   resetPassword(password){
     const user = firebase.auth().currentUser;
-    user.updatePassword(password);
-    return user;
+    console.log(user);
+    // user.updatePassword(password);
+    // return user;
+    // this.auth.auth.
   }
 
   logout(){

@@ -35,13 +35,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, public modalCtrl: ModalController,
     private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider,private facebook: Facebook, private afAuth: AngularFireAuth, 
     private gplus: GooglePlus) {
-      firebase.auth().onAuthStateChanged( user => {
-        if (user){
-         this.auth.logout();
-        } else { 
-            console.log(user)
-        }
-      });
+
       // this.user1 = this.afAuth.authState;
     this.form = this.fb.group({
       email: ['', Validators.compose([
@@ -81,6 +75,7 @@ export class LoginPage {
                     localStorage.setItem('uid', res.user.uid);
                     localStorage.setItem('type', this.user.type);
                     this.navCtrl.setRoot(TabsPage);
+                    this.auth.setPersistance();
                   }
                   else
                     this.helper.closeLoading();

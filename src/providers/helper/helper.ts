@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AlertController } from 'ionic-angular';
 import { AudioService } from '../../services/AudioService';
 import { MusicappServiceProvider } from '../musicapp-service/musicapp-service';
+import { NativeStorage } from '@ionic-native/native-storage';
 
 
 /*
@@ -20,13 +21,24 @@ export class HelperProvider {
 
   private status: BehaviorSubject<string>;
   private song: BehaviorSubject<boolean>;
+  private offlineData: BehaviorSubject<Array<any>>;
 
   constructor(private actionSheetCtrl: ActionSheetController,
     private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http, public alertCtrl: AlertController,
-    private music: AudioService
+    private music: AudioService, private native: NativeStorage
   ) {
     this.status = new BehaviorSubject<string>('inactive');
     this.song = new BehaviorSubject<boolean>(false);
+    this.offlineData = new BehaviorSubject<Array<any>>([]);
+
+  }
+
+  public getOfflineData(): Observable<Array<any>> {
+    return this.offlineData.asObservable();
+  }
+
+  public setOfflineData(newValue): void {
+    this.offlineData.next(newValue);
   }
 
   public getTheStatus(): Observable<string> {
@@ -119,6 +131,33 @@ export class HelperProvider {
         {
           name: 'title',
           placeholder: 'Name'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: myfunc
+        }
+      ]
+    });
+    return alert;
+  }
+
+  showPassword(myfunc) {
+    const alert = this.alertCtrl.create({
+      title: 'Change Password',
+      subTitle: 'Enter new Password.',
+      inputs: [
+        {
+          name: 'password',
+          placeholder: 'Password',
+          type: 'password'
         },
       ],
       buttons: [

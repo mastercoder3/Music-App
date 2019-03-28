@@ -1,7 +1,8 @@
-import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage';
 import {  NavController, ModalController } from 'ionic-angular';
 import { MusicappServiceProvider } from '../../providers/musicapp-service/musicapp-service';
+import { HelperProvider } from '../../providers/helper/helper';
 
 /**
  * Generated class for the OfflineSongsComponent component.
@@ -13,38 +14,36 @@ import { MusicappServiceProvider } from '../../providers/musicapp-service/musica
   selector: 'offline-songs',
   templateUrl: 'offline-songs.html'
 })
-export class OfflineSongsComponent implements OnInit, OnChanges, DoCheck {
+export class OfflineSongsComponent implements OnInit{
 
  offline;
 
   constructor(private nativeStorage: NativeStorage, private modal: ModalController, private player: MusicappServiceProvider,
-    private nav: NavController) {
+    private nav: NavController, private helper: HelperProvider) {
 
   }
 
   ngOnInit(){
-    this.nativeStorage.getItem('offline')
+
+        this.nativeStorage.getItem('offline')
       .then(res =>{
         // alert(res);
-        this.offline = JSON.parse(res);
+        this.helper.setOfflineData(JSON.parse(res));
+        this.helper.getOfflineData().subscribe(res =>{
+          this.offline = res;
+        })
       }, err =>{
-        // alert(JSON.stringify(err))
+        alert(JSON.stringify(err))
       })
+
+
+
   }
 
-  ngDoCheck(){
-    this.nativeStorage.getItem('offline')
-    .then(res =>{
-      // alert(res);
-      this.offline = JSON.parse(res);
-    }, err =>{
-      // alert(JSON.stringify(err))
-    })
-  }
 
-  ngOnChanges(){
-   
-  }
+
+
+
 
   openOfflineMusicPlayer(data, i){
     this.player.openMusicPlayer(this.offline, i);

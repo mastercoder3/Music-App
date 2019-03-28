@@ -15,6 +15,8 @@ import { finalize } from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { LoginPage } from '../login/login';
 import { SongUploadPage } from '../song-upload/song-upload';
+import { AuthProvider } from '../../providers/auth/auth';
+import firebase  from 'firebase';
 
 @IonicPage()
 @Component({
@@ -32,6 +34,7 @@ export class LibraryPage {
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   type;
+  USER: firebase.User;
 
   constructor(
     private videoService: VideoService,
@@ -39,12 +42,14 @@ export class LibraryPage {
     private navCtrl: NavController,
     private modal: ModalController,
     @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
-    private api: ApiProvider, private camera: Camera, private helper: HelperProvider,  private fireStorage: AngularFireStorage, private app: App
+    private api: ApiProvider, private camera: Camera, private auth: AuthProvider,
+     private helper: HelperProvider,  private fireStorage: AngularFireStorage, private app: App
   ) {}
 
   ionViewDidLoad() {
     this.getData();
     this.type = localStorage.getItem('type');
+    
   }
 
   getData(){
@@ -58,6 +63,7 @@ export class LibraryPage {
   logout(){
     localStorage.removeItem('uid');
     localStorage.clear();
+    this.auth.logout();
     this.app.getRootNav().setRoot(LoginPage);
   }
 
@@ -142,6 +148,31 @@ export class LibraryPage {
 
   buy(){
     
+  }
+
+  resetPassword(){
+
+    let func = (data) => {
+        firebase.auth().onAuthStateChanged( user => {
+          if (user){
+            this.USER = user;
+            console.log(user)
+          user.updatePassword(data.password)
+            .then(res => {
+              this.helper.presentToast('Password Updated');
+            }, err =>{
+              console.log('Error while updating password');
+            })
+          } else { 
+              console.log(user)
+          }
+        });
+      
+    }
+    let x =    this.helper.showPassword(func);
+    x.present();
+
+
   }
 
 

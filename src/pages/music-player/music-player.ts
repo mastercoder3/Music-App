@@ -60,6 +60,7 @@ export class MusicPlayerPage {
     console.log('ionViewDidLoad MusicPlayerPage');  
     this.getData();
     this.resetTime();
+    this.nativeStorage.clear();
   }
 
   getData(){
@@ -304,7 +305,8 @@ export class MusicPlayerPage {
               .then(
                 () =>  {
                   this.helper.presentToast('Song saved as Offline');
-                  this.setSavedSongsId();
+                  this.helper.setOfflineData(x);
+                                    this.setSavedSongsId();
                },
                 error => console.error('Error storing item', error)
               );
@@ -321,6 +323,7 @@ export class MusicPlayerPage {
               {
                  this.helper.presentToast('Song saved as Offline');
                  this.setSavedSongsId();
+                 this.helper.setOfflineData(x);
               },
               error => console.error('Error storing item', error)
             );
