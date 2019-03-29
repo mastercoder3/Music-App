@@ -51,7 +51,7 @@ export class LibraryPage {
     private modal: ModalController,
     @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
     private api: ApiProvider, private camera: Camera, private auth: AuthProvider,
-     private helper: HelperProvider,  private fireStorage: AngularFireStorage, private app: App
+     private helper: HelperProvider,  private fireStorage: AngularFireStorage, private app: App, private audio: AudioService
   ) {}
 
   ionViewDidLoad() {
@@ -113,6 +113,7 @@ export class LibraryPage {
     localStorage.removeItem('uid');
     localStorage.clear();
     this.auth.logout();
+    this.audio.destroyMusicControls();
     this.app.getRootNav().setRoot(LoginPage);
   }
 
