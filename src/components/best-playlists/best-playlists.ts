@@ -53,7 +53,8 @@ export class BestPlaylistsComponent {
             })))
               .subscribe(resp =>{
                 this.myPlaylist = resp;
-                if(this.myPlaylist.length !== 0)
+                console.log(resp)
+                if(this.myPlaylist.length > 0)
                   this.playlist = this.myPlaylist[0];
                   this.setImages();
               });

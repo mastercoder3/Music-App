@@ -71,6 +71,8 @@ export class MusicPlayerPage {
       })))
         .subscribe(res =>{
           this.ads = res;
+
+          console.log(this.ads);
         });
 
     this.api.getLikedSongs(localStorage.getItem('uid'))
@@ -264,7 +266,7 @@ export class MusicPlayerPage {
   updateAds(data){
     let id = data.did;
     delete data['did'];
-    data.view++;
+    data.views++;
     this.api.updateAdsSong(id,data)
       .then(res =>{
         console.log('Ad Updated')

@@ -90,8 +90,12 @@ export class LoginPage {
   temp: Array<any>;
 
   loginByFacebook(){
-    this.facebook.logout();
-    this.auth.logout();
+    this.facebook.getLoginStatus()
+      .then( res => {
+        alert(JSON.stringify(res))
+      }, err =>{
+        alert(JSON.stringify(err))
+      })
     this.facebook.login(['public_profile', 'user_friends', 'email'])
     .then((res: FacebookLoginResponse) => {
       this.helper.presentLoadingDefault();
@@ -128,14 +132,19 @@ export class LoginPage {
             alert(err.message);
           });
     },err =>{
+      alert('error');
       alert(err.message)
     })
+
+    this.facebook.logEvent(this.facebook.EVENTS.EVENT_NAME_ADDED_TO_CART);
   }
+
+  // <string name="facebook_app_id">422550245217102</string>
+// <string name="fb_login_protocol_scheme">fb422550245217102</string>
 
    nativeGoogleLogin(){
     try {
-      this.auth.logout();
-      this.gplus.logout();
+      alert('coming');
        this.gplus.login({
 
       })

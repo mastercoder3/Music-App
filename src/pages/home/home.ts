@@ -24,10 +24,14 @@ export class HomePage {
     this.api.getPopUp()
     .subscribe(ress =>{
       this.popup = ress;
-        const modal = this.modalCtrl.create(StartPopupPage, {
-          data: this.popup[0].imageURL
+      console.log(ress);
+      if(this.popup.status === 'active'){
+         const modal = this.modalCtrl.create(StartPopupPage, {
+          data: this.popup.imageURL
         });
         modal.present();
+      }
+       
     });
   }
 

@@ -88,7 +88,7 @@ export class ApiProvider {
   // ::::::::::::::::::::::::::::::::::::::::::::::::: Ads ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
   getAds(){
-    return this.afs.collection('ads', ref => ref.orderBy('view', 'asc')).snapshotChanges();
+    return this.afs.collection('ads', ref => ref.orderBy('views', 'asc')).snapshotChanges();
   }
 
   updateAdsSong(id,data){
@@ -188,7 +188,7 @@ export class ApiProvider {
 
 
   getPopUp(){
-    return this.afs.collection('popup').valueChanges();
+    return this.afs.doc('popup/popup').valueChanges();
   }
 
 

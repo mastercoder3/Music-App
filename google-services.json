@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:335286010691:android:b4ae6d8d4ef35d9a",
+        "mobilesdk_app_id": "1:335286010691:android:dbf67fc8390e25e9",
         "android_client_info": {
-          "package_name": "apollo.music"
+          "package_name": "awesong.musicapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "335286010691-qai6nr7ttbbrfi0ckrf0k1o1ldmardod.apps.googleusercontent.com",
+          "client_id": "335286010691-oce7ubnpn534ini2mlgi2khrkqlml2vs.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "apollo.music",
-            "certificate_hash": "dbae3e902fb5f26a096fb02f53842761b83f065e"
+            "package_name": "awesong.musicapp",
+            "certificate_hash": "8d3ef5e80f04ef465a072467b2676a8932bd32f3"
           }
         },
         {
@@ -42,6 +42,13 @@
             {
               "client_id": "335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "335286010691-tk6t1onl8r3dti61m8rngvnvihmi3f1g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "apollo.music"
+              }
             }
           ]
         },
