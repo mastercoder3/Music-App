@@ -90,17 +90,9 @@ export class LoginPage {
   temp: Array<any>;
 
   loginByFacebook(){
-    this.facebook.getLoginStatus()
-      .then( res => {
-        alert(JSON.stringify(res))
-      }, err =>{
-        alert(JSON.stringify(err))
-      })
     this.facebook.login(['public_profile', 'user_friends', 'email'])
     .then((res: FacebookLoginResponse) => {
       this.helper.presentLoadingDefault();
-      alert('fb resp')
-      alert(JSON.stringify(res))
       const facebookCredential = firebase.auth.FacebookAuthProvider
           .credential(res.authResponse.accessToken);
 
@@ -109,8 +101,6 @@ export class LoginPage {
             this.api.getUserByEmail(success.email)
             .subscribe(res=> {
               this.temp = res;
-              alert('temp respo')
-              alert(JSON.stringify(this.temp));
               if(this.temp.length === 0){
                 this.helper.closeLoading();
                 const profileModal = this.modalCtrl.create( FbLoginPage, { data: success });
@@ -123,6 +113,7 @@ export class LoginPage {
                 this.helper.closeLoading();
                 localStorage.setItem('uid', success.uid);
                 localStorage.setItem('type', this.temp[0].type);
+                localStorage.setItem('logintype','fb');
                 this.navCtrl.setRoot(TabsPage);
               }
             });
@@ -139,30 +130,56 @@ export class LoginPage {
     this.facebook.logEvent(this.facebook.EVENTS.EVENT_NAME_ADDED_TO_CART);
   }
 
-  // <string name="facebook_app_id">422550245217102</string>
-// <string name="fb_login_protocol_scheme">fb422550245217102</string>
 
-   nativeGoogleLogin(){
-    try {
-      alert('coming');
-       this.gplus.login({
+   nativeGoogleLogin(): Promise<any>{
 
-      })
-      .then(res =>{
-        const googleCredential = firebase.auth.GoogleAuthProvider
-        .credential(res.idToken);
+    return new Promise((resolve, reject) => { 
+      this.gplus.login({
+        'webClientId': '335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com',
+        'offline': true
+      }).then( res => {
+              const googleCredential = firebase.auth.GoogleAuthProvider
+                  .credential(res.idToken);
 
-        firebase.auth().signInWithCredential(googleCredential)
-        .then( response => {
-            console.log("Firebase success: " + JSON.stringify(response));
-            alert(response);
-        });
+              firebase.auth().signInWithCredential(googleCredential)
+            .then( response => {
+                alert("Firebase success: " + JSON.stringify(response));
+                resolve(response)
+            });
+      }, err => {
+          alert("Error: " + err)
+          reject(err);
       });
+    });
+
+    // try {
+    //   alert('coming');
+    //    this.gplus.login({
+    //     'webClientId': '335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com',
+    //     'offline': true,
+    //     'scopes': 'profile email'
+    //   })
+    //   .then(res =>{
+    //     alert('yes')
+    //     alert(JSON.stringify(res))
+    //     const googleCredential = firebase.auth.GoogleAuthProvider
+    //     .credential(res.idToken);
+
+    //     firebase.auth().signInWithCredential(googleCredential)
+    //     .then( response => {
+    //         console.log("Firebase success: " + JSON.stringify(response));
+    //         alert(response);
+    //     }, err =>{
+    //       alert(JSON.stringify(err));
+    //     });
+    //   }, err => {
+    //     alert(JSON.stringify(err))
+    //     });
   
   
-    } catch(err) {
-     alert(err)
-    }
+    // } catch(err) {
+    //  alert(err)
+    // }
   }
 
   loginWithGoogle(){

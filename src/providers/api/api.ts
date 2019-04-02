@@ -198,4 +198,19 @@ export class ApiProvider {
     return this.afs.collection('songs', ref => ref.where('uid', '==', id)).valueChanges();
   }
 
+
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::: Albums :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  getAllAlbumsById(id){
+    return this.afs.collection('albums', ref => ref.where('createdBy','==',id)).snapshotChanges();
+  }
+
+  addAlbum(data){
+    return this.afs.collection('albums').add(data);
+  }
+
+  updateAlbum(id,data){
+    return this.afs.doc('albums/'+id).update(data);
+  }
+
 }

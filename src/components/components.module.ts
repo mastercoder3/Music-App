@@ -16,6 +16,7 @@ import { MiniVideoPlayerComponent } from './mini-video-player/mini-video-player'
 import { PlayerFooterComponent } from './player-footer/player-footer';
 import { OfflineSongsComponent } from './offline-songs/offline-songs';
 import { OfflineFooterComponent } from './offline-footer/offline-footer';
+import { MyAlbumsComponent } from './my-albums/my-albums';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { OfflineFooterComponent } from './offline-footer/offline-footer';
     PlayerFooterComponent,
     OfflineSongsComponent,
     OfflineFooterComponent,
+    MyAlbumsComponent,
   ],
   imports: [],
   exports: [
@@ -56,6 +58,7 @@ import { OfflineFooterComponent } from './offline-footer/offline-footer';
     PlayerFooterComponent,
     OfflineSongsComponent,
     OfflineFooterComponent,
+    MyAlbumsComponent,
 
   ]
 })

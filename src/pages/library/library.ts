@@ -192,8 +192,36 @@ export class LibraryPage {
   }
 
   uploadSong(){
-   const modal =  this.modal.create(SongUploadPage);
-   modal.present();
+    let func = () => {
+      const modal =  this.modal.create(SongUploadPage);
+      modal.present();
+    };
+
+    let func1 = () => {
+
+      let createfunc = (data) => {
+        this.createNewAlbum(data.data);
+      }
+
+      const alert = this.helper.showAlertGeneric('Create An Album.','Enter Album name.','Album Name','Create',createfunc);
+      alert.present();
+    };
+    this.helper.presentActionSheet('Choose an Option.','Upload a Song', 'Create an Album',func,func1)
+
+  }
+
+  createNewAlbum(name){
+    let data = {
+      name: name,
+      createdBy: localStorage.getItem('uid') ? localStorage.getItem('uid') : '',
+      songs: []
+    }
+    this.api.addAlbum(data)
+      .then( res =>{
+        this.helper.presentToast('Album Created');
+      }, err =>{
+        this.helper.presentToast('Album Creation Failed');
+      })
   }
 
   buy(){

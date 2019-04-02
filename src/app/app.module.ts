@@ -96,6 +96,7 @@ import { MyMusicPlayerPage } from '../pages/my-music-player/my-music-player';
 import { MusicappServiceProvider } from '../providers/musicapp-service/musicapp-service';
 import { OfflineFooterComponent } from '../components/offline-footer/offline-footer';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { MyAlbumsComponent } from '../components/my-albums/my-albums';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -154,7 +155,8 @@ const firebase = {
     MiniVideoPlayerComponent,
     PlayerFooterComponent,
     OfflineSongsComponent,
-    OfflineFooterComponent
+    OfflineFooterComponent,
+    MyAlbumsComponent
   ],
   imports: [
     BrowserModule,
