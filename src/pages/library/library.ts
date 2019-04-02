@@ -139,7 +139,7 @@ export class LibraryPage {
     this.helper.presentActionSheet('Choose an option.','Gallery','Camera',myfunc,myfunc1);
   }
 
-  takePhoto(source){
+  takePhoto(source, val? : string){
     if(source === 'camera'){
       this.sourcex =this.camera.PictureSourceType.CAMERA;
       
@@ -160,11 +160,29 @@ export class LibraryPage {
       this.camera.getPicture(options).then((imageData) => {
 
       this.base64Image = 'data:image/jpeg;base64,' + imageData;
+
+      if(val !== ''){
+        this.uploadAlbum(val);
+      }
  
       }, (err) => {
       // Handle error
       console.log(err);
       });
+  }
+
+  uploadAlbum(val) {
+    let id = Math.floor(Date.now() / 1000);
+    this.ref = this.fireStorage.ref(`Thumbnails/${id}`);
+    let task = this.ref.putString(this.base64Image, 'data_url');
+    task.snapshotChanges()
+      .pipe(finalize(() => {
+        this.ref.getDownloadURL().subscribe(url => {
+          if(url !== ''){
+            this.makeAlbum(url,val);
+          }
+        });
+      })).subscribe();
   }
 
   upload() {
@@ -211,9 +229,23 @@ export class LibraryPage {
   }
 
   createNewAlbum(name){
+
+    let myfunc = () => {
+      this.takePhoto('library', name);
+    };
+    let myfunc1 = () => {
+      this.takePhoto('camera', name);
+    };
+    
+    this.helper.presentActionSheet('Choose An Image To Continue.', 'Gallery','Camera',myfunc,myfunc1)
+  
+  }
+
+  makeAlbum(url,val){
     let data = {
-      name: name,
+      name: val,
       createdBy: localStorage.getItem('uid') ? localStorage.getItem('uid') : '',
+      imageURL: url,
       songs: []
     }
     this.api.addAlbum(data)

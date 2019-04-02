@@ -97,6 +97,7 @@ import { MusicappServiceProvider } from '../providers/musicapp-service/musicapp-
 import { OfflineFooterComponent } from '../components/offline-footer/offline-footer';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { MyAlbumsComponent } from '../components/my-albums/my-albums';
+import { MyAlbumPage } from '../pages/my-album/my-album';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -138,6 +139,7 @@ const firebase = {
     SeeAllPage,
     StartPopupPage,
     MyMusicPlayerPage,
+    MyAlbumPage,
     // Components
     FeaturedComponent,
     MostPlayedComponent,
@@ -199,7 +201,8 @@ const firebase = {
     SongUploadPage,
     SeeAllPage,
     StartPopupPage,
-    MyMusicPlayerPage
+    MyMusicPlayerPage,
+    MyAlbumPage
   ],
   providers: [
     StatusBar,

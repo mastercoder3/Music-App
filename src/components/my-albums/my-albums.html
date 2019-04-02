@@ -1,5 +1,5 @@
 <section
-  *ngIf="playlist"
+*ngIf="albums"
   class="section-titles"
   section-type="standard"
   see-all-style="style2"
@@ -11,7 +11,7 @@
       <div class="inner">
         <div class="icon"></div>
 
-        <h2 >Own Playlists</h2>
+        <h2 >My Albums</h2>
         <div class="see-all">
           <p><a></a></p>
         </div>
@@ -20,17 +20,17 @@
   </header>
 </section>
 
-<ion-grid *ngIf="playlist">
+<ion-grid >
     <ion-row>
       <ion-col col-12>
           <ion-slides>
   
-              <ion-slide style="max-width: 295px;"  *ngFor="let item of playlist.playlist; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
+              <ion-slide style="max-width: 295px;"  *ngFor="let item of albums; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
                   (click)="openSeeAllPage(item,i)">
                   <div class="slide">
                       <div class="img-inner-wrapper">
                         <img
-                          src="{{images[i]}}"
+                          src="{{item.imageURL}}"
                           width="100%"
                           height="auto"
                           style="border-radius: 9px;"
@@ -38,9 +38,6 @@
             
                         <h2 style="color: white">{{ item?.name}}</h2>
             
-                        <!-- <cite class="author">
-                          <a style="color: rgb(189, 189, 189) !important; text-decoration: none; font-style: normal;">{{ item?.oartist }}</a>
-                        </cite> -->
                       </div>
                     </div>
               </ion-slide>
