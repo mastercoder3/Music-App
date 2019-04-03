@@ -88,7 +88,8 @@ export class LibraryPage {
         })))
         .subscribe(res => {
           this.following = res;
-          this.nfollowing = this.following[0].users.length;
+          if(this.following[0].users)
+            this.nfollowing = this.following[0].users.length;
         })
       }
       
@@ -250,6 +251,7 @@ export class LibraryPage {
     }
     this.api.addAlbum(data)
       .then( res =>{
+        alert(res);
         this.helper.presentToast('Album Created');
       }, err =>{
         this.helper.presentToast('Album Creation Failed');

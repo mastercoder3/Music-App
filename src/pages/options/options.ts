@@ -116,6 +116,7 @@ export class OptionsPage {
       this.temp.playlist = this.flag;
       this.api.addToPlaylist(this.temp)
         .then(res => {
+          console.log(res);
           this.helper.presentToast('Song added to Playlist');
         }, err => {
           this.helper.presentToast(err.message);
@@ -134,6 +135,7 @@ export class OptionsPage {
         playlist: this.temp
       })
         .then(res => {
+          console.log(res);
           this.helper.presentToast('Song added to Playlist');
         }, err => {
           this.helper.presentToast(err.message);

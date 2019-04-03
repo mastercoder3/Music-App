@@ -56,9 +56,9 @@
 
                 <best-playlists [isLibrary]="false"></best-playlists>
 
-                <!-- <popular-albums></popular-albums>
+                 <popular-albums *ngIf="type === 'user' "></popular-albums>
 
-                <charts></charts> -->
+                <!-- <charts></charts> -->
               </section>
               <!-- end bottom padding -->
             </div>

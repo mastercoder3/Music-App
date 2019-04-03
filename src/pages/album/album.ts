@@ -1,4 +1,4 @@
-import { Component, Inject, forwardRef } from '@angular/core';
+import { Component, Inject, forwardRef, OnInit } from '@angular/core';
 import { IonicPage, NavParams, ModalController } from 'ionic-angular';
 
 import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
@@ -14,15 +14,18 @@ import { Purchase } from '../../data/Purchase';
 
 import { Shuffler } from '../../data/Helpers/Shuffler';
 import { SongsInitializer } from '../../data/Initializers/SongsInitializer';
+import {map } from 'rxjs/operators';
+import { ApiProvider } from '../../providers/api/api';
 
 @IonicPage()
 @Component({
   selector: 'page-album',
   templateUrl: 'album.html'
 })
-export class AlbumPage {
-  album: Album;
-  albumSongs: Song[] = [];
+export class AlbumPage implements OnInit {
+  album;
+  albumSongs;
+  songs;
 
   constructor(
     private navParams: NavParams,
@@ -31,9 +34,27 @@ export class AlbumPage {
     private videoService: VideoService,
     private audioService: AudioService,
     @Inject(forwardRef(() => MusicPlayerPageService))
-    public musicPlayerPageService: MusicPlayerPageService
+    public musicPlayerPageService: MusicPlayerPageService,
+    private api: ApiProvider
   ) {
     this.album = this.navParams.get('album');
+  }
+
+  ngOnInit(){
+    this.api.getAllSongs()
+      .pipe(map(actions => actions.map(a =>{
+        const data = a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
+        .subscribe(res =>{
+          this.songs = res;
+            if(this.songs.length>0){
+              console.log(this.album)
+              this.albumSongs = this.songs.filter(data => this.album.songs.indexOf(data.did) > -1 );
+              console.log(this.albumSongs)
+            }
+        })
   }
 
   ionViewDidLoad() {

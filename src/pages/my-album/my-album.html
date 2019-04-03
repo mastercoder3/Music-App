@@ -2,20 +2,20 @@
 
   <h3 style="color: white;"><ion-icon name="arrow-round-back" style="text-align: left; margin-left: 10px;" 
     (click)="close()"
-    ></ion-icon> <ion-icon name="add" style="text-align: right; float: right; margin-right: 10px;"></ion-icon> </h3>
+    ></ion-icon> <ion-icon name="add" style="text-align: right; float: right; margin-right: 10px;" (click)="addSong()" ></ion-icon> </h3>
 </ion-header>
 
 
 <ion-content style="background-color: #120810;">
   <div style="width: 100% !important; height: 100% !important;">
     <h5 style="color: white; text-align: center;">{{data?.name}}</h5>
-    <!-- <ion-grid *ngIf="listSongs">
+    <ion-grid *ngIf="albumsongs">
       <h5 style="color: white;">Songs:<span style="text-align: right; float: right; border-radius: 2px;
         background-color: #35242F; width: 50px; padding-right:3px;
-      "><small style="text-align: right;" (click)="musicPlayerPageService.openMusicPlayer(listSongs, 0)">Play all</small></span></h5>
-        <ion-row style="width: 100%; height: 50px !important;" *ngFor="let item of listSongs; let i = index" 
+      "><small style="text-align: right;"></small></span></h5>
+        <ion-row style="width: 100%; height: 50px !important;" *ngFor="let item of albumsongs; let i = index" 
         [ngStyle]="{'margin-top': i>0 ? '15px' : '0px'}"
-        (click)="musicPlayerPageService.openMusicPlayer([item], 0)">
+        >
           <ion-col col-3>
               <img src="{{item.imageURL}}" alt="" style="width: 50px; height: 50px;">
           </ion-col>
@@ -26,7 +26,7 @@
           </h6>
           </ion-col>
         </ion-row>
-      </ion-grid> -->
+      </ion-grid>
   </div>
 
 </ion-content>

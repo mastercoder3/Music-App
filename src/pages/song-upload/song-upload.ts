@@ -40,6 +40,9 @@ export class SongUploadPage implements OnInit {
   data;
   blob: Blob;
   songname;
+
+  albumData;
+  type;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder,private camera: Camera, 
     private androidPermissions: AndroidPermissions, private helper: HelperProvider, private fireStorage: AngularFireStorage,
      public modalService: ModalService, private fileChooser: FileChooser, private api: ApiProvider,private file: File, private filePath: FilePath) {
@@ -55,6 +58,9 @@ export class SongUploadPage implements OnInit {
   }
 
   ngOnInit(){
+    this.type = this.navParams.get('type');
+    this.albumData = this.navParams.get('data');
+    console.log(this.albumData)
     this.form = this.fb.group({
       title: ['', Validators.required],
       oartist: ['', Validators.required],
@@ -64,6 +70,13 @@ export class SongUploadPage implements OnInit {
       video: [''],
       mood: ['']
     });
+
+    setTimeout( () =>{
+      if(this.type === 'album'){
+      this.form.controls['album'].setValue( this.albumData.name);
+    }
+    }, 500);
+    
   }
 
   close(){
@@ -156,8 +169,6 @@ export class SongUploadPage implements OnInit {
   }
 
   uploadSong() {
-
-
       this.ref = this.fireStorage.ref(`Songs/${this.uploadImageId}`);
       let task = this.ref.put(this.blob);
       task.snapshotChanges()
@@ -176,7 +187,29 @@ export class SongUploadPage implements OnInit {
     this.data.imageId = this.uploadImageId;
     this.data.songId = this.songname;
     this.data.imageURL = this.image;
+    if(this.type === 'album')
+      this.data.albumId = this.albumData.did;
     this.api.addSong(this.data)
+      .then(res =>{
+        if(this.type !== 'album'){
+           this.helper.closeLoading();
+        this.helper.presentToast('Song Uploaded');
+        this.modalService.dismiss();
+        }
+        else  
+          this.updateAlbum(res);
+       
+      }, err =>{
+        this.helper.closeLoading();
+        this.helper.presentToast(err.message);
+      })
+  }
+
+  updateAlbum(res){
+    let x = this.albumData.songs;
+    x.push(res.id)
+    this.albumData.songs = x;
+    this.api.updateAlbum(this.albumData.did,this.albumData)
       .then(res =>{
         this.helper.closeLoading();
         this.helper.presentToast('Song Uploaded');

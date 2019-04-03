@@ -50,7 +50,7 @@
         <ion-icon name="musical-note" style="margin-top:12px;color:white;"></ion-icon>
       </ion-col>
       <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
-        <ion-input type="text" placeholder="Album" formControlName="album"
+        <ion-input type="text" placeholder="Album" formControlName="album" [disabled]="type === 'album' "
           style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
       </ion-col>
     </ion-row>

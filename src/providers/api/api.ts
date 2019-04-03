@@ -213,4 +213,8 @@ export class ApiProvider {
     return this.afs.doc('albums/'+id).update(data);
   }
 
+  getAllAlbums(){
+    return this.afs.collection('albums').snapshotChanges();
+  }
+
 }

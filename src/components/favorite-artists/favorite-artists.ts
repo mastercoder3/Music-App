@@ -19,11 +19,11 @@ export class FavoriteArtistsComponent implements OnInit{
 
   constructor(private navCtrl: NavController, private api: ApiProvider) {
     console.log('Hello FavoriteArtistsComponent Component');
-    this.favoriteArtists = Shuffler.shuffle(ArtistsInitializer.artists);
+    // this.favoriteArtists = Shuffler.shuffle(ArtistsInitializer.artists);
   }
 
   ngOnInit(){
-
+    this.getData();
   }
 
   artistId;
@@ -47,6 +47,7 @@ export class FavoriteArtistsComponent implements OnInit{
 
             .subscribe(resp =>{
               this.artists = resp;
+              this.setArtist();
             })
 
         })
