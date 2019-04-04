@@ -9,7 +9,7 @@
     <div class="main-grids safe-area">
       <div class="inner">
         <div class="icon"></div>
-        <h2>Most Played</h2>
+        <h2>Latest Release</h2>
         <div class="see-all">
           <p><a (click)="seeall()" >See All</a></p>
         </div>
@@ -20,16 +20,16 @@
 <ion-grid>
     <ion-row>
       <ion-col col-12>
-          <ion-slides>
+          <ion-slides  slidesPerView="2">
   
-              <ion-slide style="max-width: 295px;"  *ngFor="let item of songs; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
+              <ion-slide *ngFor="let item of songs; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
                   (click)="musicPlayerPageService.openMusicPlayer(songs, i)">
                   <div class="slide">
                       <div class="img-inner-wrapper">
                         <img
                           src="{{item?.imageURL || 'assets/imgs/album.jpg' }}"
                           
-                          style="border-radius: 9px; width: 250px; height: 200px;"
+                          style="border-radius: 9px; width: 150px; height: 120px;"
                         />
             
                         <h2 style="color: white">{{ item?.title}}</h2>

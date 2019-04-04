@@ -90,7 +90,7 @@ export class LoginPage {
   temp: Array<any>;
 
   loginByFacebook(){
-    this.facebook.login(['public_profile', 'user_friends', 'email'])
+    this.facebook.login(['public_profile', 'email'])
     .then((res: FacebookLoginResponse) => {
       this.helper.presentLoadingDefault();
       const facebookCredential = firebase.auth.FacebookAuthProvider
@@ -103,6 +103,7 @@ export class LoginPage {
               this.temp = res;
               if(this.temp.length === 0){
                 this.helper.closeLoading();
+                alert(JSON.stringify(success));
                 const profileModal = this.modalCtrl.create( FbLoginPage, { data: success });
                 // profileModal.onDidDismiss(() => {
                 //   this.navCtrl.setRoot(TabsPage);
@@ -110,6 +111,7 @@ export class LoginPage {
                 profileModal.present();
               }
               else if(this.temp.length !== 0){
+                alert(JSON.stringify(success));
                 this.helper.closeLoading();
                 localStorage.setItem('uid', success.uid);
                 localStorage.setItem('type', this.temp[0].type);
@@ -124,7 +126,7 @@ export class LoginPage {
           });
     },err =>{
       alert('error');
-      alert(err.message)
+      alert(JSON.stringify(err))
     })
 
     this.facebook.logEvent(this.facebook.EVENTS.EVENT_NAME_ADDED_TO_CART);

@@ -32,7 +32,19 @@
                 ></button>
 
                 <h2>Now Playing</h2>
-
+                
+                <button style="display: inline; background: white; border-radius: 50%; width: 38px; height: 38px; max-width: 38px;
+                position: absolute; top: 2px; right: 131px;">
+                   <i class="fa fa-download" aria-hidden="true" style="color:black; font-size: 1.4em; 
+                " (click)="download()" *ngIf="!isActive" ></i>
+                </button>
+               <button style="display: inline; background: white; border-radius: 50%; width: 38px; height: 38px; max-width: 38px;
+               position: absolute; top: 2px; right: 89px;">
+                <i class="fa fa-heart-o" *ngIf="!isLiked && !isActive" aria-hidden="true" style="color:transparent; font-size: 1.4em; 
+                " (click)="likeSong('like')"></i>
+                <i class="fa fa-heart" *ngIf="isLiked && !isActive" aria-hidden="true" style="color:#00ACFF; font-size: 1.4em; 
+                " (click)="likeSong('dislike')" ></i>
+               </button>
                 <button (click)="isActive ? doNotheing : share()" class="share-icon"></button>
                 <button
                   (click)="isActive ? doNotheing() : options()"
@@ -101,8 +113,7 @@
                           ? audioService.playingTrack().title
                           : ''
                       }}
-                       <i class="fa fa-download" aria-hidden="true" style="color:white; font-size: 1.3em; 
-                           text-align: right !important; float: right;" (click)="download()" *ngIf="!isActive" ></i>
+
                     </h2>
                     <br />
                     <cite class="author" avatar="11sz2" album-cover="11sz6"

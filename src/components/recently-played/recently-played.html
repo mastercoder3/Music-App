@@ -21,64 +21,31 @@
   </header>
 </section>
 
-<section
-  class="list-songs playlist-song checkPlaylist"
-  avatar="show"
-  author="show"
-  song-time="show"
-  song-price="hide"
-  like-number="hide"
-  add-to="hide"
-  delete-track="hide"
-  ranking="hide"
-  like-heart-style="style1"
-  like-number-style="style1"
->
-  <div class="main-grids safe-area">
-    <div class="inner">
-      <div
-        *ngFor="let song of recent; let i = index"
-        class="slide"
-      >
-        <div class="author-like-wrapper">
-          <div
-            class="author-avatar music-player-song"
-            (click)="musicPlayerPageService.openMusicPlayer(recent, i)"
-          >
-            <img src="{{ song.imageURL || 'assets/imgs/album.jpg' }}" width="100%" height="auto" />
-          </div>
+<ion-grid >
+  <ion-row>
+    <ion-col col-12>
+        <ion-slides  slidesPerView="2">
 
-          <div class="author-like">
-            <div
-              class="song-title-author music-player-song"
-              (click)="musicPlayerPageService.openMusicPlayer(recent, i)"
-            >
-              <h2 class="title">{{ song.title }}</h2>
-
-              <cite class="author">
-                <a>{{ song.oartist }}</a>
-              </cite>
-            </div>
-
-            <div class="song-info-options-container">
-              <div class="like-container">
-                <i class="fa fa-heart-o" *ngIf="!isLiked[i]" aria-hidden="true" style="color:white; font-size: 1.8em; 
-                position: relative; top: 15px;" (click)="likeSong('like',i)"></i>
-                 <i class="fa fa-heart" *ngIf="isLiked[i]" aria-hidden="true" style="color:#00ACFF; font-size: 1.8em; 
-                 position: relative; top: 15px;" (click)="likeSong('dislike',i)" ></i>
-              </div>
-
-              <span
-                class="song-time music-player-song"
-                (click)="musicPlayerPageService.openMusicPlayer(recent, i)"
-                >{{ song?.duration }}</span
-              >
-            </div>
-          </div>
-
-          <div class="divider"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            <ion-slide  *ngFor="let item of recent; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
+                (click)="musicPlayerPageService.openMusicPlayer(recent, i)">
+                <div class="slide">
+                    <div class="img-inner-wrapper">
+                      <img
+                        src="{{item?.imageURL || 'assets/imgs/album.jpg'}}"
+                        style="border-radius: 9px; width: 150px; height: 120px;"
+                      />
+          
+                      <h2 style="color: white">{{ item?.title}}</h2>
+          
+                      <cite class="author">
+                        <a style="color: rgb(189, 189, 189) !important; text-decoration: none; font-style: normal;">{{ item?.oartist }}</a>
+                      </cite>
+                    </div>
+                  </div>
+            </ion-slide>
+          
+          
+          </ion-slides>
+    </ion-col>
+  </ion-row>
+</ion-grid>
