@@ -53,6 +53,9 @@ export class SeeAllPage implements OnInit {
     else if(this.type === 'videos1'){
       this.setNewVideos();
     }
+    else if(this.type === 'originals'){
+      this.setOriginals();
+    }
   }
 
   setNewVideos(){
@@ -115,6 +118,18 @@ export class SeeAllPage implements OnInit {
 
   getMostPlayed(){
     this.api.getMostPlayedSongs1()
+    .pipe(map(actions => actions.map(a =>{
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+      .subscribe(res =>{
+        this.listSongs = res;
+      });
+  }
+
+  setOriginals(){
+    this.api.getAllOriginals()
     .pipe(map(actions => actions.map(a =>{
       const data = a.payload.doc.data();
       const did = a.payload.doc.id;

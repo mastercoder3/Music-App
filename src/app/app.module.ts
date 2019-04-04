@@ -98,6 +98,7 @@ import { OfflineFooterComponent } from '../components/offline-footer/offline-foo
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { MyAlbumsComponent } from '../components/my-albums/my-albums';
 import { MyAlbumPage } from '../pages/my-album/my-album';
+import { OriginalsComponent } from '../components/originals/originals';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -158,7 +159,8 @@ const firebase = {
     PlayerFooterComponent,
     OfflineSongsComponent,
     OfflineFooterComponent,
-    MyAlbumsComponent
+    MyAlbumsComponent,
+    OriginalsComponent
   ],
   imports: [
     BrowserModule,

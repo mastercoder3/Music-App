@@ -22,9 +22,9 @@ import { map } from 'rxjs/operators';
   templateUrl: 'featured.html'
 })
 export class FeaturedComponent implements OnInit{
-  featuredSongs: Song[] = [];
-  featuredAlbum: Album;
-  featuredVideo: Video;
+  // featuredSongs: Song[] = [];
+  // featuredAlbum: Album;
+  // featuredVideo: Video;
   songs;
 
   constructor(
@@ -37,9 +37,9 @@ export class FeaturedComponent implements OnInit{
   ) {
     console.log('Hello FeaturedComponent Component');
 
-    this.featuredSongs = SongsInitializer.songs.slice().splice(0, 5);
-    this.featuredAlbum = AlbumsInitializer.albums.slice()[0];
-    this.featuredVideo = VideosInitializer.videos.slice()[0];
+    // this.featuredSongs = SongsInitializer.songs.slice().splice(0, 5);
+    // this.featuredAlbum = AlbumsInitializer.albums.slice()[0];
+    // this.featuredVideo = VideosInitializer.videos.slice()[0];
   }
 
   ngOnInit(){

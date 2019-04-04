@@ -18,6 +18,7 @@ import { SongUploadPage } from '../song-upload/song-upload';
 import { AuthProvider } from '../../providers/auth/auth';
 import firebase  from 'firebase';
 import { map } from 'rxjs/operators';
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 @IonicPage()
 @Component({
@@ -52,7 +53,8 @@ export class LibraryPage {
     @Inject(forwardRef(() => MusicPlayerPageService)) public musicPlayerPageService: MusicPlayerPageService,
     private api: ApiProvider, private camera: Camera, private auth: AuthProvider,
      private helper: HelperProvider,  private fireStorage: AngularFireStorage, private app: App, private audio: AudioService
-  ) {}
+  ) {
+  }
 
   ionViewDidLoad() {
     this.type = localStorage.getItem('type');
@@ -76,7 +78,8 @@ export class LibraryPage {
       })))
       .subscribe(res => {
         this.followers = res;
-        this.nFollowers = this.followers[0].users.length;
+        if(this.followers.length > 0 )
+          this.nFollowers = this.followers[0].users.length;
       })
 
       if(localStorage.getItem('type')==='user'){

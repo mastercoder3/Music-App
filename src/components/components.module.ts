@@ -17,6 +17,7 @@ import { PlayerFooterComponent } from './player-footer/player-footer';
 import { OfflineSongsComponent } from './offline-songs/offline-songs';
 import { OfflineFooterComponent } from './offline-footer/offline-footer';
 import { MyAlbumsComponent } from './my-albums/my-albums';
+import { OriginalsComponent } from './originals/originals';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MyAlbumsComponent } from './my-albums/my-albums';
     OfflineSongsComponent,
     OfflineFooterComponent,
     MyAlbumsComponent,
+    OriginalsComponent,
   ],
   imports: [],
   exports: [
@@ -59,6 +61,7 @@ import { MyAlbumsComponent } from './my-albums/my-albums';
     OfflineSongsComponent,
     OfflineFooterComponent,
     MyAlbumsComponent,
+    OriginalsComponent,
 
   ]
 })

@@ -217,4 +217,12 @@ export class ApiProvider {
     return this.afs.collection('albums').snapshotChanges();
   }
 
+  getOriginals(){
+    return this.afs.collection('songs', ref => ref.where('originals','>','').limit(10)).snapshotChanges();
+  }
+
+  getAllOriginals(){
+    return this.afs.collection('songs', ref => ref.where('originals','>','')).snapshotChanges();
+  }
+
 }

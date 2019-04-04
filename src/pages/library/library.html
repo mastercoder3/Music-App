@@ -116,7 +116,7 @@
           </div>
         </section>
 
-        <my-albums></my-albums>
+        <my-albums *ngIf="type === 'artist' "></my-albums>
 
         <offline-songs></offline-songs>
 

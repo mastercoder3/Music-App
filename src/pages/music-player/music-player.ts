@@ -347,9 +347,7 @@ export class MusicPlayerPage {
     this.nativeStorage.getItem('songsId')
     .then( res => {
       let x: Array<any> = JSON.parse(res) ;
-      alert(JSON.stringify(x))
       let check: Array<any> = x.filter(data => data === localStorage.getItem('songId'));
-      alert(JSON.stringify(check))
       if(check.length > 0){
         this.helper.presentToast('Song Already saved');
       return;

@@ -92,7 +92,7 @@ export class MusicPlayerPageService {
           let index = this.recent[0].songs.indexOf(songId);
           this.recent[0].songs.splice(index,1);
         
-          if(this.recent[0].songs.length !== 10){
+          if(this.recent[0].songs.length !== 100){
             this.recent[0].songs.unshift(songId);
             let data = {
               uid: localStorage.getItem('uid'),
