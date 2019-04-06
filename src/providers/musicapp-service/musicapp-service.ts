@@ -3,7 +3,6 @@ import { Injectable, forwardRef, Inject } from '@angular/core';
 import { ModalController } from 'ionic-angular';
 import { MyMusicPlayerPage } from '../../pages/my-music-player/my-music-player';
 import { HelperProvider } from '../helper/helper';
-import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
 
 /*
   Generated class for the MusicappServiceProvider provider.

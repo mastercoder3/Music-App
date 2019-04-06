@@ -103,7 +103,7 @@ export class LoginPage {
               this.temp = res;
               if(this.temp.length === 0){
                 this.helper.closeLoading();
-                alert(JSON.stringify(success));
+                // alert(JSON.stringify(success));
                 const profileModal = this.modalCtrl.create( FbLoginPage, { data: success });
                 // profileModal.onDidDismiss(() => {
                 //   this.navCtrl.setRoot(TabsPage);
@@ -111,7 +111,7 @@ export class LoginPage {
                 profileModal.present();
               }
               else if(this.temp.length !== 0){
-                alert(JSON.stringify(success));
+                // alert(JSON.stringify(success));
                 this.helper.closeLoading();
                 localStorage.setItem('uid', success.uid);
                 localStorage.setItem('type', this.temp[0].type);
@@ -133,26 +133,33 @@ export class LoginPage {
   }
 
 
-   nativeGoogleLogin(): Promise<any>{
+   nativeGoogleLogin(){
 
-    return new Promise((resolve, reject) => { 
-      this.gplus.login({
-        'webClientId': '335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com',
-        'offline': true
-      }).then( res => {
-              const googleCredential = firebase.auth.GoogleAuthProvider
-                  .credential(res.idToken);
+    this.gplus.login({})
+      .then(res => {
+        alert('res');
+      }, err =>{
+        alert(JSON.stringify(err));
+      })
 
-              firebase.auth().signInWithCredential(googleCredential)
-            .then( response => {
-                alert("Firebase success: " + JSON.stringify(response));
-                resolve(response)
-            });
-      }, err => {
-          alert("Error: " + err)
-          reject(err);
-      });
-    });
+    // return new Promise((resolve, reject) => { 
+    //   this.gplus.login({
+    //     'webClientId': '335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com',
+    //     'offline': true
+    //   }).then( res => {
+    //           const googleCredential = firebase.auth.GoogleAuthProvider
+    //               .credential(res.idToken);
+
+    //           firebase.auth().signInWithCredential(googleCredential)
+    //         .then( response => {
+    //             alert("Firebase success: " + JSON.stringify(response));
+    //             resolve(response)
+    //         });
+    //   }, err => {
+    //       alert("Error: " + err)
+    //       reject(err);
+    //   });
+    // });
 
     // try {
     //   alert('coming');
