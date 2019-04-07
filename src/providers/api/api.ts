@@ -229,4 +229,8 @@ export class ApiProvider {
     return this.afs.collection('publicplaylist').snapshotChanges();
   }
 
+  getPayment(){
+    return this.afs.doc('payments/amount').valueChanges();
+  }
+
 }

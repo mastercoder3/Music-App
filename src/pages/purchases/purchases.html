@@ -9,19 +9,19 @@
         <div class="title-author">
           <img
             alt="author"
-            src="{{ purchase.pictureUrl }}"
+            src="{{ purchase?.pictureUrl }}"
             width="100%"
             height="auto"
           />
 
-          <h2 class="title">{{ purchase.name }}</h2>
-          <cite class="author">{{ purchase.artistName }}</cite>
+          <h2 class="title">{{ purchase?.name }}</h2>
+          <cite class="author">{{ purchase?.artistName }}</cite>
         </div>
 
         <div class="divider"></div>
 
         <div class="final-price-container">
-          <span>for</span><b class="final-price">$ {{ purchase.price }}</b>
+          <span>for</span><b class="final-price">$ {{ purchase?.price }}</b>
         </div>
 
         <section class="pay-form-container-saved">

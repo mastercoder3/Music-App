@@ -1,5 +1,5 @@
 import { Component, Inject, forwardRef } from '@angular/core';
-import { IonicPage, NavController, ModalController, App, Platform } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, App, Platform, CardContent } from 'ionic-angular';
 
 import { VideoService } from '../../services/VideoService';
 import { AudioService } from '../../services/AudioService';
@@ -19,6 +19,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 import firebase  from 'firebase';
 import { map } from 'rxjs/operators';
 import { InAppPurchase2, IAPProduct } from '@ionic-native/in-app-purchase-2';
+import { PurchasesPage } from '../purchases/purchases';
+import { CardCreatorPage } from '../card-creator/card-creator';
+import { CardSelectionPage } from '../card-selection/card-selection';
 
 @IonicPage()
 @Component({
@@ -367,8 +370,8 @@ export class LibraryPage {
   buy(){
     // alert("CORDOVA_PLUGIN_NOT_INSTALLED.");
     // this.navCtrl.popToRoot()
-
-    this.purchase();
+    this.navCtrl.push(CardSelectionPage);
+    // this.purchase();
   }
 
   resetPassword(){
