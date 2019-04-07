@@ -225,4 +225,8 @@ export class ApiProvider {
     return this.afs.collection('songs', ref => ref.where('originals','>','')).snapshotChanges();
   }
 
+  getAllPublicPlaylist(){
+    return this.afs.collection('publicplaylist').snapshotChanges();
+  }
+
 }

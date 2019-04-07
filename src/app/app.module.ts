@@ -99,6 +99,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { MyAlbumsComponent } from '../components/my-albums/my-albums';
 import { MyAlbumPage } from '../pages/my-album/my-album';
 import { OriginalsComponent } from '../components/originals/originals';
+import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2';
+import { PublicPlaylistComponent } from '../components/public-playlist/public-playlist';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -160,7 +162,8 @@ const firebase = {
     OfflineSongsComponent,
     OfflineFooterComponent,
     MyAlbumsComponent,
-    OriginalsComponent
+    OriginalsComponent,
+    PublicPlaylistComponent
   ],
   imports: [
     BrowserModule,
@@ -233,6 +236,7 @@ const firebase = {
     GooglePlus,
     FileTransfer,
     NativeStorage,
+    InAppPurchase2,
     Media,
     MusicappServiceProvider,
     SocialSharing

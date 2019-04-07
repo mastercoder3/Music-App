@@ -331,7 +331,7 @@ export class MusicPlayerPage {
             );
           }
         );
-      alert('download complete: ' + entry.toURL());
+      // alert('download complete: ' + entry.toURL());
     }, (err) => {
       // handle error
       console.log(err);

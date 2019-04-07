@@ -56,6 +56,22 @@ export class SeeAllPage implements OnInit {
     else if(this.type === 'originals'){
       this.setOriginals();
     }
+    else if (this.type === 'pulicplaylist'){
+      this.getPublicPlaylist();
+    }
+  }
+
+  getPublicPlaylist(){
+    this.api.getAllSongs()
+    .pipe(map(actions => actions.map(a =>{
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+      .subscribe(res =>{
+        this.songs = res;
+        this.listSongs = this.songs.filter(data => this.data.songs.indexOf(data.did) > -1);
+      })
   }
 
   setNewVideos(){
