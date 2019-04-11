@@ -9,6 +9,9 @@ import { ModalService } from '../../services/ModalService';
 import { ApiProvider } from '../../providers/api/api';
 import { InAppPurchase2, IAPProduct } from '@ionic-native/in-app-purchase-2';
 
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
+import { HelperProvider } from '../../providers/helper/helper';
+
 
 @IonicPage()
 @Component({
@@ -19,6 +22,8 @@ export class CardSelectionPage {
   purchase;
   amount: number;
   type;
+  coupons; 
+
   public product: any = {
     name: 'Music app',
     appleProductId: '1234',
@@ -30,7 +35,9 @@ export class CardSelectionPage {
     public modalService: ModalService,
     private api: ApiProvider,
     private platform: Platform,
-    private store: InAppPurchase2
+    private store: InAppPurchase2,
+    private payPal: PayPal,
+    private helper: HelperProvider
   ) {
     this.purchase = this.navParams.get('purchase');
   }
@@ -53,6 +60,11 @@ export class CardSelectionPage {
         this.purchase = res;
         console.log(res);
         this.amount = this.purchase.amount;
+      })
+    
+    this.api.getAllCoupons()
+      .subscribe(res => {
+        this.coupons = res;
       })
 
   }
@@ -153,6 +165,78 @@ export class CardSelectionPage {
     } catch (err) {
       console.log('Error Ordering ' + JSON.stringify(err));
     }
+  }
+
+  paypalPurchase(){
+    this.payPal.init({
+      PayPalEnvironmentProduction: 'AWV1hMZ_7B57aZcpfmh0JcgICoy81LV8UqNF_Wdl6dBy_Grx_TuMUyYa_Cq16RKZa_uZiayfh3gQy61P',
+      PayPalEnvironmentSandbox: 'AYAI18UnSg3A0Pa-oK8HbcrDUW_A1xoPCEN0ZIx7SqNcSDlVsC6J_wvGHc-aRhn5hiRnKA0FLawGlrQV'
+    }).then(() => {
+      // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
+      this.payPal.prepareToRender('PayPalEnvironmentProduction', new PayPalConfiguration({
+        // Only needed if you get an "Internal Service Error" after PayPal login!
+        //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
+      })).then(() => {
+        let payment = new PayPalPayment(this.amount.toString(), 'USD', 'Description', 'sale');
+        this.payPal.renderSinglePaymentUI(payment).then((res) => {
+          alert(JSON.stringify(res))
+          // Successfully paid
+    
+          // Example sandbox response
+          //
+          // {
+          //   "client": {
+          //     "environment": "sandbox",
+          //     "product_name": "PayPal iOS SDK",
+          //     "paypal_sdk_version": "2.16.0",
+          //     "platform": "iOS"
+          //   },
+          //   "response_type": "payment",
+          //   "response": {
+          //     "id": "PAY-1AB23456CD789012EF34GHIJ",
+          //     "state": "approved",
+          //     "create_time": "2016-10-03T13:33:33Z",
+          //     "intent": "sale"
+          //   }
+          // }
+        }, (err) => {
+          alert(JSON.stringify(err))
+          // Error or render dialog closed without being successful
+        });
+      }, (err) => {
+        alert(JSON.stringify(err))
+
+        // Error in configuration
+      });
+    }, (err) => {
+      alert(JSON.stringify(err))
+
+      // Error in initialization, maybe PayPal isn't supported or something else
+    });
+  }
+
+  myCoupon;
+
+  addCoupon(){
+    let func = (res) =>{
+      if(res.data){
+        let x = res.data;
+        let Today = Date.now();
+        let check: Array<any>;
+        check = this.coupons.filter(data => data.name === x);
+        if(check.length > 0){
+          let date = new Date(check[0].data.toDate());
+          if(date.getTime() > Today)
+              this.myCoupon = check;
+          else
+          this.helper.presentToast('Coupon Expired');
+        }
+        else{
+          this.helper.presentToast('Coupon Not Valid');
+        }
+      }
+    };
+    this.helper.showAlertGeneric('Coupons','Add a coupon','Enter Coupon','Submit',func);
   }
 
 }

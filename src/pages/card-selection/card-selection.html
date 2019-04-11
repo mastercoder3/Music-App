@@ -88,7 +88,7 @@
 
     <div class="main-grids safe-area">
       <div class="inner">
-        <button class="paypal">
+        <button class="paypal" (click)="paypalPurchase()" >
           <svg width="20" height="24" viewBox="0 0 20 24">
             <g fill="none" fill-rule="evenodd">
               <path d="M-17-15h53v53h-53z"></path>
@@ -101,6 +101,11 @@
               <span>Continue on Paypal</span>
         </button>
       </div>
+    </div>
+    <div padding>
+      <h5 style="color: white;">Coupon:</h5>
+      <button ion-button style="background: white; color: red; border-color: white; width: 100%;"
+      (click)="addCoupon()"><ion-icon name="log-out"></ion-icon>Add</button>
     </div>
   </div>
 </ion-content>

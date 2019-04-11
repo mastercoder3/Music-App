@@ -15,6 +15,9 @@ import { Observable } from 'rxjs/Observable';
 
 import { GooglePlus } from '@ionic-native/google-plus';
 
+
+
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -47,7 +50,6 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-   
   }
 
   signup(){
@@ -194,5 +196,6 @@ export class LoginPage {
   loginWithGoogle(){
     this.nativeGoogleLogin();
   }
+
 
 }

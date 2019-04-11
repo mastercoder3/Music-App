@@ -233,4 +233,8 @@ export class ApiProvider {
     return this.afs.doc('payments/amount').valueChanges();
   }
 
+  getAllCoupons(){
+    return this.afs.collection('payments').valueChanges();
+  }
+
 }

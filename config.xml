@@ -112,4 +112,5 @@
         <variable name="BILLING_KEY" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApnTmXBdhAwRJI8Z+k6KkyMVQIZhi5L82LVECGgoHu68wt1gDIJDaUKdxCBjkgpB5v+lIDBqI0poSwxyWhX9330UphNkRxIo/jRDPgJs3LMYsOUBdi6b27r44++Q1+2W86NevqyG2V+g2wiHNtjfe1G2bqIx6ipW8Qv446lTbfyLa4YGKTFIemGpkr4kVvRzPnzLQdRg2BakLZYOi9QsRv+JaAIlpaRiIrjCmp31zl+Tu7hiNPQHGbEWBsKE70R9Y+cf8zBUrDQnr0vLBVUI/6VwqTMPc4Cs1Mz8V1g1eoRxy+yxFUtmw/fPJG8+9afbZRQepTvlMEw1fSfrn0VzjNQIDAQAB" />
     </plugin>
     <engine name="android" spec="^7.1.4" />
+    <plugin name="com.paypal.cordova.mobilesdk" spec="3.5.0" />
 </widget>
