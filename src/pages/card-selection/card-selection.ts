@@ -218,16 +218,20 @@ export class CardSelectionPage {
   myCoupon;
 
   addCoupon(){
-    let func = (res) =>{
+    let myfunc = (res) =>{
       if(res.data){
         let x = res.data;
         let Today = Date.now();
         let check: Array<any>;
         check = this.coupons.filter(data => data.name === x);
         if(check.length > 0){
-          let date = new Date(check[0].data.toDate());
-          if(date.getTime() > Today)
-              this.myCoupon = check;
+          let date = new Date(check[0].date.toDate());
+          if(date.getTime() > Today){
+            this.myCoupon = check[0];
+            this.helper.presentToast('Coupon Added!');
+            let discountAmount = (this.myCoupon.discount * this.amount) / 100;
+            this.amount = this.amount - discountAmount;
+          }
           else
           this.helper.presentToast('Coupon Expired');
         }
@@ -236,7 +240,8 @@ export class CardSelectionPage {
         }
       }
     };
-    this.helper.showAlertGeneric('Coupons','Add a coupon','Enter Coupon','Submit',func);
+   const alert =  this.helper.showAlertGeneric('Coupons','Add a coupon','Enter Coupon','Submit',myfunc);
+   alert.present();
   }
 
 }
