@@ -54,9 +54,8 @@
 
                       <div
                         class="player-song-control"
-                        *ngIf="player.exist"
-                      >
-                        <div class="player-command">
+                        *ngIf="player.exist">
+                        <div class="player-command" style="margin-left:-40px;">
                           <button
                             class="mini-prev prev"
                             (click)="player.previous()"

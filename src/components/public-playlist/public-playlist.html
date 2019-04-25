@@ -10,7 +10,7 @@
       <div class="inner">
         <div class="icon"></div>
 
-        <h2 >Public Playlists</h2>
+        <h2 >Handpicked Playlists</h2>
         <div class="see-all">
           <p><a></a></p>
         </div>
@@ -23,26 +23,26 @@
     <ion-row>
       <ion-col col-12>
           <ion-slides slidesPerView="2">
-  
+
               <ion-slide  *ngFor="let item of playlist; let i = index"  slide-style="style1" [ngStyle]="{'margin-left': i>0 ? '10px' : '0px'}"
                   (click)="openSeeAllPage(item,i)">
                   <div class="slide">
                       <div class="img-inner-wrapper">
                         <img
                           src="assets/imgs/album.jpg"
-                          style="border-radius: 9px; width: 150px; height: 150px;"
+                          style="width: 150px; height: 150px;"
                         />
-            
-                        <h2 style="color: white">{{ item?.title}}</h2>
-            
+
+                        <h2 style="color: white; font-size: 18px !important;">{{ item?.title}}</h2>
+
                         <!-- <cite class="author">
                           <a style="color: rgb(189, 189, 189) !important; text-decoration: none; font-style: normal;">{{ item?.oartist }}</a>
                         </cite> -->
                       </div>
                     </div>
               </ion-slide>
-            
-            
+
+
             </ion-slides>
       </ion-col>
     </ion-row>

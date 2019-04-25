@@ -1,3 +1,4 @@
+
 <ion-content>
   <div class="container">
     <div class="wrapper">
@@ -29,7 +30,14 @@
                 <header>
                   <div class="main-grids safe-area">
                     <div class="inner">
-                      <h2>Browse</h2>
+
+                      <ion-buttons left>
+                            <button ion-button icon-only menuToggle  style="color: white; font-size: 20px !important; position: fixed; top: 20%;">
+                              <ion-icon name="menu"></ion-icon>
+                            </button>
+                          </ion-buttons>
+
+                      <h2 style="margin-left: 20%">Browse</h2>
 
                       <button
                         (click)="openSearch()"
@@ -47,8 +55,8 @@
                 <most-played></most-played>
                 <br>
 
-                <recommended></recommended>
-                <br>
+                <!-- <recommended></recommended>
+                <br> -->
 
                 <originals></originals>
                 <br>

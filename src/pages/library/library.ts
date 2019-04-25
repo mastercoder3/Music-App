@@ -70,7 +70,7 @@ export class LibraryPage {
     this.type = localStorage.getItem('type');
     this.getData();
     this.configurePurchasing();
-    
+
   }
 
   configurePurchasing() {
@@ -175,7 +175,7 @@ export class LibraryPage {
         this.user = res;
         console.log(res);
       })
-    
+
     this.api.getFollowers(localStorage.getItem('uid'))
       .pipe(map(actions => actions.map(a => {
         const data =a.payload.doc.data();
@@ -201,7 +201,7 @@ export class LibraryPage {
             this.nfollowing = this.following[0].users.length;
         })
       }
-      
+
       if(this.type === 'artist'){
         this.api.getArtistTracks(localStorage.getItem('uid'))
         .subscribe(res => {
@@ -214,7 +214,7 @@ export class LibraryPage {
               this.views = this.views + a.views;
             });
           }
-           
+
         })
       }
   }
@@ -252,12 +252,12 @@ export class LibraryPage {
   takePhoto(source, val? : string){
     if(source === 'camera'){
       this.sourcex =this.camera.PictureSourceType.CAMERA;
-      
+
     }else if(source === 'library'){
       this.sourcex =this.camera.PictureSourceType.PHOTOLIBRARY;
 
     }
-    
+
       const options: CameraOptions = {
         sourceType: this.sourcex,
         quality: 30,
@@ -271,10 +271,13 @@ export class LibraryPage {
 
       this.base64Image = 'data:image/jpeg;base64,' + imageData;
 
-      if(val !== ''){
+      if(val){
         this.uploadAlbum(val);
       }
- 
+      else {
+        this.upload();
+      }
+
       }, (err) => {
       // Handle error
       console.log(err);
@@ -296,8 +299,12 @@ export class LibraryPage {
   }
 
   upload() {
-
-    this.ref = this.fireStorage.ref(`users/${this.user.imageId}`);
+    let id=0;
+    if(!this.user.imageId)
+        id = Math.floor(Date.now() / 1000);
+    else
+     id = this.user.imageId;
+    this.ref = this.fireStorage.ref(`users/${id.toString()}`);
     let task = this.ref.putString(this.base64Image, 'data_url');
     task.snapshotChanges()
       .pipe(finalize(() => {
@@ -311,9 +318,10 @@ export class LibraryPage {
   }
 
   updateUser(){
+    alert(JSON.stringify(this.user));
     this.api.updateUser(localStorage.getItem('uid'),this.user)
       .then(res=>{
-        
+
       }, err =>{
         this.helper.presentToast(err.message);
       })
@@ -346,9 +354,9 @@ export class LibraryPage {
     let myfunc1 = () => {
       this.takePhoto('camera', name);
     };
-    
+
     this.helper.presentActionSheet('Choose An Image To Continue.', 'Gallery','Camera',myfunc,myfunc1)
-  
+
   }
 
   makeAlbum(url,val){
@@ -387,11 +395,11 @@ export class LibraryPage {
             }, err =>{
               console.log('Error while updating password');
             })
-          } else { 
+          } else {
               console.log(user)
           }
         });
-      
+
     }
     let x =    this.helper.showPassword(func);
     x.present();

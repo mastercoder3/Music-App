@@ -29,7 +29,7 @@
   <div style="position: relative; top: 8%;">
     <div class="container-album-cover big-player">
       <div class="main-grids grid-cover">
-        <div class="album-cover">
+        <div class="album-cover" style="width: 250px !important; height: 250px !important;">
           <img
             src="{{
               song?.imageURL || 'assets/imgs/album.jpg'
@@ -67,7 +67,7 @@
      <ion-row>
        <ion-col col-12>
          <h2 style="color:white; text-align: center; padding-left: 30px;">{{ (song?.title.length > 15) ? (song?.title | slice:0:15) + '...' : (song?.title) }}
-          <!-- <i class="far fa-trash-alt" aria-hidden="true" style="color:white; font-size: 1.3em; 
+          <!-- <i class="far fa-trash-alt" aria-hidden="true" style="color:white; font-size: 1.3em;
           text-align: right !important; float: right;" (click)="delete()" ></i> -->
         </h2>
         <h6 style="text-align: center; color: rgb(105, 105, 105);">{{song?.oartist}}</h6>
@@ -84,7 +84,7 @@
              style="color: white; font-size: 4em !important;" (click)="play()"></i>
             <i class="fas fa-pause-circle" *ngIf="player.songPlaying"
              style="color: white; font-size: 4em !important;" (click)="pause()"></i>
-            <ion-icon name="fastforward"  style="color: white; font-size: 2.2em; position: relative; top: -10px; left: 5px;;" 
+            <ion-icon name="fastforward"  style="color: white; font-size: 2.2em; position: relative; top: -10px; left: 5px;;"
             (click)="next()"></ion-icon>
           </h4>
 
@@ -96,6 +96,6 @@
   </div>
 
   </div>
- 
+
 
 </ion-content>

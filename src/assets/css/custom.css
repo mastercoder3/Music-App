@@ -230,7 +230,7 @@ body[device-size="standard"] .swiper-padding-left {padding-left: 13px;}
 
 	/* Status Bar con blur */
 #status-bar.ios-topnavbar-bg {background: rgba(18, 8, 16, .9); -webkit-backdrop-filter: saturate(100%) blur(13px); backdrop-filter: saturate(100%) blur(13px); /*background: rgba(18, 8, 16, .41); */}
-/* Status Bar Solo trasparente 
+/* Status Bar Solo trasparente
 #ios-status-bar.ios-topnavbar-bg {background: rgba(207,39,126,.66);}
 */
 #status-bar {position: fixed; width: 100%; z-index: 10000; opacity: 0; visibility: hidden; transition: all .3s ease-in-out;}
@@ -672,12 +672,12 @@ body[device-size="iphoneX"] .headers[header-type="standard"][header-style="style
 .headers[header-title-style="right"] h2 {text-align: right;}
 
 
-.headers[header-icon-style="menu"] .user-icon, 
+.headers[header-icon-style="menu"] .user-icon,
 .headers[header-icon-style="user"] .menu-icon,
-.headers[header-icon-style="menu"] .options-icon, 
-.headers[header-icon-style="menu"] .options-icon, 
-.headers[header-icon-style="user"] .options-icon, 
-.headers[header-icon-style="user"] .options-icon, 
+.headers[header-icon-style="menu"] .options-icon,
+.headers[header-icon-style="menu"] .options-icon,
+.headers[header-icon-style="user"] .options-icon,
+.headers[header-icon-style="user"] .options-icon,
 .headers[header-icon-style="options"] .user-icon,
 .headers[header-icon-style="options"] .menu-icon,
 .headers[header-icon-style="options"] .addto-icon,
@@ -799,10 +799,10 @@ body[device-size="iphoneX"] .headers[header-type="back"][header-style="style6"] 
 .mobile body[device-size="iphoneX"] .headers[header-type="back"][header-style="style6"],
 .tablet body[device-size="iphoneX"] .headers[header-type="back"][header-style="style6"] {padding-top: 55px!important;}
 
-.mobile body[device-size="iphoneSE"] .headers[header-type="back"][header-style="style6"], 
+.mobile body[device-size="iphoneSE"] .headers[header-type="back"][header-style="style6"],
 .tablet body[device-size="iphoneSE"] .headers[header-type="back"][header-style="style6"] {padding-top: 25px!important;}
 
-.mobile body[device-size="standard"] .headers[header-type="back"][header-style="style6"], 
+.mobile body[device-size="standard"] .headers[header-type="back"][header-style="style6"],
 .tablet body[device-size="standard"] .headers[header-type="back"][header-style="style6"] {padding-top: 25px!important;}
 
 .special-scrolling.header-show .headers[header-type="back"][header-style="style3"] .album-cover,
@@ -873,7 +873,7 @@ body[device-size="iphoneX"] .headers[header-type="standard"] header,
 body[device-size="iphoneX"] .headers[header-type="music-player"] header {position:relative; padding-top: 5px;}
 
 .mobile body[device-size="iphoneX"] .headers[header-type="back"] header,
-.tablet body[device-size="iphoneX"] .headers[header-type="back"] header, 
+.tablet body[device-size="iphoneX"] .headers[header-type="back"] header,
 .mobile body[device-size="iphoneX"] .headers[header-type="standard"] header,
 .tablet body[device-size="iphoneX"] .headers[header-type="standard"] header {position:relative; padding-top: 10px;}
 .mobile body[device-size="iphoneX"] .headers[header-type="music-player"] header,
@@ -932,7 +932,7 @@ body[device-size="iphoneX"] .headers[header-type="music-player"][header-style="s
 .searches.essential-search[searchbar-style="style2"] .search-form-container .searchbar input[type=search] {height: 36px;background: transparent;outline: 0;border-radius: 0;padding-left: 40px;}
 .searches.essential-search[searchbar-style="style2"] .divider {height: 4px; background: rgba(255, 255, 255, 0.33); border-radius: 100px; margin-top: -1px; transition: all .3s ease-in-out;}
 .searches.essential-search[searchbar-style="style2"] .search-form-container .searchbar input[type=search]:focus,
-.searches.essential-search[searchbar-style="style2"] .search-form-container .searchbar.searchbar-not-empty input[type=search] {-webkit-text-fill-color: #fff;} 
+.searches.essential-search[searchbar-style="style2"] .search-form-container .searchbar.searchbar-not-empty input[type=search] {-webkit-text-fill-color: #fff;}
 .searches.essential-search[searchbar-style="style2"] .search-form-container .searchbar input[type=search]:focus ~ .divider,
 .searches.essential-search[searchbar-style="style2"] .search-form-container .searchbar.searchbar-not-empty input[type=search] ~ .divider {background: rgba(255, 255, 255, 1);}
 .searches.essential-search[searchbar-style="style2"] .searchbar-cancel {margin-top: -12px;}
@@ -1052,7 +1052,7 @@ body[device-size="iphoneX"] .mixed-swiper {padding-top: 110px;}
 .square-swiper .swiper-slide .blur {position: absolute; bottom: 17px; right: 13px; width: 79px; height: 25px; border-radius: 7px; /* -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); */ overflow: hidden;}
 .mac .square-swiper .swiper-slide .blur {-webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px);}
 
-.square-swiper {padding-bottom: 63px;} 
+.square-swiper {padding-bottom: 63px;}
 .square-swiper .swiper-slide img {display: block; border-radius: 12px; cursor: pointer;}
 .square-swiper .swiper-slide h2 {margin: 17px 0 0 1px; font-size: 15px; font-weight: 500; line-height: 1; letter-spacing: .2px; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .square-swiper .swiper-slide .author a {display: block; margin: 7px 0 0 1px; font-size: 15px; font-weight: 500; line-height: 1; letter-spacing: .3px; color: rgba(255, 255, 255, .52); font-style: normal;}
@@ -1311,7 +1311,7 @@ body[device-size="iphoneSE"] .user-playlist-mini-thumb .first-slide {margin-righ
 .user-playlist-mini-thumb .gradient {position: absolute;top: 0;width: 100%;height: 100%;border-radius: 13px;background-image: linear-gradient(331deg, #ffad0b, #ff27a3);z-index: 1;opacity: 0.92;}
 body[device-size="iphoneSE"] .user-playlist-mini-thumb .gradient {height: 115px;}
 .user-playlist-mini-thumb .first-slide .slide {width: 135px; height: 135px;}
-.user-playlist-mini-thumb .first-slide .slide img {display: block;border-radius: 13px;} 
+.user-playlist-mini-thumb .first-slide .slide img {display: block;border-radius: 13px;}
 body[device-size="iphoneSE"] .user-playlist-mini-thumb .first-slide .slide {width: 115px; height: 115px;}
 .user-playlist-mini-thumb .img-play p {position: absolute; z-index: 2; top: 22px; left: 19px; margin: 0; line-height: 1; font-size: 18px; font-weight: bold; letter-spacing: .4px; color: #fff; text-shadow: 0 6px 20px rgba(0, 0, 0, 0.38);}
 .user-playlist-mini-thumb .other-slide .swiper-slide:first-of-type {margin: 0; margin-bottom: 17px;}
@@ -1347,7 +1347,7 @@ body[device-size="iphoneSE"] .videos-mini-thum {padding-bottom: 43px;}
 .videos-mini-thumb .gradient {position: absolute; top: 0; width: 100%; height: 100%; border-radius: 13px; background-image: linear-gradient(316deg, #ff0b46, #ff2799); z-index: 1; opacity: 0.93;}
 body[device-size="iphoneSE"] .videos-mini-thumb .gradient {height: 110px;}
 .videos-mini-thumb .first-slide .slide {width: 129px; height: 129px;}
-.videos-mini-thumb .first-slide .slide img {display: block; border-radius: 13px;} 
+.videos-mini-thumb .first-slide .slide img {display: block; border-radius: 13px;}
 body[device-size="iphoneSE"] .videos-mini-thumb .first-slide .slide {width: 110px; height: 110px;}
 .videos-mini-thumb .img-play p {position: absolute; z-index: 2; top: 22px; left: 19px; margin: 0; line-height: 1; font-size: 18px; font-weight: bold; letter-spacing: .4px; color: #fff; text-shadow: 0 6px 20px rgba(0, 0, 0, 0.38);}
 .videos-mini-thumb .other-slide .swiper-slide:first-of-type {margin: 0;margin-bottom: 9px;}
@@ -1675,7 +1675,7 @@ body[device-size="iphoneX"] .write-reviews-container {padding-top: 33px;}
 .write-reviews-container[write-reviews-style="style2"] {padding-top: 13px;}
 body[device-size="iphoneX"] .write-reviews-container[write-reviews-style="style2"] {padding-top: 25px;}
 .write-reviews-container[write-reviews-style="style2"] .stars.big {position:relative; top: 1px;}
-.write-reviews-container[write-reviews-style="style2"] .stars.big:not(:checked) > label, .stars.big:not(:checked) > span {width: 22px; height: 22px; margin: 0}  
+.write-reviews-container[write-reviews-style="style2"] .stars.big:not(:checked) > label, .stars.big:not(:checked) > span {width: 22px; height: 22px; margin: 0}
 .write-reviews-container[write-reviews-style="style2"] .stars.big span:before {content: ""; background-image: url("../images/others/stars/large/star_empty.svg"); background-size: cover; position: absolute; top: 0; width: 22px; height: 22px;}
 .write-reviews-container[write-reviews-style="style2"] .stars.big span.active:before {content: ""; background-image: url("../images/others/stars/large/star_full.svg"); background-size: cover;position: absolute;top: 0;width: 22px;height: 22px;}
 .write-reviews-container[write-reviews-style="style2"] .album-cover {width: 45px; height: 45px; border-radius: 100px; float: left; margin-right: 23px;}
@@ -1693,7 +1693,7 @@ body[device-size="iphoneX"] .stars-voting-title {padding-top: 170px;}
 .check-stars-container {margin-top: 43px;}
 body[device-size="iphoneX"] .check-stars-container {margin-top: 59px;}
 
-.mobile .stars-voting-title {padding-top: 80px;} 
+.mobile .stars-voting-title {padding-top: 80px;}
 .mobile  .check-stars-container {margin-top: 23px;}
 
 .stars-form-field form {padding: 19px 0 15px; text-align: center; direction: rtl;}
@@ -2043,7 +2043,7 @@ body[device-size="standard"] .header-manage-card p {font-size: 16px;}
 
 .options-container-overlay.manage-card-overlay {background: rgba(18, 8, 16, 1);}
 /*
-.options-container-overlay.manage-card-overlay .gradient {position:fixed; bottom: 0; width: 100%; height: 200px; z-index: 1; 
+.options-container-overlay.manage-card-overlay .gradient {position:fixed; bottom: 0; width: 100%; height: 200px; z-index: 1;
 background: rgba(0,0,0,0);
 background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.72) 46%, rgba(0,0,0,1) 64%);
 background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(46%, rgba(0,0,0,0.72)), color-stop(64%, rgba(0,0,0,1)));
@@ -2401,7 +2401,7 @@ body[device-size="iphoneSE"] .page.playlist .big-player-queue-container .title-a
 body[device-size="standard"] .page.playlist .big-player-queue-container .title-author {padding-top: 0;}
 body[device-size="standard"] .page.playlist .big-player-queue-container .title-author .by {margin-top: 0;}
 
-.page.playlist .big-player-queue-container .container-album-cover .album-cover img {border-radius: 18px; box-shadow: 0 33px 58px 0 rgba(0, 0, 0, .08);}
+.page.playlist .big-player-queue-container .container-album-cover .album-cover img { box-shadow: 0 33px 58px 0 rgba(0, 0, 0, .08);}
 .page.playlist .section-titles[section-type="playlists-large"] {padding-top: 36px;}
 
 .page.playlist .section-titles[section-type="playlists"] {padding-top: 36px;}
@@ -2832,7 +2832,7 @@ body[device-size="iphoneX"] .messages-container-title {margin-top: 158px;}
 .player-audio-min.mini button.mini-next {position:relative; right: -3px; background: url(../images/mini-player/next.svg) no-repeat 49% center;}
 
 .audiojs .pause,
-.audiojs.loading .play-pause {background: url("../images/mini-player/pause.svg") no-repeat 49% center;}       
+.audiojs.loading .play-pause {background: url("../images/mini-player/pause.svg") no-repeat 49% center;}
 .audiojs .play {background: url("../images/mini-player/play.svg") no-repeat 55% center;}
 
 .player-audio-min.mini .play-pause {margin-left: 8px; margin-right: 6px;}
@@ -2856,7 +2856,7 @@ body[device-size="iphoneX"] .mini-player .player-command {margin-top: 32px; padd
 
 .audiojs .scrubber {position: relative; width: 100%; background: rgba(255, 255, 255, .43); height: 3px; margin: 0; border-left: 0; border-bottom: 0; /*overflow: hidden;*/}
 .audiojs .loaded {position: absolute; width: 100%; background: rgba(255, 255, 255, .43); height: 3px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; z-index: 1}
-.audiojs .progress {position: absolute; width: 100%; background-color: #00aaff; height: 3px; border-radius: 100px;} 
+.audiojs .progress {position: absolute; width: 100%; background-color: #00aaff; height: 3px; border-radius: 100px;}
 
 .player-audio-min.mini .audiojs .scrubber {width: 72.9%; top: 16px; left: 86px; z-index: 1001; border-radius: 100px;}
 .player-audio-min.mini .audiojs .loaded {display: none}
@@ -2865,7 +2865,7 @@ body[device-size="iphoneX"] .mini-player .player-command {margin-top: 32px; padd
 .audiojs .play,
 .playing .pause,
 .loading .loading,
-.error .error-message {display: block;}    
+.error .error-message {display: block;}
 
 .audiojs .time,
 .player-audio-min.hide,
@@ -3059,7 +3059,7 @@ body[device-size="standard"] .player-audio-min.big[music-player-style="style3"] 
 
 .album-cover-blur img {position: relative; top: -238px; opacity: .42; -webkit-filter: blur(50px); filter: blur(50px);}
 
-.container-album-cover .album-cover img {width: 100%; height: auto; display: block; z-index: 1; border-radius: 31px; box-shadow: 0 28px 98px 0 rgba(0, 0, 0, 0.5);}
+.container-album-cover .album-cover img {border-radius: 31px; width: 100%; height: auto; display: block; z-index: 1; box-shadow: 0 28px 98px 0 rgba(0, 0, 0, 0.5);}
 
 .player-audio-min.big[music-player-style="style1"] .container-album-cover {padding-top: 109px; transition: all .3s ease-in-out;}
 .player-audio-min.big[music-player-style="style2"] .container-album-cover {padding-top: 107px; transition: all .3s ease-in-out;}
@@ -3077,7 +3077,7 @@ body[device-size="iphoneX"] .player-audio-min.big[music-player-style="style3"] .
 
 .player-audio-min.big[music-player-style="style2"] .audiojs .scrubber {height: 6px; background: transparent; margin: 0; border-left: 0; border-bottom: 0; border-radius: 0; z-index: 1001;}
 .player-audio-min.big[music-player-style="style2"] .audiojs .loaded {height: 5px; border-top: 1px solid rgba(255, 255, 255, .13); background: rgba(255, 255, 255, .16); opacity: 1; width: 100%!important;}
-.player-audio-min.big[music-player-style="style2"] .audiojs .progress {height: 6px; box-shadow: var(--theme-color-shadow, #ff0087); opacity: 1; z-index: 2; border-radius: 0; border-top-right-radius: 100px; border-bottom-right-radius: 100px;} 
+.player-audio-min.big[music-player-style="style2"] .audiojs .progress {height: 6px; box-shadow: var(--theme-color-shadow, #ff0087); opacity: 1; z-index: 2; border-radius: 0; border-top-right-radius: 100px; border-bottom-right-radius: 100px;}
 
 .player-audio-min.big[music-player-style="style2"] .audio-player-content .time {display: block;position:relative;top: 10px;}
 .player-audio-min.big[music-player-style="style2"] .audio-player-content .time .played,
@@ -3141,7 +3141,7 @@ body[device-size="iphoneX"] .player-audio-min.big[music-player-style="style3"] .
 .player-audio-min.big[music-player-style="style1"] .audiojs .loaded,
 .player-audio-min.big[music-player-style="style3"] .audiojs .loaded {display: none; height: 5px; background: rgba(255, 255, 255, .16); opacity: 1;}
 .player-audio-min.big[music-player-style="style1"] .audiojs .progress,
-.player-audio-min.big[music-player-style="style3"] .audiojs .progress {width: 65%; height: 5px; opacity: 1; z-index: 2; border-radius: 100px;} 
+.player-audio-min.big[music-player-style="style3"] .audiojs .progress {width: 65%; height: 5px; opacity: 1; z-index: 2; border-radius: 100px;}
 
 .player-audio-min.big[music-player-style="style1"] .audio-player-content .time,
 .player-audio-min.big[music-player-style="style3"] .audio-player-content .time {display: block; position:relative; top: 45px;}
@@ -3737,7 +3737,7 @@ body[device-size="iphoneX"] .player-audio-min.big.active[music-player-style="sty
 
 
 .video-player-comment-container {margin-top: 32px; margin-bottom: 82px;}
-.video-player-comment-list {position: relative; margin: 0 auto; text-align: center; padding: 40px 24px 68px; 24px; border-radius: 16px; background: #fff;}
+.video-player-comment-list {position: relative; margin: 0 auto; text-align: center; padding: 40px 24px 68px; border-radius: 16px; background: #fff;}
 .video-player-comment-list > div {margin-top: 38px; text-align: left; transform: scale(1); transition: all .3s ease-in-out;}
 .video-player-comment-list > div:first-of-type {margin-top: 0;}
 .video-player-comment-list .comment {padding: 0; margin: 0; clear: both; transition: all .3s ease-in-out;}
@@ -3760,7 +3760,7 @@ body[device-size="iphoneX"] .player-audio-min.big.active[music-player-style="sty
 .video-playlist-control-player {height: 34px; margin-top: 13px;}
 .video-playlist-control-player .inner {position: relative;}
 .video-playlist-control-player .inner .playlist-icon {display: inline-flex; vertical-align: top; height: 34px; align-items: center;}
-.video-playlist-control-player .inner .now-song {position:relative; top: 0; left: 50%; display: inline-flex; transform: translate(-100%,0);justify-content: center; align-items: center;width: 57px;height: 34px;border-radius: 12px;background: #30272e;font-size: 11px;font-weight: 500;letter-spacing: .3px;text-transform: uppercase;color: #fff;} 
+.video-playlist-control-player .inner .now-song {position:relative; top: 0; left: 50%; display: inline-flex; transform: translate(-100%,0);justify-content: center; align-items: center;width: 57px;height: 34px;border-radius: 12px;background: #30272e;font-size: 11px;font-weight: 500;letter-spacing: .3px;text-transform: uppercase;color: #fff;}
 .video-playlist-control-player .inner .now-song p {position:relative; top: 1px;}
 .video-playlist-control-player .inner .control-player {position: absolute; right: 0; height: 37px; display: inline-block;}
 
@@ -3965,7 +3965,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 	.video-js .vjs-control.vjs-paused {position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);height: 56px!important;width: 56px!important;background: url("../images/music-player/white/play.svg") no-repeat 0 0!important;box-shadow: 0 4px 48px 0 rgba(0, 0, 0, 0.38);-webkit-border-radius: 100px;-moz-border-radius: 100px;border-radius: 100px;z-index:1;}
 	.video-js.vjs-fullscreen .vjs-control.vjs-playing,
 	.video-js.vjs-fullscreen .vjs-control.vjs-paused {top: 50%;left: 50%;transform: translate(-50%,-50%);}
-	body[device-size="iphoneX"] .video-js .vjs-control.vjs-playing 
+	body[device-size="iphoneX"] .video-js .vjs-control.vjs-playing
 	body[device-size="iphoneX"] .video-js .vjs-control.vjs-paused {top: 50%;left: 50%;transform: translate(-50%,-50%);}
 	.video-js .vjs-big-play-button {font-size: 3.6em;line-height: 1.5em;height: 56px;width: 56px;display: block;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);padding: 0;cursor: pointer;opacity: 1;color: #000;background: url("../images/music-player/white/play.svg") no-repeat 0 0!important;box-shadow: 0 4px 48px 0 rgba(0, 0, 0, 0.38);z-index:1;-webkit-border-radius: 100px;-moz-border-radius: 100px;border-radius: 100px;-webkit-transition: all 0.4s;-moz-transition: all 0.4s;-o-transition: all 0.4s;transition: all 0.4s;}
 	.vjs-big-play-centered .vjs-big-play-button {top: 50%;left: 50%;transform: translate(-50%,-50%);margin-top: -0.75em;margin-left: -1.5em;}
@@ -4237,7 +4237,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 	.toolbar.messagebar .toolbar-inner .textarea img {width: 23px; height: 23px; display: inline-block; pointer-events: none; vertical-align: middle;}
 	.tablet .toolbar.messagebar .toolbar-inner .textarea{width: 75%;}
 
-	.toolbar.messagebar .message-options {position:relative; margin: 0;} 
+	.toolbar.messagebar .message-options {position:relative; margin: 0;}
 	.toolbar.messagebar i.icon {cursor: pointer; z-index: 1;  transition: all .3s ease-in-out;}
 	.toolbar.messagebar.textarea-focusin i.icon {opacity: 0; visibility: hidden;}
 	.toolbar.messagebar.textarea-focusin.textarea-focusin-transition i.icon {opacity: 1; visibility: visible; transition: all .3s ease-in-out;}
@@ -4347,7 +4347,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 
 	/* 22 MEDIA QUERY */
 	/* Disattivazione Blur in Android */
-	.android #status-bar.ios-topnavbar-bg, 
+	.android #status-bar.ios-topnavbar-bg,
 	body[device-style="android"] .tabbed-menu .blur,
 	body[device-style="android"] #status-bar.ios-topnavbar-bg {background: #120810;}
 
@@ -4436,7 +4436,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 
 		.ios.mobile body[device-size="iphoneSE"] .player-audio-min.big[music-player-style="style2"] .player-command .prev {top: -1px;}
 
-		.ios.mobile body[device-size="iphoneSE"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play, 
+		.ios.mobile body[device-size="iphoneSE"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play,
 		.ios.mobile body[device-size="iphoneSE"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play.active {top: 4px;}
 		.ios.mobile body[device-size="iphoneSE"] .player-audio-min.big[music-player-style="style2"] .player-command .heart svg {position: relative; top: 0;}
 
@@ -4460,7 +4460,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 
 		.mobile .main-grids.grid-cover {margin: 0 85px;}
 		.mobile body[device-size="standard"] .main-grids.grid-cover {margin: 0 70px;}
-		
+
 
 		.mobile .mood-swiper .swiper-slide {left: 80px;}
 		.mobile .list-songs[avatar="show"] .divider {width: 272px;}
@@ -4497,7 +4497,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 		.mobile .player-audio-min.big[music-player-style="style2"] .big-player-content .title-author .author {top: -9px;}
 		.mobile .player-audio-min.big[music-player-style="style2"] .volume-content {top: 2px;margin: 4px auto 0;}
 		.mobile .player-audio-min.big[music-player-style="style2"] .volume {left: 39px; width: 129px;}
-		
+
 
 		.big-player-content .up-next-option.active {height: 100px;}
 		.player-audio-min.big[music-player-style="style2"] .scrubber-command.open.active .title-author {margin: 0 0 0 0;}
@@ -4602,7 +4602,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 
 		.ios.mobile .player-audio-min.big[music-player-style="style2"] .player-command .prev {top: -1px;}
 
-		.ios.mobile .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play, 
+		.ios.mobile .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play,
 		.ios.mobile .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play.active {top: 4px;}
 		.ios.mobile .player-audio-min.big[music-player-style="style2"] .player-command .heart svg {position: relative; top: 0;}
 
@@ -4619,7 +4619,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 	/* iPhone 7/8 */
 	@media only screen and (device-width : 375px) and (device-height : 667px) and (-webkit-device-pixel-ratio : 2) {
 
-		.mobile body[device-size="iphone8"] .main-grids.grid-cover {margin: 0 70px;}	
+		.mobile body[device-size="iphone8"] .main-grids.grid-cover {margin: 0 70px;}
 		.ios.mobile body[device-size="iphone8"] .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"] h2 {top: -12.2px;}
 		.ios.mobile body[device-size="iphone8"] .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"].now-show.review-show h2 {top: -1px;}
 		.ios.mobile body[device-size="iphone8"] .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"] .minimize {top: -2.24px;}
@@ -4659,7 +4659,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 		.mobile body[device-size="iphone8"] .player-audio-min.big.active[music-player-style="style1"] .big-player-content .up-next-option.active {margin-top: -30px;}
 
 		.ios.mobile body[device-size="iphone8"] .player-audio-min.big[music-player-style="style2"] .player-command .prev {top: -1px;}
-		.ios.mobile body[device-size="iphone8"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play, 
+		.ios.mobile body[device-size="iphone8"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play,
 		.ios.mobile body[device-size="iphone8"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play.active {top: 4px;}
 		.ios.mobile body[device-size="iphone8"] .player-audio-min.big[music-player-style="style2"] .player-command .heart svg {position: relative; top: 0;}
 
@@ -4677,7 +4677,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 	/* iPhone 6+/6s+/7+/8+ */
 	@media only screen and (device-width : 414px) and (device-height : 736px)  and (-webkit-device-pixel-ratio : 3) {
 
-		.mobile body[device-size="iphone8Plus"] .main-grids.grid-cover {margin: 0 70px;}	
+		.mobile body[device-size="iphone8Plus"] .main-grids.grid-cover {margin: 0 70px;}
 		.ios.mobile body[device-size="iphone8Plus"] .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"] h2 {top: -12.2px;}
 		.ios.mobile body[device-size="iphone8Plus"] .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"].now-show.review-show h2 {top: -1px;}
 		.ios.mobile body[device-size="iphone8Plus"] .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"] .minimize {top: -2.24px;}
@@ -4718,7 +4718,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 		.mobile body[device-size="iphone8Plus"] .player-audio-min.big.active[music-player-style="style1"] .big-player-content .up-next-option.active {margin-top: -30px;}
 
 		.ios.mobile body[device-size="iphone8Plus"] .player-audio-min.big[music-player-style="style2"] .player-command .prev {top: -1px;}
-		.ios.mobile body[device-size="iphone8Plus"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play, 
+		.ios.mobile body[device-size="iphone8Plus"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play,
 		.ios.mobile body[device-size="iphone8Plus"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play.active {top: 4px;}
 		.ios.mobile body[device-size="iphone8Plus"] .player-audio-min.big[music-player-style="style2"] .player-command .heart svg {position: relative; top: 0;}
 
@@ -4736,7 +4736,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 	/* iPhone X */
 	@media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
 
-		.mobile body[device-size="iphoneX"] .main-grids.grid-cover {margin: 0 70px;}	
+		.mobile body[device-size="iphoneX"] .main-grids.grid-cover {margin: 0 70px;}
 		.ios.mobile .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"] h2 {top: -10.2px;}
 		.ios.mobile .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"].now-show.review-show h2 {top: -1px;}
 		.ios.mobile .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"] .minimize {top: -2.24px;}
@@ -4776,7 +4776,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 		.mobile body[device-size="iphoneX"] .player-audio-min.big.active[music-player-style="style1"] .big-player-content .up-next-option.active {margin-top: -30px;}
 
 		.ios.mobile body[device-size="iphoneX"] .player-audio-min.big[music-player-style="style2"] .player-command .prev {top: -1px;}
-		.ios.mobile body[device-size="iphoneX"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play, 
+		.ios.mobile body[device-size="iphoneX"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play,
 		.ios.mobile body[device-size="iphoneX"] .player-audio-min.big[music-player-style="style2"] .player-command .playPause.play.active {top: 4px;}
 		.ios.mobile body[device-size="iphoneX"] .player-audio-min.big[music-player-style="style2"] .player-command .heart svg {position: relative; top: 0;}
 
@@ -4836,7 +4836,7 @@ body[device-size="iphoneX"] .headers[header-type="video-player"] {padding-top: 1
 	/* iPad */
 	@media only screen and (min-width : 768px) {
 
-		.tablet body[device-size="tablet"] .main-grids.grid-cover {margin: 0 70px;}	
+		.tablet body[device-size="tablet"] .main-grids.grid-cover {margin: 0 70px;}
 		.ios.tablet .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"] h2 {top: -10.2px;}
 		.ios.tablet .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"].now-show.review-show h2 {top: -1px;}
 		.ios.tablet .player-audio-min.big[music-player-style="style1"] .headers[header-type="music-player"] .minimize {top: -2.24px;}

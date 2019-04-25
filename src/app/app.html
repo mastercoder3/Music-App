@@ -1,1 +1,11 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" type="overlay">
+
+  <ion-content>
+    <div
+    style="background-image: linear-gradient(to bottom, #0C2471, #000000); height: 100%; width: 100%;">
+    </div>
+
+  </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>

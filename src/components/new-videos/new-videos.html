@@ -30,12 +30,12 @@
         (click)="videoDetailsPageService.openVideo(video)"
       >
         <div class="video-container">
-          <div class="video-avatar">
+          <div class="video-avatar" style=" border-radius: 0px !important;">
             <img
               alt="avatar"
               src="{{ video.imageURL || 'assets/imgs/album.jpg' }}"
               class="avatar"
-              style="width: 150px; height: 150px;"
+              style="width: 150px; height: 150px; border-radius: 0px !important;"
             />
 
             <div class="video-time-label">
@@ -60,6 +60,7 @@
             </p>
           </div>
         </div>
+        <br><br><br>
       </div>
     </div>
   </div>

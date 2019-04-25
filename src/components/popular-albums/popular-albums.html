@@ -9,7 +9,7 @@
     <div class="main-grids safe-area">
       <div class="inner">
         <div class="icon"></div>
-        
+
         <h2>Popular Albums</h2>
 
         <div class="see-all">
@@ -29,7 +29,7 @@
         <div class="slide album-details-page" (click)="goToAlbum(album)">
           <a>
             <div class="img-play">
-              <img src="{{ album.imageURL }}" style="width: 100px; height: 100px;" />
+              <img src="{{ album.imageURL }}" style="width: 150px; height: 150px; border-radius: 0px !important;" />
               <div class="blur"></div>
 
               <!-- <div *ngIf="album.isPurchased" class="price-label"></div>
@@ -40,7 +40,7 @@
           </a>
         </div>
 
-        <h2>{{ album.name }}</h2>
+        <h2 style="margin-left: 45px;">{{ album.name }}</h2>
 
         <cite class="author">
           <a>{{ album?.oartist }}</a>
