@@ -64,7 +64,12 @@ export class FbLoginPage {
           imageId: '',
           username: form.value.username,
           signupType: 'facebook',
-          type: 'user'
+          type: 'user',
+          premium: {
+            payed: false,
+            date: new Date(),
+            type: 'free'
+          }
     }
     this.helper.presentLoadingDefault();
     this.api.createUser(this.fbData.uid, this.data)
@@ -78,6 +83,7 @@ export class FbLoginPage {
       this.viewCtrl.dismiss();
       this.helper.presentToast('Account Created.');
       this.navCtrl.setRoot(TabsPage);
+      this.helper.setAccountType('free');
     }, err =>{
       this.formFiller = true;
       this.helper.presentToast(err.message);

@@ -33,6 +33,7 @@ export class MusicPlayerPage {
   likedsongs;
   isLiked = false;
   exist= false;
+  accountType;
 
   constructor(
     private modalCtrl: ModalController,
@@ -60,6 +61,9 @@ export class MusicPlayerPage {
     console.log('ionViewDidLoad MusicPlayerPage');  
     this.getData();
     this.resetTime();
+    this.helper.getAccountType().subscribe(res =>{
+      this.accountType = res;
+    })
   }
 
   getData(){

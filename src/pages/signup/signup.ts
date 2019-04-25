@@ -137,7 +137,12 @@ export class SignupPage {
           imageURL: '',
           imageId: '',
           username: form.value.username,
-          signupType: 'signup'
+          signupType: 'signup',
+          premium: {
+            payed: false,
+            date: new Date(),
+            type: 'free'
+          }
         }
      
         this.uploadImageId = Math.floor(Date.now() / 1000);
@@ -180,6 +185,7 @@ export class SignupPage {
             this.helper.closeLoading();
             this.helper.presentToast('Account Created.');
             this.navCtrl.setRoot(TabsPage);
+            this.helper.setAccountType('free');
           }, err =>{
             this.helper.presentToast(err.message);
             this.helper.closeLoading();

@@ -23,11 +23,12 @@ export class CardSelectionPage {
   amount: number;
   type;
   coupons; 
+  user;
 
   public product: any = {
     name: 'Music app',
     appleProductId: '1234',
-    googleProductId: 'com.kodealpha.awesong.musicapp'
+    googleProductId: 'com.awesong.musicapp.premium'
   };
 
   constructor(
@@ -44,6 +45,11 @@ export class CardSelectionPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CardSelectionPage');
+
+    this.api.getUserById(localStorage.getItem('uid'))
+      .subscribe(res =>{
+        this.user =res;
+      })
 
     if(this.platform.is('ios')){
       this.type = 'App Store'
@@ -131,12 +137,12 @@ export class CardSelectionPage {
     });
 
     this.store.when(productId).cancelled( (product) => {
-      alert('Purchase was Cancelled');
+      this.helper.presentToast('Payment Cancelled.');
     });
 
     // Overall Store Error
     this.store.error( (err) => {
-      alert('Store Error ' + JSON.stringify(err));
+      this.helper.presentToast('Could not process payment.')
     });
   }
 
@@ -161,7 +167,17 @@ export class CardSelectionPage {
       let product = this.store.get(productId);
       console.log('Product Info: ' + JSON.stringify(product));
       let order = await this.store.order(productId);
-      alert('Finished Purchase');
+      order.then(res =>{
+        this.user.premium.type = "premium";
+        this.user.premium.payed = true;
+        this.user.premium.date = new Date();
+        localStorage.setItem('accountType','premium');
+        this.helper.setAccountType('premium');
+        this.api.updateUser(localStorage.getItem('uid'),this.user);
+        this.helper.presentToast('Payment succesfull.');
+      }, err =>{
+        this.helper.presentToast('Payment Failed.');
+      })
     } catch (err) {
       console.log('Error Ordering ' + JSON.stringify(err));
     }
@@ -179,7 +195,13 @@ export class CardSelectionPage {
       })).then(() => {
         let payment = new PayPalPayment(this.amount.toString(), 'USD', 'Description', 'sale');
         this.payPal.renderSinglePaymentUI(payment).then((res) => {
-          alert(JSON.stringify(res))
+          this.user.premium.type = "premium";
+        this.user.premium.payed = true;
+        this.user.premium.date = new Date();
+        localStorage.setItem('accountType','premium');
+        this.helper.setAccountType('premium');
+        this.api.updateUser(localStorage.getItem('uid'),this.user);
+        this.helper.presentToast('Payment succesfull.');
           // Successfully paid
     
           // Example sandbox response
@@ -200,16 +222,16 @@ export class CardSelectionPage {
           //   }
           // }
         }, (err) => {
-          alert(JSON.stringify(err))
-          // Error or render dialog closed without being successful
+        this.helper.presentToast('Payment Failed');    
+              // Error or render dialog closed without being successful
         });
       }, (err) => {
-        alert(JSON.stringify(err))
+        this.helper.presentToast('Payment Failed');
 
         // Error in configuration
       });
     }, (err) => {
-      alert(JSON.stringify(err))
+      this.helper.presentToast('Payment Failed');
 
       // Error in initialization, maybe PayPal isn't supported or something else
     });

@@ -22,6 +22,7 @@ export class HelperProvider {
   private status: BehaviorSubject<string>;
   private song: BehaviorSubject<boolean>;
   private offlineData: BehaviorSubject<Array<any>>;
+  private accountType: BehaviorSubject<string>;
 
   constructor(private actionSheetCtrl: ActionSheetController,
     private toastCtrl: ToastController, private loadingCtrl: LoadingController, private http: Http, public alertCtrl: AlertController,
@@ -30,7 +31,19 @@ export class HelperProvider {
     this.status = new BehaviorSubject<string>('inactive');
     this.song = new BehaviorSubject<boolean>(false);
     this.offlineData = new BehaviorSubject<Array<any>>([]);
+    if(localStorage.getItem('accountType'))
+      this.accountType = new BehaviorSubject<string>(localStorage.getItem('accountType'));
+    else  
+      this.accountType = new BehaviorSubject<string>('');
 
+  }
+
+  getAccountType(){
+    return this.accountType.asObservable();
+  }
+
+  setAccountType(val){
+    this.accountType.next(val);
   }
 
   public getOfflineData(): Observable<Array<any>> {

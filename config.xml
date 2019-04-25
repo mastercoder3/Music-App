@@ -103,8 +103,5 @@
         <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
     </plugin>
-    <plugin name="cc.fovea.cordova.purchase" spec="7.4.3">
-        <variable name="BILLING_KEY" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3Ie3Sdw2IeRiu3JLKB1F7Dk50dWYkioWfsIb1IznlT65FBRo74jo/EnzNqXGsXvB6UczI0YtzUNT8L0ycbiRiN8riWSJZPgWHlcwoxln/yEl8t8Mqg8FgwOJj/Ej1jyz3jJn0beZreJFti7OtgKDOjY5K2WA1PKG3gyA5JXAPIWKuQkyDi2NPUMLkH+vDFF6L+O9UsS0NRacopR5P6qWWPgytpW74u24EKmOJcIJ/l2CmEPzzGDoq6a9LQ0RABCYqRCX+yk3w9dFVD7HjGZRdZ0UTHDoy1IYPJR24D+lIG9NrvmAfz2DmdWawOeCqAxKhqCiOGgT6IFsw+DK+Oj6BwIDAQAB" />
-    </plugin>
     <plugin name="com.paypal.cordova.mobilesdk" spec="3.5.0" />
 </widget>

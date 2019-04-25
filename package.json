@@ -113,10 +113,10 @@
       "cordova-plugin-x-socialsharing": {
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
       },
+      "com.paypal.cordova.mobilesdk": {},
       "cc.fovea.cordova.purchase": {
         "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3Ie3Sdw2IeRiu3JLKB1F7Dk50dWYkioWfsIb1IznlT65FBRo74jo/EnzNqXGsXvB6UczI0YtzUNT8L0ycbiRiN8riWSJZPgWHlcwoxln/yEl8t8Mqg8FgwOJj/Ej1jyz3jJn0beZreJFti7OtgKDOjY5K2WA1PKG3gyA5JXAPIWKuQkyDi2NPUMLkH+vDFF6L+O9UsS0NRacopR5P6qWWPgytpW74u24EKmOJcIJ/l2CmEPzzGDoq6a9LQ0RABCYqRCX+yk3w9dFVD7HjGZRdZ0UTHDoy1IYPJR24D+lIG9NrvmAfz2DmdWawOeCqAxKhqCiOGgT6IFsw+DK+Oj6BwIDAQAB"
-      },
-      "com.paypal.cordova.mobilesdk": {}
+      }
     },
     "platforms": [
       "android"

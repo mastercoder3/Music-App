@@ -72,14 +72,28 @@ export class LoginPage {
                   this.user = resp;
                   console.log(resp);
                   if(this.user){
-                    this.helper.closeLoading();
+                    if(this.user.type === 'artist' && this.user.isVerified === false){
+                      this.helper.closeLoading();
+                      this.helper.presentToast('Cannot Login. Please Contact Admin.');
+                      this.auth.logout();
+                    }
+                    else{
+                      this.helper.closeLoading();
                     localStorage.setItem('uid', res.user.uid);
                     localStorage.setItem('type', this.user.type);
                     this.navCtrl.setRoot(TabsPage);
                     this.auth.setPersistance();
+                    localStorage.setItem('accountType',this.user.premium.type);
+                    console.log(this.user.premium.type);
+                    this.helper.setAccountType(this.user.premium.type);
+                    }
+                    
                   }
-                  else
+                  else{ 
                     this.helper.closeLoading();
+                    this.helper.presentToast('Cannot Login.');
+                    this.auth.logout();
+                  }
               })
       }, err =>{
         this.helper.closeLoading();
@@ -116,84 +130,24 @@ export class LoginPage {
                 localStorage.setItem('uid', success.uid);
                 localStorage.setItem('type', this.temp[0].type);
                 localStorage.setItem('logintype','fb');
+                localStorage.setItem('accountType',this.temp[0].premium.type);
                 this.navCtrl.setRoot(TabsPage);
+                this.helper.setAccountType(this.temp[0].premium.type);
               }
             });
           }, err =>{
             this.helper.closeLoading();
-            alert('err')
-            alert(err.message);
+            this.helper.presentToast('Failed To Login.');
           });
     },err =>{
-      alert('error');
-      alert(JSON.stringify(err))
+      this.helper.presentToast('Failed To Login.');
     })
 
     this.facebook.logEvent(this.facebook.EVENTS.EVENT_NAME_ADDED_TO_CART);
   }
 
 
-   nativeGoogleLogin(){
-
-    // this.gplus.login({})
-    //   .then(res => {
-    //     alert('res');
-    //   }, err =>{
-    //     alert(JSON.stringify(err));
-    //   })
-
-    // return new Promise((resolve, reject) => { 
-    //   this.gplus.login({
-    //     'webClientId': '335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com',
-    //     'offline': true
-    //   }).then( res => {
-    //           const googleCredential = firebase.auth.GoogleAuthProvider
-    //               .credential(res.idToken);
-
-    //           firebase.auth().signInWithCredential(googleCredential)
-    //         .then( response => {
-    //             alert("Firebase success: " + JSON.stringify(response));
-    //             resolve(response)
-    //         });
-    //   }, err => {
-    //       alert("Error: " + err)
-    //       reject(err);
-    //   });
-    // });
-
-    // try {
-    //   alert('coming');
-    //    this.gplus.login({
-    //     'webClientId': '335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com',
-    //     'offline': true,
-    //     'scopes': 'profile email'
-    //   })
-    //   .then(res =>{
-    //     alert('yes')
-    //     alert(JSON.stringify(res))
-    //     const googleCredential = firebase.auth.GoogleAuthProvider
-    //     .credential(res.idToken);
-
-    //     firebase.auth().signInWithCredential(googleCredential)
-    //     .then( response => {
-    //         console.log("Firebase success: " + JSON.stringify(response));
-    //         alert(response);
-    //     }, err =>{
-    //       alert(JSON.stringify(err));
-    //     });
-    //   }, err => {
-    //     alert(JSON.stringify(err))
-    //     });
-  
-  
-    // } catch(err) {
-    //  alert(err)
-    // }
-  }
-
-  loginWithGoogle(){
-    this.nativeGoogleLogin();
-  }
+ 
 
 
 }
