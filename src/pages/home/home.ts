@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { ModalController, MenuController } from 'ionic-angular';
 
 import { VideoService } from '../../services/VideoService';
 import { SearchPage } from '../search/search';
@@ -18,7 +18,7 @@ export class HomePage {
   constructor(
     private videoService: VideoService,
     private modalCtrl: ModalController,
-    private api: ApiProvider
+    private api: ApiProvider, private menu: MenuController
   ) {
     this.type = localStorage.getItem('type');
     this.api.getPopUp()
@@ -42,6 +42,7 @@ export class HomePage {
       this.videoService.showMiniPlayer();
     }
 
+    this.menu.enable(true);
 
  
   }

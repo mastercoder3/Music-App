@@ -63,9 +63,10 @@ export class BestPlaylistsComponent {
   }
 
   setImages(){
-    if(this.playlist)
+    if(this.playlist.playlist[0].songs > 0)
     this.playlist.playlist.forEach(a => {
-      let x = this.songs.filter(data => data.did === a.songs[0])
+      let x = this.songs.filter(data => data.did === a.songs[0]);
+      if(x[0].length > 0)
       this.images.push(x[0].imageURL);
     });
   }
