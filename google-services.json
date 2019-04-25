@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:335286010691:android:dbf67fc8390e25e9",
+        "mobilesdk_app_id": "1:335286010691:android:6ab9ff0ee0ecaa91",
         "android_client_info": {
-          "package_name": "awesong.musicapp"
+          "package_name": "awesong.musicapp1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "335286010691-oce7ubnpn534ini2mlgi2khrkqlml2vs.apps.googleusercontent.com",
+          "client_id": "335286010691-50kc8nihhenbg9kd5puu106g3oprqgbq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "awesong.musicapp",
-            "certificate_hash": "8d3ef5e80f04ef465a072467b2676a8932bd32f3"
+            "package_name": "awesong.musicapp1",
+            "certificate_hash": "90616f595065f225b26f761792e13299b22dba80"
           }
         },
         {
@@ -33,11 +33,7 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com",
@@ -51,9 +47,6 @@
               }
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }
