@@ -103,14 +103,8 @@
         <variable name="FACEBOOK_HYBRID_APP_EVENTS" value="false" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.40.0" />
     </plugin>
-    <plugin name="cordova-plugin-googleplus" spec="5.3.2">
-        <variable name="REVERSED_CLIENT_ID" value="335286010691-oce7ubnpn534ini2mlgi2khrkqlml2vs.apps.googleusercontent.com" />
-        <variable name="WEB_APPLICATION_CLIENT_ID" value="335286010691-smljp864en4u29hs5j4jjbhh0ippudcs.apps.googleusercontent.com" />
-        <variable name="PLAY_SERVICES_VERSION" value="11.8.0" />
-    </plugin>
     <plugin name="cc.fovea.cordova.purchase" spec="7.4.3">
-        <variable name="BILLING_KEY" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApnTmXBdhAwRJI8Z+k6KkyMVQIZhi5L82LVECGgoHu68wt1gDIJDaUKdxCBjkgpB5v+lIDBqI0poSwxyWhX9330UphNkRxIo/jRDPgJs3LMYsOUBdi6b27r44++Q1+2W86NevqyG2V+g2wiHNtjfe1G2bqIx6ipW8Qv446lTbfyLa4YGKTFIemGpkr4kVvRzPnzLQdRg2BakLZYOi9QsRv+JaAIlpaRiIrjCmp31zl+Tu7hiNPQHGbEWBsKE70R9Y+cf8zBUrDQnr0vLBVUI/6VwqTMPc4Cs1Mz8V1g1eoRxy+yxFUtmw/fPJG8+9afbZRQepTvlMEw1fSfrn0VzjNQIDAQAB" />
+        <variable name="BILLING_KEY" value="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3Ie3Sdw2IeRiu3JLKB1F7Dk50dWYkioWfsIb1IznlT65FBRo74jo/EnzNqXGsXvB6UczI0YtzUNT8L0ycbiRiN8riWSJZPgWHlcwoxln/yEl8t8Mqg8FgwOJj/Ej1jyz3jJn0beZreJFti7OtgKDOjY5K2WA1PKG3gyA5JXAPIWKuQkyDi2NPUMLkH+vDFF6L+O9UsS0NRacopR5P6qWWPgytpW74u24EKmOJcIJ/l2CmEPzzGDoq6a9LQ0RABCYqRCX+yk3w9dFVD7HjGZRdZ0UTHDoy1IYPJR24D+lIG9NrvmAfz2DmdWawOeCqAxKhqCiOGgT6IFsw+DK+Oj6BwIDAQAB" />
     </plugin>
-    <engine name="android" spec="^7.1.4" />
     <plugin name="com.paypal.cordova.mobilesdk" spec="3.5.0" />
 </widget>

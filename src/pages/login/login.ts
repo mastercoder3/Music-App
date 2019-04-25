@@ -13,7 +13,6 @@ import { FbLoginPage } from '../fb-login/fb-login';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs/Observable';
 
-import { GooglePlus } from '@ionic-native/google-plus';
 
 
 
@@ -36,8 +35,7 @@ export class LoginPage {
   user1: Observable<firebase.User>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, public modalCtrl: ModalController,
-    private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider,private facebook: Facebook, private afAuth: AngularFireAuth, 
-    private gplus: GooglePlus) {
+    private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider,private facebook: Facebook, private afAuth: AngularFireAuth) {
 
       // this.user1 = this.afAuth.authState;
     this.form = this.fb.group({
@@ -137,12 +135,12 @@ export class LoginPage {
 
    nativeGoogleLogin(){
 
-    this.gplus.login({})
-      .then(res => {
-        alert('res');
-      }, err =>{
-        alert(JSON.stringify(err));
-      })
+    // this.gplus.login({})
+    //   .then(res => {
+    //     alert('res');
+    //   }, err =>{
+    //     alert(JSON.stringify(err));
+    //   })
 
     // return new Promise((resolve, reject) => { 
     //   this.gplus.login({

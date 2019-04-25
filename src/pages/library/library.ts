@@ -50,7 +50,7 @@ export class LibraryPage {
   public product: any = {
     name: 'Music app',
     appleProductId: '1234',
-    googleProductId: 'com.kodealpha.awesong.musicapp'
+    googleProductId: 'com.awesong.musicapp.premium'
   };
 
   constructor(
