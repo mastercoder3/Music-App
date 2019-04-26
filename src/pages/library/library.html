@@ -131,8 +131,8 @@ v
         <br>
         <br>
         <div padding>
-            <h5 style="color: white;">Premium:</h5>
-            <button ion-button style="background: white; color: red; border-color: white; width: 100%;" (click)="buy()"><ion-icon name="log-out"></ion-icon>Buy Premium</button>
+            <h5 style="color: white;" *ngIf="accountType === 'free' ">Premium:</h5>
+            <button ion-button style="background: white; color: red; border-color: white; width: 100%;" (click)="buy()" *ngIf="accountType === 'free' "><ion-icon name="log-out"></ion-icon>Buy Premium</button>
             <!-- <h5 style="color: white;">Account:</h5>
             <button ion-button style="background: white; color: red; border-color: white; width: 100%;" (click)="resetPassword()"><ion-icon name="log-out"></ion-icon>Reset Password</button>
             <br>

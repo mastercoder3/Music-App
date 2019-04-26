@@ -44,7 +44,6 @@ export class BestPlaylistsComponent {
       })))
         .subscribe(res =>{
           this.songs = res;
-          console.log(this.songs)
           this.api.getPlaylistById(localStorage.getItem('uid'))
               .pipe(map(actions => actions.map(a => {
                 const data =a.payload.doc.data();
@@ -53,6 +52,7 @@ export class BestPlaylistsComponent {
             })))
               .subscribe(resp =>{
                 this.myPlaylist = resp;
+                console.log(resp)
                 if(this.myPlaylist.length > 0){
                   this.playlist = this.myPlaylist[0];
                   this.setImages();
@@ -63,10 +63,10 @@ export class BestPlaylistsComponent {
   }
 
   setImages(){
-    if(this.playlist.playlist[0].songs > 0)
+    if(this.playlist.playlist.length > 0)
     this.playlist.playlist.forEach(a => {
       let x = this.songs.filter(data => data.did === a.songs[0]);
-      if(x[0].length > 0)
+      if(x.length > 0)
       this.images.push(x[0].imageURL);
     });
   }

@@ -63,6 +63,7 @@ export class MusicPlayerPage {
     this.resetTime();
     this.helper.getAccountType().subscribe(res =>{
       this.accountType = res;
+      console.log(this.accountType);
     })
   }
 
@@ -158,7 +159,13 @@ export class MusicPlayerPage {
   }
 
   previous() {
-    if(localStorage.getItem('adStatus') === 'active' && this.count !== 0){
+    if(this.accountType === 'premium'){
+      this.audioService.previous();
+      this.musicPlayerPageService.setUpNextSongs();
+      this.checkCurrentSongLike();
+    }
+    else{
+       if(localStorage.getItem('adStatus') === 'active' && this.count !== 0){
       this.play()
     }
     else{
@@ -170,10 +177,18 @@ export class MusicPlayerPage {
       this.setAds();
     }
     this.checkCurrentSongLike();
+    }
+   
   }
 
   next() {
-    if(localStorage.getItem('adStatus') === 'active' && this.count !== 0){
+    if(this.accountType === 'premium'){
+      this.audioService.next();
+        this.musicPlayerPageService.setUpNextSongs();
+        this.checkCurrentSongLike();
+    }
+    else{
+      if(localStorage.getItem('adStatus') === 'active' && this.count !== 0){
       this.play()
     }
     else{
@@ -184,8 +199,9 @@ export class MusicPlayerPage {
       }
       this.setAds();
     }
-    console.log(localStorage.getItem('songId'));
     this.checkCurrentSongLike();
+    }
+    
   }
 
   changeSong(song: Song) {
@@ -252,7 +268,7 @@ export class MusicPlayerPage {
     this.time = parseInt(localStorage.getItem('timer'));
     this.count = parseInt(localStorage.getItem('count'))
     console.log(Math.floor((Date.now() - this.time )/1000))
-    if( Math.floor((Date.now() - this.time )/1000) > 720 && this.count >= 4){
+    if( Math.floor((Date.now() - this.time )/1000) > 5 && this.count >= 1){
       localStorage.setItem('adStatus','active');
     }
     else{

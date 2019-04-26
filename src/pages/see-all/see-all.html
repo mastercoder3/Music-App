@@ -41,6 +41,7 @@
              <h6 style="color: white; position: relative; top: -10px; ">{{item.title}}
               <br>
               <small>{{item.oartist}}</small>  
+              <i class="fas fa-trash-alt" style="color: white; float: right;" *ngIf="type === 'playlist' " (click)="delete()" ></i>
               <i class="fas fa-play" style="color: white; float: right;"></i>
             </h6>
             </ion-col>

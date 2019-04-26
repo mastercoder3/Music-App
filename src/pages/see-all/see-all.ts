@@ -191,4 +191,8 @@ export class SeeAllPage implements OnInit {
     this.modalService.dismiss();
   }
 
+  delete(){
+    console.log('coming');
+  }
+
 }
