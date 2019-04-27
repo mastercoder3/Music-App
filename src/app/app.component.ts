@@ -9,7 +9,6 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AudioService } from '../services/AudioService';
 import firebase  from 'firebase';
 import { HelperProvider } from '../providers/helper/helper';
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -56,7 +55,7 @@ export class MyApp {
 
   USER;
 
-  
+
   resetPassword(){
 
     let func = (data) => {

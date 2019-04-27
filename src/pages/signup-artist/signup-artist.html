@@ -29,71 +29,99 @@
 
           </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="person" style="margin-top:12px;color:white;"></ion-icon>
+            <!-- <ion-icon name="person" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
             <ion-input type="text" placeholder="Name" formControlName="name"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+            style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+          </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <!-- <ion-icon name="person" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="home" style="margin-top:12px;color:white;"></ion-icon>
+            <!-- <ion-icon name="home" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
             <ion-input type="text" placeholder="City" formControlName="city"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+            style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+          </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <!-- <ion-icon name="home" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="home" style="margin-top:12px;color:white;"></ion-icon>
+            <!-- <ion-icon name="home" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
-            <ion-select placeholder="Country" style="max-width: 6000px !important; min-width: 95%; color: white;" formControlName="country">
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+            <ion-select placeholder="Country" style=" min-width: 75% ; text-align: left;  margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white;" formControlName="country">
               <ion-option *ngFor="let item of countries" [value]="item.name">{{item.name}}</ion-option>
             </ion-select>
+          </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <!-- <ion-icon name="home" style="margin-top:12px;color:white;"></ion-icon> -->
+          </ion-col>
+        </ion-row>
 
-          </ion-col>
-        </ion-row>
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="call" style="margin-top:12px;color:white;"></ion-icon>
+            <!-- <ion-icon name="call" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
             <ion-input type="text" placeholder="Mobile No." formControlName="mobile"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+          </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <!-- <ion-icon name="call" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="mail" style="margin-top:12px;color:white;"></ion-icon>
+            <!-- <ion-icon name="mail" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
             <ion-input type="email" placeholder="Email" formControlName="email"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+            style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+          </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <!-- <ion-icon name="mail" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
         </ion-row>
+
         <ion-row no-padding>
             <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-              <ion-icon name="key" style="margin-top:12px;color:white;"></ion-icon>
+              <!-- <ion-icon name="key" style="margin-top:12px;color:white;"></ion-icon> -->
             </ion-col>
-            <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+            <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
               <ion-input type="password" placeholder="Password" formControlName="password"
-                style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+            </ion-col>
+            <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+              <!-- <ion-icon name="key" style="margin-top:12px;color:white;"></ion-icon> -->
             </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="people" style="margin-top:12px;color:white;"></ion-icon>
+            <!-- <ion-icon name="people" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
             <ion-input type="text" placeholder="Username" formControlName="username" (ionChange)="checkUsername($event)"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+            style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+          </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+            <!-- <ion-icon name="people" style="margin-top:12px;color:white;"></ion-icon> -->
           </ion-col>
           <ion-row>
+
             <ion-col text-center col-12 offset-xl-3  offset-lg-3>
               <small style="color: red !important;" *ngIf="usernameError">{{error}}</small>
             </ion-col>
@@ -105,14 +133,14 @@
             <ion-list radio-group formControlName="gender">
 
 
-              <ion-item style="background-color: #120810 !important;">
+              <ion-item style="background-color: #120810 !important; width: 70% !important;  margin-left: auto; margin-right: auto;">
                 <ion-label style="color: white;">
                   <ion-icon name="male" style="margin-top:12px;color:white;"></ion-icon>&nbsp;Male
                 </ion-label>
                 <ion-radio checked="true" value="male"></ion-radio>
               </ion-item>
 
-              <ion-item style="background-color: #120810 !important;">
+              <ion-item style="background-color: #120810 !important; width: 70% !important; margin-left: auto; margin-right: auto;">
                 <ion-label style="color:white;">
                   <ion-icon name="male" style="margin-top:12px;color:white;"></ion-icon>&nbsp;Female
                 </ion-label>
@@ -121,79 +149,101 @@
             </ion-list>
           </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="logo-facebook" style="margin-top:12px;color:blue;"></ion-icon>
+
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+            <ion-icon name="logo-facebook" style="margin-top:8px;color:blue;position: fixed; left: 24%; z-index: 2; font-size: 26px;"></ion-icon>
             <ion-input type="text" placeholder="Facebook URL" formControlName="fb"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+            style="z-index: 1; margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 40px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
           </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+
+            </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="logo-instagram" style="margin-top:12px;color:pink;"></ion-icon>
+
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+            <ion-icon name="logo-instagram" style="margin-top:8px;color:#E1306C; position: fixed; left: 24%; z-index: 2; font-size: 26px;"></ion-icon>
             <ion-input type="text" placeholder="Instagram URL" formControlName="insta"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+            style="z-index: 1; margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 40px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
           </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+
+            </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="logo-youtube" style="margin-top:12px;color:red;"></ion-icon>
+
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+            <ion-icon name="logo-youtube" style="margin-top:10px;color:red;position: fixed; left: 24%; z-index: 2; font-size: 22px;"></ion-icon>
             <ion-input type="text" placeholder="Youtube URL" formControlName="youtube"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
+            style="z-index: 1; margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 40px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+          </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+
           </ion-col>
         </ion-row>
+
         <ion-row no-padding>
           <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-            <ion-icon name="calendar" style="margin-top:12px;color:white;"></ion-icon>
+
           </ion-col>
-          <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+          <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
+            <ion-icon name="calendar" style="margin-top:8px;color:grey;position: fixed; left: 24%; z-index: 2; font-size: 26px;"></ion-icon>
             <ion-datetime displayFormat="DD/MM/YYYY" formControlName="dob"
-              style="border-bottom: 1px rgb(140, 133, 180) solid; color: white;" max="2019-12-01"
+            style="z-index: 1; margin-bottom: 20px; margin-left: auto; text-align: left; margin-right: auto; border-radius: 25px !important; padding-left: 40px;  color: black !important; background-color: white; width: 75% !important;" max="2019-12-01"
               placeholder="Date of Birth"></ion-datetime>
 
           </ion-col>
+          <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+
+            </ion-col>
+
         </ion-row>
         <ion-row no-padding>
           <h5 style="color: white; font-weight: 100; letter-spacing: 2px;">Profession:</h5>
           <ion-col text-center no-padding col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>
-            <ion-item style="background-color: #120810;">
-              <ion-label style="color: white;">Vocalist</ion-label>
+
+            <ion-item style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 70% !important;">
+              <ion-label style="color: black;">Vocalist</ion-label>
               <ion-checkbox (click)="selectProfession('Vocalist')"></ion-checkbox>
             </ion-item>
 
-            <ion-item style="background-color: #120810;">
-              <ion-label style="color: white;">Guitarist</ion-label>
+            <ion-item style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 70% !important;">
+              <ion-label style="color: black;">Guitarist</ion-label>
               <ion-checkbox (click)="selectProfession('Guitarist')"></ion-checkbox>
             </ion-item>
 
-            <ion-item style="background-color: #120810;">
-              <ion-label style="color: white;">Flutist</ion-label>
+            <ion-item style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 70% !important;">
+              <ion-label style="color: black;">Flutist</ion-label>
               <ion-checkbox (click)="selectProfession('Flutist')"></ion-checkbox>
             </ion-item>
 
-            <ion-item style="background-color: #120810;">
-              <ion-label style="color: white;">Drummist</ion-label>
+            <ion-item style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 70% !important;">
+              <ion-label style="color: black;">Drummist</ion-label>
               <ion-checkbox (click)="selectProfession('Drummist')"></ion-checkbox>
             </ion-item>
 
-            <ion-item style="background-color: #120810;">
-              <ion-label style="color: white;">Percussionist</ion-label>
+            <ion-item style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 70% !important;">
+              <ion-label style="color: black;">Percussionist</ion-label>
               <ion-checkbox (click)="selectProfession('Percussionist')"></ion-checkbox>
             </ion-item>
 
-            <ion-item style="background-color: #120810;">
-              <ion-label style="color: white;">Mixing & Mastering</ion-label>
+            <ion-item style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 70% !important;">
+              <ion-label style="color: black;">Mixing & Mastering</ion-label>
               <ion-checkbox (click)="selectProfession('Mixing & Mastering')"></ion-checkbox>
             </ion-item>
 
-            <ion-item style="background-color: #120810;">
-              <ion-label style="color: white;">Composer</ion-label>
+            <ion-item style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 70% !important;">
+              <ion-label style="color: black;">Composer</ion-label>
               <ion-checkbox (click)="selectProfession('Composer')"></ion-checkbox>
             </ion-item>
           </ion-col>
