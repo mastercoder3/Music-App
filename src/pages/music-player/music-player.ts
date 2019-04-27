@@ -159,6 +159,8 @@ export class MusicPlayerPage {
   }
 
   previous() {
+    if(this.audioService.durationText().toString().indexOf('NaN') > -1)
+      return;
     if(this.accountType === 'premium'){
       this.audioService.previous();
       this.musicPlayerPageService.setUpNextSongs();
@@ -182,6 +184,9 @@ export class MusicPlayerPage {
   }
 
   next() {
+    console.log(this.audioService.durationText().indexOf('NaN'))
+    if(this.audioService.durationText().toString().indexOf('NaN') > -1)
+      return;
     if(this.accountType === 'premium'){
       this.audioService.next();
         this.musicPlayerPageService.setUpNextSongs();
@@ -222,12 +227,12 @@ export class MusicPlayerPage {
     if(event.value === 100 && this.audioService.isShuffle){
       setTimeout( ()=>{
         this.next();
-      }, 500);
+      }, 700);
     }
     else if(event.value === 100 && this.audioService.isRepeat){
       setTimeout( ()=>{
         this.audioService.play();
-      }, 500);
+      }, 700);
     }
       
   }
@@ -268,7 +273,7 @@ export class MusicPlayerPage {
     this.time = parseInt(localStorage.getItem('timer'));
     this.count = parseInt(localStorage.getItem('count'))
     console.log(Math.floor((Date.now() - this.time )/1000))
-    if( Math.floor((Date.now() - this.time )/1000) > 5 && this.count >= 1){
+    if( Math.floor((Date.now() - this.time )/1000) > 720 && this.count >= 4){
       localStorage.setItem('adStatus','active');
     }
     else{

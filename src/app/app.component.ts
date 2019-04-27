@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, App, MenuController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, App, MenuController, NavController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,12 +9,13 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AudioService } from '../services/AudioService';
 import firebase  from 'firebase';
 import { HelperProvider } from '../providers/helper/helper';
+import { CardSelectionPage } from '../pages/card-selection/card-selection';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage: any;
-
+  @ViewChild(Nav) nav;
   constructor(
     platform: Platform,
     statusBar: StatusBar,
@@ -51,6 +52,10 @@ export class MyApp {
     this.app.getRootNav().setRoot(LoginPage);
     this.menu.close();
     this.menu.enable(false);
+  }
+
+  buy(){
+    this.nav.push(CardSelectionPage);
   }
 
   USER;

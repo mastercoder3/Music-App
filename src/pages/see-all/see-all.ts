@@ -191,8 +191,17 @@ export class SeeAllPage implements OnInit {
     this.modalService.dismiss();
   }
 
-  delete(){
-    console.log('coming');
+  delete(item, i){
+  
+  let id = this.navParams.get('did');
+  let x =   id.playlist.findIndex(data => data.songs.indexOf(item.did) > -1 && data.name === this.data.name); 
+   this.data.songs.splice(i,1);
+   this.listSongs = this.songs.filter(data => this.data.songs.indexOf(data.did) > -1);
+   if(this.data.songs.length !== 0)
+     id.playlist[x].songs = this.data.songs;
+    else
+      id.playlist.splice(x,1);
+   this.api.updatePlaylist(id.did, {playlist: id.playlist});
   }
 
 }

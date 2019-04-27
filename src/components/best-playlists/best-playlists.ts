@@ -74,7 +74,8 @@ export class BestPlaylistsComponent {
   openSeeAllPage(item,i){
     this.navCtrl.push(SeeAllPage, {
       data: item,
-      type: 'playlist'
+      type: 'playlist',
+      did: this.myPlaylist[0]
     });
   }
 }
