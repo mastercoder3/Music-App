@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Camera, CameraOptions  } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -42,7 +42,7 @@ export class SignupPage {
   usernameError: boolean = false;
   error;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private camera: Camera, 
+  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private camera: Camera, private menu: MenuController,
     private androidPermissions: AndroidPermissions, private helper: HelperProvider,    private fireStorage: AngularFireStorage,
     private auth: AuthProvider, private api: ApiProvider) {
       // First Form
@@ -186,6 +186,7 @@ export class SignupPage {
             this.helper.presentToast('Account Created.');
             this.navCtrl.setRoot(TabsPage);
             this.helper.setAccountType('free');
+            this.menu.enable(true);
           }, err =>{
             this.helper.presentToast(err.message);
             this.helper.closeLoading();

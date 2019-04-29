@@ -10,6 +10,7 @@ import { AudioService } from '../services/AudioService';
 import firebase  from 'firebase';
 import { HelperProvider } from '../providers/helper/helper';
 import { CardSelectionPage } from '../pages/card-selection/card-selection';
+import { SeeAllPage } from '../pages/see-all/see-all';
 @Component({
   templateUrl: 'app.html'
 })
@@ -24,7 +25,7 @@ export class MyApp {
     private audio: AudioService,
     private app: App,
     private helper: HelperProvider,
-    private menu: MenuController
+    private menu: MenuController,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -84,5 +85,17 @@ export class MyApp {
     x.present();
 
 
+  }
+
+  liked(){
+    this.nav.push(SeeAllPage,{
+      type: 'liked'
+    })
+  }
+
+  offline(){
+    this.nav.push(SeeAllPage,{
+      type: 'offline'
+    })
   }
 }

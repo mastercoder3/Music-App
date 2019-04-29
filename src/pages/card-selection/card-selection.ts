@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import {
   IonicPage,
   NavParams,
-  Platform
+  Platform,
+  NavController
 } from 'ionic-angular';
 
 import { ModalService } from '../../services/ModalService';
@@ -11,6 +12,7 @@ import { InAppPurchase2, IAPProduct } from '@ionic-native/in-app-purchase-2';
 
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 import { HelperProvider } from '../../providers/helper/helper';
+import { TabsPage } from '../tabs/tabs';
 
 
 @IonicPage()
@@ -38,9 +40,14 @@ export class CardSelectionPage {
     private platform: Platform,
     private store: InAppPurchase2,
     private payPal: PayPal,
-    private helper: HelperProvider
+    private helper: HelperProvider,
+    private navCtrl: NavController
   ) {
     this.purchase = this.navParams.get('purchase');
+  }
+
+  close(){
+    this.navCtrl.setRoot(TabsPage)
   }
 
   ionViewDidLoad() {

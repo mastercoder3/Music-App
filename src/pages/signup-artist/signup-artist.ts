@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Camera, CameraOptions  } from '@ionic-native/camera';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
@@ -42,7 +42,7 @@ export class SignupArtistPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private fb: FormBuilder, private camera: Camera, 
     private androidPermissions: AndroidPermissions, private helper: HelperProvider,    private fireStorage: AngularFireStorage,
-    private auth: AuthProvider, private api: ApiProvider) {
+    private auth: AuthProvider, private api: ApiProvider, private menu: MenuController) {
       //Second Form
     this.form1 = this.fb.group({
       name: ['', Validators.required],

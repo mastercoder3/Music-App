@@ -155,15 +155,17 @@
           </ion-row>
 
           <br>
-          <ion-row no-padding>
-            <ion-col no-padding col-12 col-sm-12 col-md-12 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
-              <button ion-button block class="continue-btn" type="button" (click)="submit(form)" [disabled]="form.pristine || form.invalid"
-                style="border-color: white; color: white;">
-                Continue
+
+          <ion-row>
+            <ion-col text-center no-padding col-6 col-sm-6 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
+    
+              <button ion-button block (click)="submit(form)" [disabled]="form.pristine || form.invalid"
+                style="background-color: white; position: relative; left: 50% ; border: 0px solid white; height: 45px; border-radius: 25px;">
+                <!-- <ion-icon class="signUpIcon" name="md-person-add"></ion-icon> -->
+                <p class="signUp" style="color:black; font-family:Arial; font-size: 15px;">Continue</p>
               </button>
             </ion-col>
           </ion-row>
-
         </ion-grid>
       </form>
       </div>

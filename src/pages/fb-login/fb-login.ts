@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, MenuController  } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiProvider } from '../../providers/api/api';
 import { HelperProvider } from '../../providers/helper/helper';
@@ -27,7 +27,7 @@ export class FbLoginPage {
   fbData;
   formFiller: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, private menu: MenuController,
     private fb: FormBuilder, private api: ApiProvider, private helper: HelperProvider) {
     this.fbData = this.navParams.get('data');
     //form init
@@ -84,6 +84,7 @@ export class FbLoginPage {
       this.helper.presentToast('Account Created.');
       this.navCtrl.setRoot(TabsPage);
       this.helper.setAccountType('free');
+      this.menu.enable(true);
     }, err =>{
       this.formFiller = true;
       this.helper.presentToast(err.message);

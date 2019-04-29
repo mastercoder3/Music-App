@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, MenuController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -35,6 +35,7 @@ export class LoginPage {
   user1: Observable<firebase.User>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, public modalCtrl: ModalController,
+    private menu: MenuController,
     private auth: AuthProvider, private helper: HelperProvider, private api: ApiProvider,private facebook: Facebook, private afAuth: AngularFireAuth) {
 
       // this.user1 = this.afAuth.authState;
@@ -86,6 +87,7 @@ export class LoginPage {
                     localStorage.setItem('accountType',this.user.premium.type);
                     console.log(this.user.premium.type);
                     this.helper.setAccountType(this.user.premium.type);
+                    this.menu.enable(true);
                     }
                     
                   }
@@ -133,6 +135,7 @@ export class LoginPage {
                 localStorage.setItem('accountType',this.temp[0].premium.type);
                 this.navCtrl.setRoot(TabsPage);
                 this.helper.setAccountType(this.temp[0].premium.type);
+                this.menu.enable(true);
               }
             });
           }, err =>{

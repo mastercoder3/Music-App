@@ -5,6 +5,9 @@ import { ApiProvider } from '../../providers/api/api';
 import { map } from 'rxjs/operators';
 import { MusicPlayerPageService } from '../../services/MusicPlayerPageService';
 import { VideoDetailsPageService } from '../../services/VideoDetailsPageService';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { HelperProvider } from '../../providers/helper/helper';
+import { TabsPage } from '../tabs/tabs';
 
 /**
  * Generated class for the SeeAllPage page.
@@ -28,7 +31,7 @@ export class SeeAllPage implements OnInit {
     @Inject(forwardRef(() => MusicPlayerPageService))
     public musicPlayerPageService: MusicPlayerPageService,
     @Inject(forwardRef(() => VideoDetailsPageService))
-    public videoDetailsPageService: VideoDetailsPageService) {
+    public videoDetailsPageService: VideoDetailsPageService, private nativeStorage: NativeStorage, private helper: HelperProvider) {
     this.data = this.navParams.get('data');
     this.type = this.navParams.get('type');
   }
@@ -59,6 +62,21 @@ export class SeeAllPage implements OnInit {
     else if (this.type === 'pulicplaylist'){
       this.getPublicPlaylist();
     }
+    else if (this.type === 'liked'){
+      this.getLikedSongs();
+    }
+    else if(this.type === 'offline'){
+      this.nativeStorage.getItem('offline')
+      .then(res =>{
+        // alert(res);
+        this.helper.setOfflineData(JSON.parse(res));
+        this.helper.getOfflineData().subscribe(res =>{
+          this.listSongs = res;
+        })
+      }, err =>{
+        console.log(err)
+      })
+    }
   }
 
   getPublicPlaylist(){
@@ -72,6 +90,34 @@ export class SeeAllPage implements OnInit {
         this.songs = res;
         this.listSongs = this.songs.filter(data => this.data.songs.indexOf(data.did) > -1);
       })
+  }
+
+  liked;
+
+  getLikedSongs(){
+    this.api.getAllSongs()
+    .pipe(map(actions => actions.map(a => {
+      const data = a.payload.doc.data();
+      const did = a.payload.doc.id;
+      return {did, ...data};
+    })))
+
+    .subscribe(res =>{
+      this.songs = res;
+      this.api.getLikedSongs(localStorage.getItem('uid'))
+      .pipe(map(actions => actions.map(a => {
+        const data = a.payload.doc.data();
+        const did = a.payload.doc.id;
+        return {did, ...data};
+      })))
+
+      .subscribe(resp =>{
+        this.liked = resp;
+        if(this.liked.length !== 0){
+          this.listSongs = this.songs.filter( data => this.liked[0].songs.indexOf(data.did)> -1);
+        }
+      });
+    });
   }
 
   setNewVideos(){
@@ -188,7 +234,11 @@ export class SeeAllPage implements OnInit {
   }
 
   close(){
-    this.modalService.dismiss();
+    if(this.type === 'liked' || this.type === 'offline'){
+      this.navCtrl.setRoot(TabsPage);
+    }
+    else
+      this.modalService.dismiss();
   }
 
   delete(item, i){
