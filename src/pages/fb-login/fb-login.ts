@@ -92,6 +92,9 @@ export class FbLoginPage {
     })
   }
 
+  get f() { return this.form.controls; }
+
+
   checkUsername(event){
     let x =[];
     if(event.value.length > 4){

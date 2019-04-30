@@ -81,6 +81,8 @@ export class SignupArtistPage {
     ).catch(err=> console.log(err))
   }
 
+  get f() { return this.form1.controls; }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupArtistPage');
   }

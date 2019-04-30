@@ -77,6 +77,8 @@ export class SignupPage {
  
   }
 
+  get f() { return this.form.controls; }
+
   choosePicture(){
     let myfunc = () => {
       this.takePhoto('library');

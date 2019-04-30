@@ -39,7 +39,7 @@
             </ion-col>
             <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
               <ion-input type="text" placeholder="Name" formControlName="name"
-                style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+                style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 7px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
             </ion-col>
             <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
               <!-- <ion-icon name="person" style="margin-top:12px;color:white;"></ion-icon> -->
@@ -52,7 +52,7 @@
             </ion-col>
             <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
               <ion-datetime displayFormat="DD/MM/YYYY" formControlName="dob"
-              style="text-align: left; margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;" max="2019-12-01"
+              style="text-align: left; margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 7px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;" max="2019-12-01"
                 placeholder="Date of Birth"></ion-datetime>
             </ion-col>
             <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
@@ -66,7 +66,7 @@
             </ion-col>
             <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
               <ion-input type="text" placeholder="City" formControlName="city"
-              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 7px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
             </ion-col>
             <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
               <!-- <ion-icon name="home" style="margin-top:12px;color:white;"></ion-icon> -->
@@ -79,7 +79,7 @@
             </ion-col>
             <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
               <ion-input type="email" placeholder="Email" formControlName="email"
-              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 7px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
             </ion-col>
             <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
               <!-- <ion-icon name="mail" style="margin-top:12px;color:white;"></ion-icon> -->
@@ -92,7 +92,7 @@
             </ion-col>
             <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
               <ion-input type="password" placeholder="Password" formControlName="password"
-              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 7px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
             </ion-col>
             <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
               <!-- <ion-icon name="key" style="margin-top:12px;color:white;"></ion-icon> -->
@@ -104,8 +104,8 @@
               <!-- <ion-icon name="people" style="margin-top:12px;color:white;"></ion-icon> -->
             </ion-col>
             <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
-              <ion-input type="text" placeholder="Username" formControlName="username" (ionChange)="checkUsername($event)"
-              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+              <ion-input type="text" placeholder="Username" formControlName="username" (ionChange)="checkUsername($event)" #username
+              style="margin-bottom: 20px; margin-left: auto; margin-right: auto; border-radius: 7px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
             </ion-col>
             <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
               <!-- <ion-icon name="people" style="margin-top:12px;color:white;"></ion-icon> -->
@@ -113,7 +113,8 @@
 
             <ion-row>
               <ion-col text-center col-12 offset-xl-3  offset-lg-3>
-                <small style="color: red !important;" *ngIf="usernameError">{{error}}</small>
+                  <small style="color: red !important; padding-left: 70px;" *ngIf="usernameError">{{error}}</small>
+                  <small style="color: red !important; padding-left: 70px;" *ngIf="f.username.errors && username.value.length > 0" >Invalid Username</small>
               </ion-col>
             </ion-row>
           </ion-row>
@@ -124,7 +125,7 @@
             </ion-col>
             <ion-col text-center no-padding col-10 col-sm-10 col-md-10 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
               <ion-input type="text" placeholder="Mobile No." formControlName="mobile"
-              style="margin-top: -8px; margin-left: auto; margin-right: auto; border-radius: 25px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
+              style="margin-top: -8px; margin-left: auto; margin-right: auto; border-radius: 7px !important; padding-left: 15px; color: black !important; background-color: white; width: 75% !important;"></ion-input>
             </ion-col>
             <ion-col text-center no-padding col-1 col-sm-1 col-md-1 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
               <!-- <ion-icon name="call" style="margin-top:12px;color:white;"></ion-icon> -->
@@ -160,7 +161,7 @@
             <ion-col text-center no-padding col-6 col-sm-6 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6>
     
               <button ion-button block (click)="submit(form)" [disabled]="form.pristine || form.invalid"
-                style="background-color: white; position: relative; left: 50% ; border: 0px solid white; height: 45px; border-radius: 25px;">
+                style="background-color: white; position: relative; left: 50% ; border: 0px solid white; height: 45px; border-radius: 7px;">
                 <!-- <ion-icon class="signUpIcon" name="md-person-add"></ion-icon> -->
                 <p class="signUp" style="color:black; font-family:Arial; font-size: 15px;">Continue</p>
               </button>

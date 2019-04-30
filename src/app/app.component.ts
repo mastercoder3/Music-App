@@ -11,11 +11,14 @@ import firebase  from 'firebase';
 import { HelperProvider } from '../providers/helper/helper';
 import { CardSelectionPage } from '../pages/card-selection/card-selection';
 import { SeeAllPage } from '../pages/see-all/see-all';
+import { ApiProvider } from '../providers/api/api';
+import { Subscription } from 'rxjs';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage: any;
+  user;
   @ViewChild(Nav) nav;
   constructor(
     platform: Platform,
@@ -26,6 +29,7 @@ export class MyApp {
     private app: App,
     private helper: HelperProvider,
     private menu: MenuController,
+    private api: ApiProvider
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -43,9 +47,21 @@ export class MyApp {
     else{
       this.rootPage = LoginPage;
     }
+    this.getData();
+  }
+
+  $ob: Subscription;
+
+  getData(){
+  this.$ob=    this.api.getUserById(localStorage.getItem('uid'))
+      .subscribe(res =>{
+        this.user = res;
+      });
   }
 
   logout(){
+    this.$ob.unsubscribe();
+    this.user =null;
     localStorage.removeItem('uid');
     localStorage.clear();
     this.auth.logout();
@@ -56,6 +72,8 @@ export class MyApp {
   }
 
   buy(){
+    this.menu.close();
+
     this.nav.push(CardSelectionPage);
   }
 
@@ -63,6 +81,7 @@ export class MyApp {
 
 
   resetPassword(){
+    this.menu.close();
 
     let func = (data) => {
         firebase.auth().onAuthStateChanged( user => {
@@ -88,12 +107,15 @@ export class MyApp {
   }
 
   liked(){
+    this.menu.close();
+
     this.nav.push(SeeAllPage,{
       type: 'liked'
     })
   }
 
   offline(){
+    this.menu.close();
     this.nav.push(SeeAllPage,{
       type: 'offline'
     })

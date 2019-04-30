@@ -26,6 +26,9 @@ export class SeeAllPage implements OnInit {
   type;
   songs;
   listSongs: Array<any>;
+  name;
+  index;
+  playlist;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public modalService: ModalService, private api: ApiProvider,
     @Inject(forwardRef(() => MusicPlayerPageService))
@@ -36,9 +39,45 @@ export class SeeAllPage implements OnInit {
     this.type = this.navParams.get('type');
   }
 
+  hideFooterPlayer() {
+    var footerPlayerElements = document.getElementsByClassName(
+      'unique-footer-player'
+    );
+
+    for (var i = 0; i < footerPlayerElements.length; i++) {
+      var footerPlayer = footerPlayerElements[i];
+
+      if (footerPlayer) {
+        footerPlayer.classList.remove('alwaysblock');
+        footerPlayer.classList.remove('mini');
+        footerPlayer.classList.remove('mini-active');
+      }
+    }
+  }
+
+  showFooterPlayer() {
+    var footerPlayerElements = document.getElementsByClassName(
+      'unique-footer-player'
+    );
+
+    for (var i = 0; i < footerPlayerElements.length; i++) {
+      var footerPlayer = footerPlayerElements[i];
+
+      if (footerPlayer) {
+        footerPlayer.classList.add('alwaysblock');
+        footerPlayer.classList.add('mini');
+        footerPlayer.classList.add('mini-active');
+      }
+    }
+  }
+
   ngOnInit(){
     this.listSongs = null;
     if(this.type === 'playlist'){
+      let id = this.navParams.get('did');
+      this.playlist = id;
+      this.index = this.navParams.get('index');
+      this.name = id.playlist[this.index].name;
       this.setPlaylistSongs();
     }
     else if(this.type === 'recent'){
@@ -230,7 +269,8 @@ export class SeeAllPage implements OnInit {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SeeAllPage');
+    this.hideFooterPlayer();
+    this.showFooterPlayer();
   }
 
   close(){
@@ -252,6 +292,17 @@ export class SeeAllPage implements OnInit {
     else
       id.playlist.splice(x,1);
    this.api.updatePlaylist(id.did, {playlist: id.playlist});
+  }
+
+  rename(){
+    let myfunc = (res) =>{
+      if(res.data.length > 0){
+        this.playlist.playlist[this.index].name = res.data;
+        this.api.updatePlaylist(this.playlist.did, {playlist: this.playlist.playlist});
+      }
+    };
+   const alert =  this.helper.showAlertGeneric('Playlist','Rename Playlist','Enter Name','Submit',myfunc);
+   alert.present();
   }
 
 }

@@ -12,12 +12,13 @@
                   <ion-icon name="people" style="margin-top:12px;color:white;"></ion-icon>
                 </ion-col>
                 <ion-col text-center no-padding col-11 col-sm-11 col-md-11 offset-lg-3 col-lg-11 offset-xl-3 col-xl-11>
-                  <ion-input type="text" placeholder="Username" formControlName="username" (ionChange)="checkUsername($event)"
+                  <ion-input type="text" placeholder="Username" formControlName="username" (ionChange)="checkUsername($event)" #username
                     style="border-bottom: 1px rgb(140, 133, 180) solid; color: white !important;"></ion-input>
                 </ion-col>
                 <ion-row>
                   <ion-col text-center col-12 offset-xl-3  offset-lg-3>
-                    <small style="color: red !important;" *ngIf="usernameError">{{error}}</small>
+                      <small style="color: red !important; padding-left: 70px;" *ngIf="usernameError">{{error}}</small>
+                      <small style="color: red !important; padding-left: 70px;" *ngIf="f.username.errors && username.value.length > 0" >Invalid Username</small>
                   </ion-col>
                 </ion-row>
               </ion-row>
