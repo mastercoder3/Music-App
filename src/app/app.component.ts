@@ -29,7 +29,8 @@ export class MyApp {
     private app: App,
     private helper: HelperProvider,
     private menu: MenuController,
-    private api: ApiProvider
+    private api: ApiProvider,
+    private hlper: HelperProvider
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -47,13 +48,17 @@ export class MyApp {
     else{
       this.rootPage = LoginPage;
     }
-    this.getData();
+    this.helper.getUid().subscribe(res =>{
+      if(res !== '')
+        this.getData(res);
+    })
+
   }
 
   $ob: Subscription;
 
-  getData(){
-  this.$ob=    this.api.getUserById(localStorage.getItem('uid'))
+  getData(res){
+  this.$ob=    this.api.getUserById(res)
       .subscribe(res =>{
         this.user = res;
       });

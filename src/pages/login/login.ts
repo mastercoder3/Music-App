@@ -88,6 +88,7 @@ export class LoginPage {
                     console.log(this.user.premium.type);
                     this.helper.setAccountType(this.user.premium.type);
                     this.menu.enable(true);
+                    this.helper.setUid(res.user.uid);
                     }
                     
                   }
@@ -136,6 +137,7 @@ export class LoginPage {
                 this.navCtrl.setRoot(TabsPage);
                 this.helper.setAccountType(this.temp[0].premium.type);
                 this.menu.enable(true);
+                this.helper.setUid(success.uid)
               }
             });
           }, err =>{

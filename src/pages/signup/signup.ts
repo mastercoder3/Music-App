@@ -184,6 +184,7 @@ export class SignupPage {
           .then(resp =>{
             localStorage.setItem('uid',res.user.uid);
             localStorage.setItem('type',this.data.type);
+            this.helper.setUid(res.user.uid);
             this.helper.closeLoading();
             this.helper.presentToast('Account Created.');
             this.navCtrl.setRoot(TabsPage);

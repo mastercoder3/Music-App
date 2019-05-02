@@ -78,6 +78,7 @@ export class FbLoginPage {
       this.formFiller = true;
       localStorage.setItem('uid',this.fbData.uid);
       localStorage.setItem('type',this.data.type);
+      this.helper.setUid(this.fbData.uid);
       localStorage.setItem('logintype','fb');
       this.helper.closeLoading();
       this.viewCtrl.dismiss();
