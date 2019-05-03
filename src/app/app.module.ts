@@ -102,6 +102,7 @@ import { OriginalsComponent } from '../components/originals/originals';
 import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2';
 import { PublicPlaylistComponent } from '../components/public-playlist/public-playlist';
 import { PayPal } from '@ionic-native/paypal';
+import { MyplaylistPage } from '../pages/myplaylist/myplaylist';
 
 const firebase = {
   apiKey: "AIzaSyC9rUSoS3awN244Cx4EWIQFqUNrLvbIv1s",
@@ -164,7 +165,8 @@ const firebase = {
     OfflineFooterComponent,
     MyAlbumsComponent,
     OriginalsComponent,
-    PublicPlaylistComponent
+    PublicPlaylistComponent,
+    MyplaylistPage
   ],
   imports: [
     BrowserModule,
@@ -208,7 +210,8 @@ const firebase = {
     SeeAllPage,
     StartPopupPage,
     MyMusicPlayerPage,
-    MyAlbumPage
+    MyAlbumPage,
+    MyplaylistPage
   ],
   providers: [
     StatusBar,

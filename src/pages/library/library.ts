@@ -97,7 +97,8 @@ export class LibraryPage {
         })))
         .subscribe(res => {
           this.following = res;
-          if(this.following[0].users)
+          if(this.following.length > 0)
+           if(this.following[0].users)
             this.nfollowing = this.following[0].users.length;
         })
       }

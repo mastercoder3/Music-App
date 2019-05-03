@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, App, MenuController, NavController, Nav } from 'ionic-angular';
+import { Platform, App, MenuController, NavController, Nav, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -13,6 +13,7 @@ import { CardSelectionPage } from '../pages/card-selection/card-selection';
 import { SeeAllPage } from '../pages/see-all/see-all';
 import { ApiProvider } from '../providers/api/api';
 import { Subscription } from 'rxjs';
+import { MyplaylistPage } from '../pages/myplaylist/myplaylist';
 @Component({
   templateUrl: 'app.html'
 })
@@ -29,8 +30,7 @@ export class MyApp {
     private app: App,
     private helper: HelperProvider,
     private menu: MenuController,
-    private api: ApiProvider,
-    private hlper: HelperProvider
+    private api: ApiProvider
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -124,5 +124,10 @@ export class MyApp {
     this.nav.push(SeeAllPage,{
       type: 'offline'
     })
+  }
+
+  playlist(){
+    this.menu.close();
+    this.nav.push(MyplaylistPage)
   }
 }

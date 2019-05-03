@@ -147,9 +147,12 @@ export class AudioService {
   }
 
   progressPercentage() {
+    if(this.playingTrack().progress)
     return Math.trunc(
       (this.playingTrack().progress / this.playingTrack().duration) * 100
     );
+    else
+    return null;
   }
 
   progressText() {

@@ -8,6 +8,7 @@ import { VideoDetailsPageService } from '../../services/VideoDetailsPageService'
 import { NativeStorage } from '@ionic-native/native-storage';
 import { HelperProvider } from '../../providers/helper/helper';
 import { TabsPage } from '../tabs/tabs';
+import { AudioService } from '../../services/AudioService';
 
 /**
  * Generated class for the SeeAllPage page.
@@ -34,7 +35,8 @@ export class SeeAllPage implements OnInit {
     @Inject(forwardRef(() => MusicPlayerPageService))
     public musicPlayerPageService: MusicPlayerPageService,
     @Inject(forwardRef(() => VideoDetailsPageService))
-    public videoDetailsPageService: VideoDetailsPageService, private nativeStorage: NativeStorage, private helper: HelperProvider) {
+    public videoDetailsPageService: VideoDetailsPageService,
+    private audio: AudioService, private nativeStorage: NativeStorage, private helper: HelperProvider) {
     this.data = this.navParams.get('data');
     this.type = this.navParams.get('type');
   }
@@ -270,12 +272,19 @@ export class SeeAllPage implements OnInit {
 
   ionViewDidLoad() {
     this.hideFooterPlayer();
-    this.showFooterPlayer();
+    try{
+          if(this.audio.progressPercentage())
+      this.showFooterPlayer();
+    }
+    catch(e){
+      
+    }
+
   }
 
   close(){
-    if(this.type === 'liked' || this.type === 'offline'){
-      this.navCtrl.setRoot(TabsPage);
+    if(this.type === 'liked' || this.type === 'offline' || this.type === 'playlist'){
+      this.navCtrl.pop();
     }
     else
       this.modalService.dismiss();
@@ -298,7 +307,7 @@ export class SeeAllPage implements OnInit {
     let myfunc = (res) =>{
       if(res.data.length > 0){
         this.playlist.playlist[this.index].name = res.data;
-        this.api.updatePlaylist(this.playlist.did, {playlist: this.playlist.playlist});
+        this.api.updatePlaylist(this.playlist.did, {playlist: this.playlist.playlist}).then(success => this.name = res.data);
       }
     };
    const alert =  this.helper.showAlertGeneric('Playlist','Rename Playlist','Enter Name','Submit',myfunc);
