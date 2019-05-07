@@ -56,7 +56,7 @@ export class ApiProvider {
   }
 
   getMostPlayedSongs1(){
-    return this.afs.collection('songs', ref => ref.orderBy('views', 'desc').limit(20)).snapshotChanges();
+    return this.afs.collection('songs', ref => ref.orderBy('views', 'desc')).snapshotChanges();
   }
 
   getAllSongs(){
@@ -68,7 +68,7 @@ export class ApiProvider {
   }
 
   getNewSongs1(){
-    return this.afs.collection('songs', ref=>ref.orderBy('upload', 'desc'). limit(20)).snapshotChanges();
+    return this.afs.collection('songs', ref=>ref.orderBy('upload', 'desc')).snapshotChanges();
   }
 
   // :::::::::::::::::::::::::::::::::::::::::::::::: Playlist ::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -120,7 +120,7 @@ export class ApiProvider {
   }
 
   getpopularVideos1(){
-    return this.afs.collection('songs', ref=> ref.where('video','>', '').orderBy('video').orderBy('views','desc').limit(20)).snapshotChanges();
+    return this.afs.collection('songs', ref=> ref.where('video','>', '').orderBy('video').orderBy('views','desc')).snapshotChanges();
   }
 
   getOnlyVideos(){
@@ -132,7 +132,7 @@ export class ApiProvider {
   }
 
   getNewVideos1(){
-    return this.afs.collection('songs', ref => ref.where('video','>','').orderBy('video').orderBy('upload','asc').limit(20)).snapshotChanges();
+    return this.afs.collection('songs', ref => ref.where('video','>','').orderBy('video').orderBy('upload','asc')).snapshotChanges();
   }
 
   // ::::::::::::::::::::::::::::::::::::::::::::::::: Liked Tracks ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::

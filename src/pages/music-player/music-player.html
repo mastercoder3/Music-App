@@ -77,7 +77,7 @@
                 }}"
                 class="album cover"
                 alt="cover"
-                style="width: 250px; height: 200px;"
+                style="width: 250px; height: 200px; margin: 0 auto !important;"
               />
             </div>
           </div>
@@ -261,7 +261,7 @@
                               <h2 class="title">{{ song.title }}</h2>
 
                               <cite class="author">
-                                <a>{{ song.oartist }} </a>
+                                <a>{{ song?.artist[0]?.display }} </a>
                               </cite>
                             </div>
 
