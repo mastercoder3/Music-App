@@ -63,7 +63,7 @@ export class MyApp {
         this.user = res;
       });
   }
-
+//Logout method
   logout(){
     this.$ob.unsubscribe();
     this.user =null;
